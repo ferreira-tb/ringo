@@ -9,7 +9,9 @@
     --color-heading: #ffffff;
     --color-text: rgba(235, 235, 235, 0.64);
 
-    --color-anchor: hsla(160, 100%, 37%, 1);
+    --color-green: #00bd7e;
+    --color-green-darker: #01a16c;
+    --color-green-lighter: #00d68f;
 }
 
 *,
@@ -17,13 +19,12 @@
 *::after {
     box-sizing: border-box;
     margin: 0;
-    position: relative;
     font-weight: normal;
 }
 
 a, .green {
     text-decoration: none;
-    color: var(--color-anchor);
+    color: var(--color-green);
     transition: 0.4s;
 }
 
