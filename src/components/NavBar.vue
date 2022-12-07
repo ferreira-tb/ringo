@@ -13,12 +13,6 @@
             <div>
                 Temporário
             </div>
-            <div>
-                Temporário
-            </div>
-            <div>
-                Temporário
-            </div>
         </div>
     </nav>
 </template>
