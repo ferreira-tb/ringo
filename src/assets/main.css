@@ -14,9 +14,7 @@
     --color-green-lighter: #00d68f;
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     font-weight: normal;
@@ -36,4 +34,10 @@ body {
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
         Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-size: 15px;
+}
+
+/** CLASSES */
+.button-area {
+    margin-top: 0.5em;
+    text-align: center;
 }

@@ -28,6 +28,7 @@ import NavBar from '@/components/NavBar.vue';
     width: 100%;
     padding-left: 0.3em;
     padding-right: 0.3em;
+    margin-top: 0.5em;
     overflow: hidden;
 }
 .main-view {
@@ -35,6 +36,5 @@ import NavBar from '@/components/NavBar.vue';
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    margin-top: 0.3em;
 }
 </style>

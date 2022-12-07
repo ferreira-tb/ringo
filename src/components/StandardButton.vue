@@ -15,7 +15,7 @@ const props = defineProps<{
     justify-content: center;
 
     text-align: center;
-    font-weight: 500;
+    font-weight: 550;
 
     border-color: var(--color-green-darker);
     border-width: 2px;

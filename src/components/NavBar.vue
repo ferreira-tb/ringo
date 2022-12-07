@@ -1,5 +1,9 @@
 <script setup lang='ts'>
+import { storeToRefs } from 'pinia';
+import { useCharacterStore } from '@/stores/character';
 
+const store = useCharacterStore();
+const { character } = storeToRefs(store);
 </script>
 
 <template>
@@ -10,22 +14,18 @@
             </router-link>
         </div>
         <div class="nav-bar-menu">
-            <div>
-                Temporário
-            </div>
+            <span v-if="character.name">{{ character.name }}</span>
         </div>
     </nav>
 </template>
 
 <style scoped>
 .nav-bar-menu {
-    margin-right: 20px;
     display: flex;
+    margin-right: 20px;
+    font-size: 1.2em;
 }
-.nav-bar-menu div {
-    align-self: center;
-    margin-left: 10px;
-}
+
 .home-page-link {
     font-size: 1.2em;
     font-weight: bolder;
