@@ -54,3 +54,30 @@ type PlayerHandbookClasses =
     | 'Patrulheiro';
 
 type Classes = PlayerHandbookClasses;
+
+////// IDIOMAS
+type Languages =
+    | 'Comum'
+    | 'Anão'
+    | 'Élfico'
+    | 'Gigante'
+    | 'Gnômico'
+    | 'Goblin'
+    | 'Halfling'
+    | 'Orc'
+    | 'Abissal'
+    | 'Celestial'
+    | 'Dialeto Subterrâneo'
+    | 'Dracônico'
+    | 'Infernal'
+    | 'Primordial'
+    | 'Silvestre'
+    | 'Subcomum';
+
+////// OUTROS
+type AbilityInfo = Readonly<{
+    [key in keyof AbilityScores]: {
+        name: string
+        description: string
+    }
+}>;

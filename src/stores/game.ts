@@ -65,7 +65,33 @@ export const useGameStore = defineStore('game', () => {
     const classes: Map<number, ReadonlyMap<number, Classes>> = new Map();
     classes.set(1, playerHandbookClasses);
 
-    ////// OUTROS
+    return { books, races, classes };
+});
+
+export const useLanguageStore = defineStore('language', () => {
+    const languages: ReadonlyMap<number, Languages> = new Map([
+        [0, 'Comum'],
+        [1, 'Anão'],
+        [2, 'Élfico'],
+        [3, 'Gigante'],
+        [4, 'Gnômico'],
+        [5, 'Goblin'],
+        [6, 'Halfling'],
+        [7, 'Orc'],
+        [8, 'Abissal'],
+        [9, 'Celestial'],
+        [10, 'Dialeto Subterrâneo'],
+        [11, 'Dracônico'],
+        [12, 'Infernal'],
+        [13, 'Primordial'],
+        [14, 'Silvestre'],
+        [15, 'Subcomum']
+    ]);
+
+    return { languages };
+});
+
+export const useExperienceStore = defineStore('experience', () => {
     const experience: ReadonlyMap<number, number> = new Map([
         [1, 0],
         [2, 300],
@@ -89,10 +115,43 @@ export const useGameStore = defineStore('game', () => {
         [20, 355000]
     ]);
 
-    return {
-        books,
-        races,
-        classes,
-        experience
+    return { experience };
+});
+
+export const useAbilityStore = defineStore('ability', () => {
+    const ability: AbilityInfo = {
+        for: {
+            name: 'Força',
+            description: 'A Força mede a potência física, treinamento atlético, e a extensão da força bruta que você pode exercer.'
+        },
+        des: {
+            name: 'Destreza',
+            description: 'A Destreza mede a agilidade, os reflexos e o equilíbrio.'
+        },
+        con: {
+            name: 'Constituição',
+            description: 'A Constituição mede a saúde, a resistência e a força vital.'
+        },
+        int: {
+            name: 'Inteligência',
+            description: 'A Inteligência mede a acuidade mental, precisão da memória e a habilidade de raciocinar.'
+        },
+        sab: {
+            name: 'Sabedoria',
+            description: 'A Sabedoria reflete como você está em sintonia com o mundo ao seu redor e representa percepção e intuição.'
+        },
+        car: {
+            name: 'Carisma',
+            description: 'O Carisma mede a capacidade de interagir eficazmente com os outros. ' +
+            'Ele inclui fatores como confiança e eloquência, e pode representar uma personalidade encantadora ou dominadora.'
+        },
+        san: {
+            name: 'Sanidade',
+            description: 'Um personagem com um valor de Sanidade alto mantem-se equilibrado mesmo ao confrontar circunstâncias insanas, ' +
+            'enquanto que um personagem com Sanidade baixa é inseguro, facilmente se desesperando ao ser confrontado por horrores ' +
+            'sobrenaturais que estão além de sua compreensão.'
+        }
     };
+
+    return { ability };
 });

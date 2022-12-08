@@ -21,7 +21,24 @@ character.books.forEach((book) => {
 });
 
 if (raceList.length > 0) {
+    Promise.all(character.books.map((book) => fetchRaceInfo(book)));
     raceList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
+};
+
+const raceInfoMap = reactive(new Map<number, CharacterRace>());
+async function fetchRaceInfo(bookNumber: number) {
+    try {
+        const response = await fetch(`/ringo/api/races/book${bookNumber.toString(10)}.json`);
+        if (response.status === 404) return;
+
+        const raceInfo = await response.json() as CharacterRace[];
+        if (Array.isArray(raceInfo)) {
+            raceInfo.forEach((item) => raceInfoMap.set(item.codigo, item));
+        };
+
+    } catch (err) {
+        if (err instanceof Error) console.error(err);
+    };
 };
 
 function randomRace() {
@@ -31,7 +48,7 @@ function randomRace() {
 
 function saveAndContinue() {
     if (character.race === null) randomRace();
-    router.push({ name: 'create-char-step-3' });
+    // router.push({ name: 'create-char-step-3' });
 };
 
 watchEffect(() => {
@@ -70,7 +87,12 @@ watchEffect(() => {
             />
         </div>
 
-        <RaceBonuses v-if="(typeof character.race === 'number')" />
+        <Transition name="fade" mode="out-in">
+            <RaceBonuses
+                v-if="((typeof character.race === 'number') && raceInfoMap.has(character.race))"
+                :raceInfo="(raceInfoMap.get(character.race) as CharacterRace)"
+            />
+        </Transition>
     </section>
 </template>
 
