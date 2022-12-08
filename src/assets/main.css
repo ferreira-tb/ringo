@@ -76,7 +76,7 @@ input[type="checkbox"]:checked::before {
     position: relative;
 }
 
-.tooltip:before {
+.tooltip::after {
     content: attr(data-tooltip);
     display: none;
 
