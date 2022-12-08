@@ -1,0 +1,49 @@
+[
+    {
+        "nome": "Anão da Colina",
+        "codigo": 0,
+        "habilidades": {
+            "for": 0,
+            "des": 0,
+            "con": 2,
+            "int": 0,
+            "sab": 1,
+            "car": 0,
+            "san": 0
+        },
+        "idade": 350,
+        "peso": 75,
+        "altura": {
+            "min": 1.2,
+            "max": 1.5
+        },
+        "deslocamento": 7.5,
+        "idiomas": [
+            0,
+            1
+        ],
+        "visao_escuro": 18,
+        "bonus": [
+            {
+                "nome": "Resiliência Anã",
+                "efeito": "Você possui vantagem em testes de resistência contra venenos e resistência contra dano de veneno."
+            },
+            {
+                "nome": "Treinamento Anão em Combate",
+                "efeito": "Você tem proficiência com machados de batalha, machadinhas, martelos leves e martelos de guerra."
+            },
+            {
+                "nome": "Proficiência com Ferramentas",
+                "efeito": "Você tem proficiência em uma ferramenta de artesão à sua escolha entre: ferramentas de ferreiro, suprimentos de cervejeiro ou ferramentas de pedreiro."
+            },
+            {
+                "nome": "Especialização em Rochas",
+                "efeito": "Sempre que você realizar um teste de Inteligência (História) relacionado à origem de um trabalho em pedra, você é considerado proficiente na perícia História e adiciona o dobro do seu bônus de proficiência ao teste, ao invés do seu bônus de proficiência normal."
+            },
+            {
+                "nome": "Tenacidade Anã",
+                "efeito": "Seu máximo de pontos de vida aumenta em 1, e cada vez que sobe um nível, recebe 1 ponto de vida adicional."
+            }
+        ]
+    }
+]
