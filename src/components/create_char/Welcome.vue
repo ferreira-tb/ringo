@@ -17,7 +17,7 @@ const { character } = charStore;
         <div class="button-area">
             <StandardButton
                 text="Iniciar"
-                :disabled="(character.name.length < 1)"
+                :disabled="!character.name"
                 @click.prevent="router.push({ name: 'create-char-step-1' })"
             />
         </div>

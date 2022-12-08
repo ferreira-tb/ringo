@@ -41,7 +41,7 @@ export const useGameStore = defineStore('game', () => {
     ]);
 
     // As chaves precisam ser idênticas às do mapa de livros.
-    const races: RaceMap = new Map();
+    const races: Map<number, ReadonlyMap<number, Races>> = new Map();
     races.set(1, playerHandbookRaces);
     races.set(5, elementalEvilRaces);
 
@@ -62,7 +62,7 @@ export const useGameStore = defineStore('game', () => {
     ]);
 
     // As chaves precisam ser idênticas às do mapa de livros.
-    const classes: ClassMap = new Map();
+    const classes: Map<number, ReadonlyMap<number, Classes>> = new Map();
     classes.set(1, playerHandbookClasses);
 
     ////// OUTROS

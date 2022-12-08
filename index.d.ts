@@ -38,8 +38,6 @@ type Races =
     | PlayerHandbookRaces
     | ElementalEvilRaces;
 
-type RaceMap = Map<number, ReadonlyMap<number, Races>>;
-
 ////// CLASSES
 type PlayerHandbookClasses =
     | 'Bárbaro'
@@ -56,5 +54,3 @@ type PlayerHandbookClasses =
     | 'Patrulheiro';
 
 type Classes = PlayerHandbookClasses;
-
-type ClassMap = Map<number, ReadonlyMap<number, Classes>>;

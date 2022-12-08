@@ -8,7 +8,7 @@ const gameStore = useGameStore();
 const { books } = gameStore;
 
 const charStore = useCharacterStore();
-const { character } = charStore;
+const { character, resetBooks } = charStore;
 </script>
 
 <template>
@@ -36,13 +36,13 @@ const { character } = charStore;
                 @click.prevent="router.push({ name: 'create-char-step-2' })"
             />
             <StandardButton
+                text="Padrão"
+                @click.prevent="resetBooks"
+            />
+            <StandardButton
                 text="Voltar"
                 @click.prevent="router.push({ name: 'create-char' })"
             />
         </div>
     </section>
 </template>
-
-<style scoped>
-
-</style>
