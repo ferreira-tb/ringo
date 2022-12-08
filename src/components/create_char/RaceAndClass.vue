@@ -14,23 +14,23 @@ const { races, classes } = gameStore;
 </script>
 
 <template>
-    <p class="text-line">Muito bem, {{ character.name }}!</p>
-    <p class="text-line">Agora escolha a raça e a classe.</p>
-
-    <div class="input-area">
+    <section>
+        <p class="text-line">Muito bem, {{ character.name }}!</p>
+        <p class="text-line">Agora escolha a raça e a classe.</p>
+        <div class="input-area">
         
-    </div>
-
-    <div class="button-area">
-        <StandardButton
-            text="Continuar"
-            @click.prevent="router.push({ name: 'create-char-step-3' })"
-        />
-        <StandardButton
-            text="Voltar"
-            @click.prevent="router.push({ name: 'create-char-step-1' })"
-        />
-    </div>
+        </div>
+        <div class="button-area">
+            <StandardButton
+                text="Continuar"
+                @click.prevent="router.push({ name: 'create-char-step-3' })"
+            />
+            <StandardButton
+                text="Voltar"
+                @click.prevent="router.push({ name: 'create-char-step-1' })"
+            />
+        </div>
+    </section>
 </template>
 
 <style scoped>

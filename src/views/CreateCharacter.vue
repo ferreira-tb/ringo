@@ -3,12 +3,18 @@
 </script>
 
 <template>
-    <div>
-        <h1>Criação de Personagem</h1>
-    </div>
-    <div>
-        <router-view />
-    </div>
+    <main>
+        <div>
+            <h1>Criação de Personagem</h1>
+        </div>
+        <div>
+            <router-view v-slot="{ Component, route }">
+                <transition name="fade" mode="out-in">
+                    <component :is="Component" :key="route.path" />
+                </transition>
+            </router-view>
+        </div>
+    </main>
 </template>
 
 <style scoped>

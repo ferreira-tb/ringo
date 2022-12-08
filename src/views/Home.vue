@@ -10,15 +10,17 @@ const { active } = storeToRefs(store);
 </script>
 
 <template>
-    <template v-if="!active">
-        <p class="home-message">Não há personagem ativo no momento.</p>
-        <p class="home-message">Crie um novo ou carregue uma ficha salva.</p>
-        <div class="button-area">
-            <StandardButton text="Criar personagem" @click.prevent="router.push({ name: 'create-char' })"/>
-            <StandardButton text="Carregar ficha"/>
-        </div>
-    </template>
-    <CharacterSheet v-else />
+    <main>
+        <template v-if="!active">
+            <p class="home-message">Não há personagem ativo no momento.</p>
+            <p class="home-message">Crie um novo ou carregue uma ficha salva.</p>
+            <div class="button-area">
+                <StandardButton text="Criar personagem" @click.prevent="router.push({ name: 'create-char' })"/>
+                <StandardButton text="Carregar ficha"/>
+            </div>
+        </template>
+        <CharacterSheet v-else />
+    </main>
 </template>
 
 <style scoped>

@@ -3,9 +3,13 @@ import NavBar from '@/components/NavBar.vue';
 </script>
 
 <template>
-    <NavBar class="nav-bar"/>
+    <NavBar class="nav-bar" />
     <div class="main-container">
-        <router-view class="main-view"/>
+        <router-view class="main-view" v-slot="{ Component, route }">
+            <transition name="fade" mode="out-in">
+                <component :is="Component" :key="route.path" />
+            </transition>
+        </router-view>
     </div>
 </template>
 
@@ -21,6 +25,7 @@ import NavBar from '@/components/NavBar.vue';
     width: 100%;
     border-bottom: 1px solid var(--color-border);
 }
+
 .main-container {
     position: absolute;
     top: 30px;
@@ -31,6 +36,7 @@ import NavBar from '@/components/NavBar.vue';
     margin-top: 0.5em;
     overflow: hidden;
 }
+
 .main-view {
     height: 100%;
     width: 100%;
