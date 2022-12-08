@@ -1,1 +1,0 @@
-import{d as o,o as e,c as s,t as a,_}from"./index.41ccca09.js";const c={class:"standard-button"},d=o({__name:"StandardButton",props:{text:null},setup(t){const n=t;return(r,p)=>(e(),s("button",c,a(n.text),1))}});const l=_(d,[["__scopeId","data-v-5cd0555b"]]);export{l as S};
