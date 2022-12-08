@@ -7,11 +7,11 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',
-        component: Home
+        component: () => Home
     },
     {
         path: '/create/char',
-        component: CreateCharacter,
+        component: () => CreateCharacter,
         children: createCharRoutes
     }
 ];

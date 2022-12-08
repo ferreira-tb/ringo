@@ -1,9 +1,8 @@
 <script setup lang='ts'>
-import { storeToRefs } from 'pinia';
 import { useCharacterStore } from '@/stores/character';
 
 const store = useCharacterStore();
-const { character } = storeToRefs(store);
+const { character } = store;
 </script>
 
 <template>
