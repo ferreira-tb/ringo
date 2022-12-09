@@ -48,9 +48,11 @@ function randomRace() {
 
 function saveAndContinue() {
     if (character.race === null) randomRace();
-    // router.push({ name: 'create-char-step-3' });
+    router.push({ name: 'create-char-step-3' });
 };
 
+// Remove a raça atual caso ela não esteja na lista.
+// Isso geralmente acontece quando o usuário seleciona uma raça, volta à janela anterior e altera os livros.
 watchEffect(() => {
     if (!raceList.some((race) => character.race === race[0])) {
         character.race = null;

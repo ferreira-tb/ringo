@@ -15,5 +15,10 @@ export const createCharRoutes: RouteRecordRaw[] = [
         path: 's2',
         name: 'create-char-step-2',
         component: () => import('@/components/create_char/Races.vue')
+    },
+    {
+        path: 's3',
+        name: 'create-char-step-3',
+        component: () => import('@/components/create_char/Classes.vue')
     }
 ];

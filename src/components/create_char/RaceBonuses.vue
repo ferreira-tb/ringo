@@ -85,6 +85,7 @@ const languages = computed(() => {
     return languageNames.join(', ');
 });
 
+/** Formato padrão da visão no escuro. */
 const darkVision = computed(() => {
     const distance = props.raceInfo.visao_escuro;
     if (typeof distance === 'number') {
@@ -144,7 +145,7 @@ const darkVision = computed(() => {
                 </template>
                 <RaceAbility
                     v-for="item of props.raceInfo.bonus"
-                    :key="item.nome"
+                    :key="item.id"
                     :bonus="item"
                 />
             </TransitionGroup>
