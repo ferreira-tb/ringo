@@ -72,34 +72,8 @@ input[type="checkbox"]:checked::before {
     font-weight: bold;
 }
 
-.tooltip {
-    position: relative;
-}
-
-.tooltip::after {
-    content: attr(data-tooltip);
-    display: none;
-
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    max-width: 80%;
-
-    margin-left: 15px;
-    padding: 10px;
-    
-    border-radius: 10px;
-    background: var(--color-background-soft);
-    color: var(--color-text);
-    text-align: center;
-
-    opacity: 0;
-    transition: 0.5s opacity;
-}
-
-.tooltip:hover:before {
-    display: flex;
-    opacity: 1;
+.green-text {
+    color: var(--color-green);
 }
 
 .checkbox-label {

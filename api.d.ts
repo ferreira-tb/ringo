@@ -9,6 +9,7 @@ type AbilityScores = {
 }
 
 type RaceBonus = {
+    key: number
     nome: string
     efeito: string
 }

@@ -14,7 +14,7 @@ const { character, resetBooks } = charStore;
 <template>
     <section>
         <p class="text-line">Quais livros você deseja usar para construir seu personagem?</p>
-        <p class="text-line small">Se não souber o que responder, apenas clique em <span class="bold">Continuar</span>.</p>
+        <p class="text-line small">Se não souber o que responder, apenas clique em <span class="bold">continuar</span>.</p>
         <div class="books-area">
             <template v-for="book in books">
                 <label class="checkbox-label">

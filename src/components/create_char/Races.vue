@@ -61,7 +61,7 @@ watchEffect(() => {
 <template>
     <section>
         <p class="text-line">Escolha uma raça para seu personagem. Ela definirá sua aparência geral e seus talentos naturais.</p>
-        <p class="text-line small">Se ficar em dúvida, apenas clique em <span class="bold">Continuar</span>.</p>
+        <p class="text-line small">Se ficar em dúvida, apenas clique em <span class="bold">continuar</span>.</p>
         <p class="text-line small">Uma raça aleatória será escolhida para você!</p>
         
         <div class="races-area">
