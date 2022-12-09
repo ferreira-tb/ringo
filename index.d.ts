@@ -81,3 +81,8 @@ type AbilityInfo = Readonly<{
         description: string
     }
 }>;
+
+type StandardTableContent = {
+    th: string[]
+    tr: string[][]
+}

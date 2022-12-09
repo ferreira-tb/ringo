@@ -9,8 +9,18 @@ type AbilityScores = {
 }
 
 type RaceBonus = {
+    /** Nome do bônus. */
     nome: string
+    /** Descrição dos efeitos do bônus. */
     efeito: string
+    /** Parágrafos adicionais imediatamente após a descrição do bônus. */
+    extra?: string[]
+    detalhes?: RaceBonusDetails
+}
+
+type RaceBonusDetails = {
+    tipo: 'table'
+    conteudo: StandardTableContent
 }
 
 type CharacterRace = {
