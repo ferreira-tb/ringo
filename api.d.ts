@@ -9,6 +9,8 @@ type AbilityScores = {
 }
 
 type RaceBonus = {
+    /** ID númerico do bônus. */
+    id: number
     /** Nome do bônus. */
     nome: string
     /** Descrição dos efeitos do bônus. */

@@ -16,7 +16,7 @@ const props = defineProps<{
         <template v-if="props.bonus.extra">
             <div v-for="extra of props.bonus.extra" class="race-ability">{{ extra }}</div>
         </template>
-        <div v-if="props.bonus.detalhes">
+        <div v-if="props.bonus.detalhes" class="race-ability-details">
             <Table
                 v-if="props.bonus.detalhes.tipo === 'table'"
                 :content="(props.bonus.detalhes.conteudo as StandardTableContent)"
@@ -34,5 +34,9 @@ const props = defineProps<{
     margin-left: 0.5em;
     margin-right: 0.5em;
     margin-bottom: 0.5em;
+}
+
+.race-ability-details {
+    padding-bottom: 0.5em;
 }
 </style>
