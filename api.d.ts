@@ -49,6 +49,10 @@ type CharacterRace = {
     visao_escuro: number | null
     bonus: RaceBonus[]
     recomendacoes: {
-        classes: number[]
+        /**
+         * Números representam uma classe e arrays de números representam multiclasse.
+         * Já `null` indica que não há classe recomendada.
+         */
+        classes: (number | number[])[] | null
     }
 }

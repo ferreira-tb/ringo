@@ -59,7 +59,7 @@ function saveAndContinue() {
 };
 
 // Remove a raça atual caso ela não esteja na lista.
-// Isso geralmente acontece quando o usuário seleciona uma raça, volta à janela anterior e altera os livros.
+// Isso geralmente acontece quando o usuário seleciona uma raça, volta à janela anterior e então altera os livros.
 // Se durante a verificação ele encontrar a raça na lista, aproveita e atualiza o ID do livro onde a raça se encontra.
 watchEffect(() => {
     const verifyList = (race: [number, Races, number]) => {

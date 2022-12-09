@@ -1,8 +1,14 @@
 import { defineStore } from 'pinia';
 import { type Ref, ref, reactive } from 'vue';
 
-type ClassAndRace = {
+type CharacterRace = {
     id: number | null
+    book: number | null
+}
+
+type CharacterClass = {
+    id: number | null
+    level: number
     book: number | null
 }
 
@@ -10,14 +16,15 @@ class Character {
     books: number[] = [1, 2, 3];
     name: string | null = null;
 
-    readonly race: ClassAndRace = {
+    readonly race: CharacterRace = {
         id: null,
         book: null
     };
     
-    readonly class: ClassAndRace = {
+    readonly class: CharacterClass = {
         id: null,
-        book: null
+        level: 1,
+        book: null,
     };
 };
 
