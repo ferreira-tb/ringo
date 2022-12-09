@@ -158,6 +158,10 @@ h2 {
 
 .plus-wrapper, .minus-wrapper {
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 
 .span-wrapper, .span-title {
@@ -167,6 +171,7 @@ h2 {
 
 .span-wrapper {
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .first-title {
