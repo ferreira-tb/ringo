@@ -33,7 +33,7 @@ watchEffect(() => {
 
 <template>
     <section>
-        <p class="text-line">Classe descrevem a vocação de um personagem e suas aptidões especiais. Hora de escolher a sua.</p>
+        <p class="text-line">Classes descrevem a vocação de um personagem e suas aptidões especiais. Hora de escolher a sua.</p>
         <p class="text-line small">Se ficar em dúvida, apenas clique em <span class="bold">continuar</span>.</p>
         <p class="text-line small">A Ringo escolherá uma classe de acordo com sua raça.</p>
         
