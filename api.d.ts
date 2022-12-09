@@ -41,11 +41,14 @@ type CharacterRace = {
     }
     tamanho: number
     deslocamento: number
-    idiomas: number[],
+    idiomas: number[]
     /**
      * Trata-se da visão no escuro padrão. Caso o traço divergir do padrão, o valor dessa propriedade deve ser `null`.
      * O traço então deve ser incluso na propriedade `bonus`.
      */
     visao_escuro: number | null
     bonus: RaceBonus[]
+    recomendacoes: {
+        classes: number[]
+    }
 }

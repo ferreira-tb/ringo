@@ -1,11 +1,24 @@
 import { defineStore } from 'pinia';
 import { type Ref, ref, reactive } from 'vue';
 
+type ClassAndRace = {
+    id: number | null
+    book: number | null
+}
+
 class Character {
     books: number[] = [1, 2, 3];
     name: string | null = null;
-    race: number | null = null;
-    class: number | null = null;
+
+    readonly race: ClassAndRace = {
+        id: null,
+        book: null
+    };
+    
+    readonly class: ClassAndRace = {
+        id: null,
+        book: null
+    };
 };
 
 export const useCharacterStore = defineStore('character', () => {

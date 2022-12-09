@@ -12,20 +12,26 @@ const { character } = charStore;
 const gameStore = useGameStore();
 const { races } = gameStore;
 
-const raceList: [number, Races][] = reactive([]);
+/** Lista de raças, onde o primeiro elemento é o código da raça, o segundo é o nome e o terceiro é o código do livro. */
+const raceList: [number, Races, number][] = reactive([]);
 character.books.forEach((book) => {
-    const racesFromBook = races.get(book);
-    if (racesFromBook) {
-        raceList.push(...racesFromBook.entries());
+    const thisBookRaceMap = races.get(book);
+    if (thisBookRaceMap) {
+        for (const [key, value] of thisBookRaceMap.entries()) {
+            raceList.push([key, value, book]);
+        };
     };
 });
 
+/** Mapa com as informações sobre cada raça. */
+const raceInfoMap = reactive(new Map<number, CharacterRace>());
+
+// Solicita à API os dados sobre a raça e ordena a lista de raças de acordo com o nome.
 if (raceList.length > 0) {
     Promise.all(character.books.map((book) => fetchRaceInfo(book)));
     raceList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
 };
 
-const raceInfoMap = reactive(new Map<number, CharacterRace>());
 async function fetchRaceInfo(bookNumber: number) {
     try {
         const response = await fetch(`/ringo/api/races/book${bookNumber.toString(10)}.json`);
@@ -43,7 +49,8 @@ async function fetchRaceInfo(bookNumber: number) {
 
 function randomRace() {
     const randomIndex = Math.floor(Math.random() * raceList.length);
-    character.race = raceList[randomIndex][0];
+    character.race.id = raceList[randomIndex][0];
+    character.race.book = raceList[randomIndex][2];
 };
 
 function saveAndContinue() {
@@ -53,9 +60,20 @@ function saveAndContinue() {
 
 // Remove a raça atual caso ela não esteja na lista.
 // Isso geralmente acontece quando o usuário seleciona uma raça, volta à janela anterior e altera os livros.
+// Se durante a verificação ele encontrar a raça na lista, aproveita e atualiza o ID do livro onde a raça se encontra.
 watchEffect(() => {
-    if (!raceList.some((race) => character.race === race[0])) {
-        character.race = null;
+    const verifyList = (race: [number, Races, number]) => {
+        if (character.race.id === race[0]) {
+            character.race.book = race[2];
+            return true;
+        };
+
+        return false;
+    };
+
+    if (!raceList.some(verifyList)) {
+        character.race.id = null;
+        character.race.book = null;
     };
 });
 </script>
@@ -67,7 +85,7 @@ watchEffect(() => {
         <p class="text-line small">Uma raça aleatória será escolhida para você!</p>
         
         <div class="races-area">
-            <select v-model.number="character.race">
+            <select v-model.number="character.race.id">
                 <option v-for="race of raceList" :key="race[0]" :value="race[0]">{{ race[1] }}</option>
             </select>
         </div>
@@ -91,8 +109,8 @@ watchEffect(() => {
 
         <Transition name="fade" mode="out-in">
             <RaceBonuses
-                v-if="((typeof character.race === 'number') && raceInfoMap.has(character.race))"
-                :raceInfo="(raceInfoMap.get(character.race) as CharacterRace)"
+                v-if="((typeof character.race.id === 'number') && raceInfoMap.has(character.race.id))"
+                :raceInfo="(raceInfoMap.get(character.race.id) as CharacterRace)"
             />
         </Transition>
     </section>
