@@ -17,6 +17,7 @@
             "min": 1.2,
             "max": 1.5
         },
+        "tamanho": 2,
         "deslocamento": 7.5,
         "idiomas": [
             0,
@@ -25,29 +26,316 @@
         "visao_escuro": 18,
         "bonus": [
             {
-                "key": 0,
                 "nome": "Resiliência Anã",
                 "efeito": "Você possui vantagem em testes de resistência contra venenos e resistência contra dano de veneno."
             },
             {
-                "key": 1,
                 "nome": "Treinamento Anão em Combate",
                 "efeito": "Você tem proficiência com machados de batalha, machadinhas, martelos leves e martelos de guerra."
             },
             {
-                "key": 2,
                 "nome": "Proficiência com Ferramentas",
                 "efeito": "Você tem proficiência em uma ferramenta de artesão à sua escolha entre: ferramentas de ferreiro, suprimentos de cervejeiro ou ferramentas de pedreiro."
             },
             {
-                "key": 3,
                 "nome": "Especialização em Rochas",
                 "efeito": "Sempre que você realizar um teste de Inteligência (História) relacionado à origem de um trabalho em pedra, você é considerado proficiente na perícia História e adiciona o dobro do seu bônus de proficiência ao teste, ao invés do seu bônus de proficiência normal."
             },
             {
-                "key": 4,
                 "nome": "Tenacidade Anã",
                 "efeito": "Seu máximo de pontos de vida aumenta em 1, e cada vez que sobe um nível, recebe 1 ponto de vida adicional."
+            }
+        ]
+    },
+    {
+        "nome": "Anão da Montanha",
+        "codigo": 1,
+        "habilidades": {
+            "for": 2,
+            "des": 0,
+            "con": 2,
+            "int": 0,
+            "sab": 0,
+            "car": 0,
+            "san": 0
+        },
+        "idade": 350,
+        "peso": 75,
+        "altura": {
+            "min": 1.2,
+            "max": 1.5
+        },
+        "tamanho": 2,
+        "deslocamento": 7.5,
+        "idiomas": [
+            0,
+            1
+        ],
+        "visao_escuro": 18,
+        "bonus": [
+            {
+                "nome": "Resiliência Anã",
+                "efeito": "Você possui vantagem em testes de resistência contra venenos e resistência contra dano de veneno."
+            },
+            {
+                "nome": "Treinamento Anão em Combate",
+                "efeito": "Você tem proficiência com machados de batalha, machadinhas, martelos leves e martelos de guerra."
+            },
+            {
+                "nome": "Proficiência com Ferramentas",
+                "efeito": "Você tem proficiência em uma ferramenta de artesão à sua escolha entre: ferramentas de ferreiro, suprimentos de cervejeiro ou ferramentas de pedreiro."
+            },
+            {
+                "nome": "Especialização em Rochas",
+                "efeito": "Sempre que você realizar um teste de Inteligência (História) relacionado à origem de um trabalho em pedra, você é considerado proficiente na perícia História e adiciona o dobro do seu bônus de proficiência ao teste, ao invés do seu bônus de proficiência normal."
+            },
+            {
+                "nome": "Treinamento Anão com Armaduras",
+                "efeito": "Você adquire proficiência em armaduras leves e médias."
+            }
+        ]
+    },
+    {
+        "nome": "Alto Elfo",
+        "codigo": 2,
+        "habilidades": {
+            "for": 0,
+            "des": 2,
+            "con": 0,
+            "int": 1,
+            "sab": 0,
+            "car": 0,
+            "san": 0
+        },
+        "idade": 750,
+        "peso": null,
+        "altura": {
+            "min": 1.5,
+            "max": 1.8
+        },
+        "tamanho": 2,
+        "deslocamento": 9,
+        "idiomas": [
+            0,
+            2
+        ],
+        "visao_escuro": 18,
+        "bonus": [
+            {
+                "nome": "Sentidos Aguçados",
+                "efeito": "Você tem proficiência na perícia Percepção."
+            },
+            {
+                "nome": "Ancestral Feérico",
+                "efeito": "Você tem vantagem nos testes de resistência para resistir a ser enfeitiçado e magias não podem colocá-lo para dormir."
+            },
+            {
+                "nome": "Transe",
+                "efeito": "Elfos não precisam dormir. Ao invés disso, eles meditam profundamente, permanecendo semiconscientes, durante 4 horas por dia. Enquanto medita, um elfo é capaz de sonhar de certo modo. Esses sonhos na verdade são exercícios mentais que se tornam reflexos através de anos de prática. Depois de descansar dessa forma, você ganha os mesmos benefícios que um humano depois de 8 horas de sono."
+            },
+            {
+                "nome": "Treinamento Élfico com Armas",
+                "efeito": "Você possui proficiência com espadas longas, espadas curtas, arcos longos e arcos curtos."
+            },
+            {
+                "nome": "Truque",
+                "efeito": "Você conhece um truque, à sua escolha, da lista de truques do mago. Inteligência é a habilidade usada para conjurar este truque."
+            },
+            {
+                "nome": "Idioma Adicional",
+                "efeito": "Você pode falar, ler e escrever um idioma adicional à sua escolha."
+            }
+        ]
+    },
+    {
+        "nome": "Elfo da Floresta",
+        "codigo": 3,
+        "habilidades": {
+            "for": 0,
+            "des": 2,
+            "con": 0,
+            "int": 0,
+            "sab": 1,
+            "car": 0,
+            "san": 0
+        },
+        "idade": 750,
+        "peso": null,
+        "altura": {
+            "min": 1.5,
+            "max": 1.8
+        },
+        "tamanho": 2,
+        "deslocamento": 10.5,
+        "idiomas": [
+            0,
+            2
+        ],
+        "visao_escuro": 18,
+        "bonus": [
+            {
+                "nome": "Sentidos Aguçados",
+                "efeito": "Você tem proficiência na perícia Percepção."
+            },
+            {
+                "nome": "Ancestral Feérico",
+                "efeito": "Você tem vantagem nos testes de resistência para resistir a ser enfeitiçado e magias não podem colocá-lo para dormir."
+            },
+            {
+                "nome": "Transe",
+                "efeito": "Elfos não precisam dormir. Ao invés disso, eles meditam profundamente, permanecendo semiconscientes, durante 4 horas por dia. Enquanto medita, um elfo é capaz de sonhar de certo modo. Esses sonhos na verdade são exercícios mentais que se tornam reflexos através de anos de prática. Depois de descansar dessa forma, você ganha os mesmos benefícios que um humano depois de 8 horas de sono."
+            },
+            {
+                "nome": "Treinamento Élfico com Armas",
+                "efeito": "Você possui proficiência com espadas longas, espadas curtas, arcos longos e arcos curtos."
+            },
+            {
+                "nome": "Pés Ligeiros",
+                "efeito": "Seu deslocamento base de caminhada aumenta para 10,5 metros."
+            },
+            {
+                "nome": "Máscara da Natureza",
+                "efeito": "Você pode tentar se esconder mesmo quando está apenas levemente obscurecido por folhagem, chuva forte, neve caindo, névoa ou outro fenômeno natural."
+            }
+        ]
+    },
+    {
+        "nome": "Elfo Negro (Drow)",
+        "codigo": 4,
+        "habilidades": {
+            "for": 0,
+            "des": 2,
+            "con": 0,
+            "int": 0,
+            "sab": 0,
+            "car": 1,
+            "san": 0
+        },
+        "idade": 750,
+        "peso": null,
+        "altura": {
+            "min": 1.5,
+            "max": 1.8
+        },
+        "tamanho": 2,
+        "deslocamento": 9,
+        "idiomas": [
+            0,
+            2
+        ],
+        "visao_escuro": 36,
+        "bonus": [
+            {
+                "nome": "Sentidos Aguçados",
+                "efeito": "Você tem proficiência na perícia Percepção."
+            },
+            {
+                "nome": "Ancestral Feérico",
+                "efeito": "Você tem vantagem nos testes de resistência para resistir a ser enfeitiçado e magias não podem colocá-lo para dormir."
+            },
+            {
+                "nome": "Transe",
+                "efeito": "Elfos não precisam dormir. Ao invés disso, eles meditam profundamente, permanecendo semiconscientes, durante 4 horas por dia. Enquanto medita, um elfo é capaz de sonhar de certo modo. Esses sonhos na verdade são exercícios mentais que se tornam reflexos através de anos de prática. Depois de descansar dessa forma, você ganha os mesmos benefícios que um humano depois de 8 horas de sono."
+            },
+            {
+                "nome": "Sensibilidade à Luz Solar",
+                "efeito": "Você possui desvantagem nas jogadas de ataque e testes de Sabedoria (Percepção) relacionados a visão quando você, o alvo do seu ataque ou qualquer coisa que você está tentando perceber esteja sob luz solar direta."
+            },
+            {
+                "nome": "Magia Drow",
+                "efeito": "Você possui o truque globos de luz. Quando você alcança o 3° nível, você pode conjurar a magia fogo das fadas. Quando você alcança o 5° nível, você pode conjurar escuridão. Você precisa terminar um descanso longo para poder conjurar as magias desse traço novamente. Carisma é sua habilidade chave para conjurar essas magias."
+            },
+            {
+                "nome": "Treinamento Drow com Armas",
+                "efeito": "Você possui proficiência com rapieiras, espadas curtas e bestas de mão."
+            }
+        ]
+    },
+    {
+        "nome": "Halfling Pés-leves",
+        "codigo": 5,
+        "habilidades": {
+            "for": 0,
+            "des": 2,
+            "con": 0,
+            "int": 0,
+            "sab": 0,
+            "car": 1,
+            "san": 0
+        },
+        "idade": 150,
+        "peso": 20,
+        "altura": {
+            "min": null,
+            "max": 0.9
+        },
+        "tamanho": 1,
+        "deslocamento": 7.5,
+        "idiomas": [
+            0,
+            6
+        ],
+        "visao_escuro": null,
+        "bonus": [
+            {
+                "nome": "Sortudo",
+                "efeito": "Quando você obtiver um 1 natural em uma jogada de ataque, teste de habilidade ou teste de resistência, você pode jogar de novo o dado, mas, se fizer isso, deve utilizar o novo resultado."
+            },
+            {
+                "nome": "Bravura",
+                "efeito": "Você tem vantagem em testes de resistência contra ficar amedrontado."
+            },
+            {
+                "nome": "Agilidade Halfling",
+                "efeito": "Você pode mover-se através do espaço de qualquer criatura que for de um tamanho maior que o seu."
+            },
+            {
+                "nome": "Furtividade Natural",
+                "efeito": "Você pode tentar se esconder mesmo quando possuir apenas a cobertura de uma criatura que for no mínimo um tamanho maior que o seu."
+            }
+        ]
+    },
+    {
+        "nome": "Halfling Robusto",
+        "codigo": 6,
+        "habilidades": {
+            "for": 0,
+            "des": 2,
+            "con": 1,
+            "int": 0,
+            "sab": 0,
+            "car": 0,
+            "san": 0
+        },
+        "idade": 150,
+        "peso": 20,
+        "altura": {
+            "min": null,
+            "max": 0.9
+        },
+        "tamanho": 1,
+        "deslocamento": 7.5,
+        "idiomas": [
+            0,
+            6
+        ],
+        "visao_escuro": null,
+        "bonus": [
+            {
+                "nome": "Sortudo",
+                "efeito": "Quando você obtiver um 1 natural em uma jogada de ataque, teste de habilidade ou teste de resistência, você pode jogar de novo o dado, mas, se fizer isso, deve utilizar o novo resultado."
+            },
+            {
+                "nome": "Bravura",
+                "efeito": "Você tem vantagem em testes de resistência contra ficar amedrontado."
+            },
+            {
+                "nome": "Agilidade Halfling",
+                "efeito": "Você pode mover-se através do espaço de qualquer criatura que for de um tamanho maior que o seu."
+            },
+            {
+                "nome": "Resiliência dos Robustos",
+                "efeito": "Você tem vantagem em testes de resistência contra veneno e tem resistência contra dano de veneno."
             }
         ]
     }
