@@ -24,27 +24,26 @@ character.books.forEach((book) => {
 });
 
 /** Mapa com as informações sobre cada raça. */
-const raceInfoMap = reactive(new Map<number, CharacterRace>());
+const raceInfoMap = reactive(new Map<number, APICharacterRace>());
 
 // Solicita à API os dados sobre a raça e ordena a lista de raças de acordo com o nome.
 if (raceList.length > 0) {
-    Promise.all(character.books.map((book) => fetchRaceInfo(book)));
-    raceList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
-};
+    Promise.all(character.books.map(async (book) => {
+        try {
+            const response = await fetch(`/ringo/api/races/book${book.toString(10)}.json`);
+            if (response.status === 404) return;
 
-async function fetchRaceInfo(bookNumber: number) {
-    try {
-        const response = await fetch(`/ringo/api/races/book${bookNumber.toString(10)}.json`);
-        if (response.status === 404) return;
+            const raceInfo = await response.json() as APICharacterRace[];
+            if (Array.isArray(raceInfo)) {
+                raceInfo.forEach((item) => raceInfoMap.set(item.codigo, item));
+            };
 
-        const raceInfo = await response.json() as CharacterRace[];
-        if (Array.isArray(raceInfo)) {
-            raceInfo.forEach((item) => raceInfoMap.set(item.codigo, item));
+        } catch (err) {
+            if (err instanceof Error) console.error(err);
         };
-
-    } catch (err) {
-        if (err instanceof Error) console.error(err);
-    };
+    }));
+    
+    raceList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
 };
 
 function randomRace() {
@@ -110,7 +109,7 @@ watchEffect(() => {
         <Transition name="fade" mode="out-in">
             <RaceBonuses
                 v-if="((typeof character.race.id === 'number') && raceInfoMap.has(character.race.id))"
-                :raceInfo="(raceInfoMap.get(character.race.id) as CharacterRace)"
+                :raceInfo="(raceInfoMap.get(character.race.id) as APICharacterRace)"
             />
         </Transition>
     </section>

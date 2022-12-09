@@ -6,7 +6,7 @@ import Tooltip from '@/components/Tooltip.vue';
 import { useCharacterStore } from '@/stores/character.js';
 
 const props = defineProps<{
-    raceInfo: CharacterRace
+    raceInfo: APICharacterRace
 }>();
 
 // Nome e descrição de cada habilidade.
@@ -93,7 +93,7 @@ const darkVision = computed(() => {
             nome: 'Visão no Escuro',
             efeito: `Você enxerga na penumbra a até ${distance.toLocaleString('pt-br')} metros como se fosse luz plena, ` +
             'e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.'
-        } as RaceBonus;
+        } as APIRaceBonus;
     };
 
     return null;

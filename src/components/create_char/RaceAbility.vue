@@ -3,7 +3,7 @@ import Table from '@/components/Table.vue';
 import DescriptionList from '@/components/DescriptionList.vue';
 
 const props = defineProps<{
-    bonus: RaceBonus
+    bonus: APIRaceBonus
 }>();
 </script>
 

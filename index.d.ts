@@ -55,6 +55,16 @@ type PlayerHandbookClasses =
 
 type Classes = PlayerHandbookClasses;
 
+////// PERSONAGENS
+type CharacterRace = {
+    id: number | null
+    book: number | null
+}
+
+interface CharacterClass extends CharacterRace {
+    level: number
+}
+
 ////// IDIOMAS
 type Languages =
     | 'Comum'
@@ -99,3 +109,13 @@ type StandardTableContent = {
 }
 
 type StandardDescriptionListContent = [string, string][];
+
+type AbilityScores = {
+    for: number
+    des: number
+    con: number
+    int: number
+    sab: number
+    car: number
+    san: number
+}

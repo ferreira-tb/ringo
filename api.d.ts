@@ -1,14 +1,4 @@
-type AbilityScores = {
-    for: number
-    des: number
-    con: number
-    int: number
-    sab: number
-    car: number
-    san: number
-}
-
-type RaceBonus = {
+type APIRaceBonus = {
     /** ID númerico do bônus. */
     id: number
     /** Nome do bônus. */
@@ -19,17 +9,17 @@ type RaceBonus = {
     efeito: string
     /** Parágrafos adicionais imediatamente após a descrição do bônus. */
     extra?: string[]
-    detalhes?: RaceBonusDetails
+    detalhes?: APIRaceBonusDetails
 }
 
-type RaceBonusDetails = {
+type APIRaceBonusDetails = {
     tipo: 'table' | 'description_list'
     conteudo:
         | StandardTableContent
         | StandardDescriptionListContent
 }
 
-type CharacterRace = {
+type APICharacterRace = {
     nome: string
     codigo: number
     habilidades: AbilityScores
@@ -47,7 +37,7 @@ type CharacterRace = {
      * O traço então deve ser incluso na propriedade `bonus`.
      */
     visao_escuro: number | null
-    bonus: RaceBonus[]
+    bonus: APIRaceBonus[]
     recomendacoes: {
         /**
          * Números representam uma classe e arrays de números representam multiclasse.
@@ -55,4 +45,8 @@ type CharacterRace = {
          */
         classes: (number | number[])[] | null
     }
+}
+
+type APICharacterClass = {
+    
 }
