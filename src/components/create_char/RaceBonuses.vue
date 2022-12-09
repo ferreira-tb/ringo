@@ -25,7 +25,7 @@ class AbilityInfoAndValue {
 };
 
 // Texto da caixa com a descrição das habilidades.
-const abilityDescription: Ref<string | null> = ref(null);
+const abilityDescription: Ref<string> = ref('');
 
 // Aumento e diminuição nos valores das habilidades devido a traços raciais.
 const plus = computed(() => getAbilities('pos'));
@@ -91,8 +91,10 @@ const languages = computed(() => {
             </div>
         </div>
         
-        <Tooltip :text="abilityDescription"/>
-
+        <Transition name="fade" mode="out-in">
+            <Tooltip :text="abilityDescription" :key="abilityDescription"/>
+        </Transition>
+        
         <div class="first-title"><span class="bold span-title green-text">Expectativa de vida:</span>{{ age }}</div>
         <div><span class="bold span-title green-text">Peso médio:</span>{{ weight }}</div>
         <div><span class="bold span-title green-text">Altura:</span>{{ height }}</div>
