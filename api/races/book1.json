@@ -50,7 +50,10 @@
                 "nome": "Tenacidade Anã",
                 "efeito": "Seu máximo de pontos de vida aumenta em 1, e cada vez que sobe um nível, recebe 1 ponto de vida adicional."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [3]
+        }
     },
     {
         "nome": "Anão da Montanha",
@@ -103,7 +106,10 @@
                 "nome": "Treinamento Anão com Armaduras",
                 "efeito": "Você adquire proficiência em armaduras leves e médias."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [0]
+        }
     },
     {
         "nome": "Alto Elfo",
@@ -161,7 +167,10 @@
                 "nome": "Idioma Adicional",
                 "efeito": "Você pode falar, ler e escrever um idioma adicional à sua escolha."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [8]
+        }
     },
     {
         "nome": "Elfo da Floresta",
@@ -219,7 +228,10 @@
                 "nome": "Máscara da Natureza",
                 "efeito": "Você pode tentar se esconder mesmo quando está apenas levemente obscurecido por folhagem, chuva forte, neve caindo, névoa ou outro fenômeno natural."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [4, 9, 11]
+        }
     },
     {
         "nome": "Elfo Negro (Drow)",
@@ -277,7 +289,10 @@
                 "nome": "Treinamento Drow com Armas",
                 "efeito": "Você possui proficiência com rapieiras, espadas curtas e bestas de mão."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [1, 2, 5, 7, 10]
+        }
     },
     {
         "nome": "Halfling Pés-leves",
@@ -325,7 +340,10 @@
                 "nome": "Furtividade Natural",
                 "efeito": "Você pode tentar se esconder mesmo quando possuir apenas a cobertura de uma criatura que for no mínimo um tamanho maior que o seu."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [7, 9, 11]
+        }
     },
     {
         "nome": "Halfling Robusto",
@@ -373,7 +391,10 @@
                 "nome": "Resiliência dos Robustos",
                 "efeito": "Você tem vantagem em testes de resistência contra veneno e tem resistência contra dano de veneno."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [7, 9, 11]
+        }
     },
     {
         "nome": "Humano",
@@ -405,7 +426,10 @@
                 "nome": "Idiomas",
                 "efeito": "Você pode falar, ler e escrever Comum e outro idioma adicional, à sua escolha."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": null
+        }
     },
     {
         "nome": "Humano (alternativo)",
@@ -452,7 +476,10 @@
                 "nome": "Idiomas",
                 "efeito": "Você pode falar, ler e escrever Comum e outro idioma adicional, à sua escolha."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": null
+        }
     },
     {
         "nome": "Draconato",
@@ -564,7 +591,10 @@
                 "nome": "Resistência a Dano",
                 "efeito": "Você possui resistência ao tipo de dano associado ao seu ancestral dracônico."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [10]
+        }
     },
     {
         "nome": "Gnomo da Floresta",
@@ -607,7 +637,10 @@
                 "nome": "Falar com Bestas Pequenas",
                 "efeito": "Através de sons e gestos, você pode comunicar ideias simples para Bestas pequenas ou menores. Gnomos da floresta amam os animais e normalmente possuem esquilos, doninhas, coelhos, toupeiras, pica-paus e outras criaturas como amados animais de estimação."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [8]
+        }
     },
     {
         "nome": "Gnomo das Rochas",
@@ -670,7 +703,10 @@
                     ]
                 }
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [8]
+        }
     },
     {
         "nome": "Meio-elfo",
@@ -718,7 +754,10 @@
                 "nome": "Idiomas",
                 "efeito": "Você sabe falar, ler e escrever Comum, Élfico e um idioma adicional, à sua escolha."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [1, 2, 5, 10]
+        }
     },
     {
         "nome": "Meio-orc",
@@ -761,7 +800,10 @@
                 "nome": "Ataques Selvagens",
                 "efeito": "Quando você atinge um ataque crítico com uma arma corpo-a-corpo, você pode rolar um dos dados de dano da arma mais uma vez e adicioná-lo ao dano extra causado pelo acerto crítico."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [0, 6]
+        }
     },
     {
         "nome": "Tiefling",
@@ -799,6 +841,9 @@
                 "nome": "Legado Infernal",
                 "efeito": "Você conhece o truque taumaturgia. Quando você atingir o 3° nível, você poderá conjurar a magia repreensão infernal como uma magia de 2° nível. Quando você atingir o 5° nível, você também poderá conjurar a magia escuridão. Você precisa terminar um descanso longo para poder usar as magias desse traço novamente. Sua habilidade de conjuração para essas magias é Carisma."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [1, 2, 5]
+        }
     }
 ]

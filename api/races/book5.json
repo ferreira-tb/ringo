@@ -36,7 +36,10 @@
                 "nome": "Garras",
                 "efeito": "Você é proficiente com seus ataques desarmados, suas garras causam 1d4 de dano cortante em um acerto."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [3, 6, 7, 9, 11]
+        }
     },
     {
         "nome": "Genasi da Água",
@@ -84,7 +87,10 @@
                 "nome": "Chamar as Ondas",
                 "efeito": "Você conhece o truque moldar água. Quando alcançar o 3º nível, você pode conjurar a magia criar ou destruir água uma vez com esse traço como uma magia de 2º nível, sem necessidade de componentes materiais, e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [3, 4, 9, 11]
+        }
     },
     {
         "nome": "Genasi do Ar",
@@ -122,7 +128,10 @@
                 "nome": "Misturar-se ao Vento",
                 "efeito": "Você pode conjurar a magia levitação uma vez com esse traço, sem precisar de componentes materiais e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [9]
+        }
     },
     {
         "nome": "Genasi do Fogo",
@@ -165,7 +174,10 @@
                 "nome": "Alcançar as Chamas",
                 "efeito": "Você conhece o truque criar chamas. Quando alcançar o 3º nível, você pode conjurar a magia mãos flamejantes uma vez com esse traço como uma magia de 1º nível, sem necessidade de componentes materiais, e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [8]
+        }
     },
     {
         "nome": "Genasi da Terra",
@@ -203,7 +215,10 @@
                 "nome": "Mesclar-se às Rochas",
                 "efeito": "Você pode conjurar a magia passos sem pegadas uma vez com esse traço, sem necessidade de componentes materiais, e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [0, 6, 10, 11]
+        }
     },
     {
         "nome": "Gnomo das Profundezas",
@@ -251,7 +266,10 @@
                     "Inteligência é a sua habilidade de conjuração para essas magias, e você as lança em seus níveis mais baixos possíveis."
                 ]
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [8]
+        }
     },
     {
         "nome": "Golias",
@@ -299,6 +317,9 @@
                 "nome": "Nascido nas Montanhas",
                 "efeito": "Você está aclimatado a altas altitudes, incluindo elevações acima de 6.000 metros. Você também é naturalmente adaptado a climas frios."
             }
-        ]
+        ],
+        "recomendacoes": {
+            "classes": [0, 6, 10]
+        }
     }
 ]
