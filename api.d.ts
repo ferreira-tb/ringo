@@ -9,7 +9,6 @@ type AbilityScores = {
 }
 
 type RaceBonus = {
-    key: number
     nome: string
     efeito: string
 }
@@ -19,11 +18,12 @@ type CharacterRace = {
     codigo: number
     habilidades: AbilityScores
     idade: number
-    peso: number
+    peso: number | null
     altura: {
-        min: number
+        min: number | null
         max: number
     }
+    tamanho: number
     deslocamento: number
     idiomas: number[],
     visao_escuro: number | null

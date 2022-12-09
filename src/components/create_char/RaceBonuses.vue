@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, type Ref } from 'vue';
-import { useAbilityStore, useLanguageStore } from '@/stores/game.js';
+import { useAbilityStore, useLanguageStore, useSizeStore } from '@/stores/game.js';
 import RaceAbility from '@/components/create_char/RaceAbility.vue';
 import Tooltip from '@/components/Tooltip.vue';
 
@@ -47,12 +47,25 @@ function getAbilities(type: 'pos' | 'neg') {
 };
 
 const age = computed(() => `${props.raceInfo.idade.toLocaleString('pt-br')} anos`);
-const weight = computed(() => `${props.raceInfo.peso.toLocaleString('pt-br')} quilos`);
+const weight = computed(() => {
+    if (!props.raceInfo.peso) return null;
+    return `${props.raceInfo.peso.toLocaleString('pt-br')} quilos`;
+});
 const height = computed(() => {
     const min = props.raceInfo.altura.min;
     const max = props.raceInfo.altura.max;
-    return `Entre ${min.toLocaleString('pt-br')} e ${max.toLocaleString('pt-br')} ${max < 2 ? 'metro' : 'metros'}`;
+    const heightText = `${max.toLocaleString('pt-br')} ${max < 2 ? 'metro' : 'metros'}`;
+
+    if (min) {
+        return `Entre ${min.toLocaleString('pt-br')} e ${heightText}`;
+    } else {
+        return heightText;
+    };
 });
+
+const creatureSizeStore = useSizeStore();
+const creatureSize = computed(() => creatureSizeStore.creatureSize.get(props.raceInfo.tamanho));
+
 const speed = computed(() => `${props.raceInfo.deslocamento.toLocaleString('pt-br')} metros`);
 
 const languageStore = useLanguageStore();
@@ -62,6 +75,19 @@ const languages = computed(() => {
     });
 
     return languageNames.join(', ');
+});
+
+const darkVision = computed(() => {
+    const distance = props.raceInfo.visao_escuro;
+    if (typeof distance === 'number') {
+        return {
+            nome: 'Visão no Escuro',
+            efeito: `Você enxerga na penumbra a até ${distance.toLocaleString('pt-br')} metros como se fosse luz plena, ` +
+            'e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.'
+        } as RaceBonus;
+    };
+
+    return null;
 });
 </script>
 
@@ -96,17 +122,21 @@ const languages = computed(() => {
         </Transition>
         
         <div class="first-title"><span class="bold span-title green-text">Expectativa de vida:</span>{{ age }}</div>
-        <div><span class="bold span-title green-text">Peso médio:</span>{{ weight }}</div>
+        <div v-if="weight"><span class="bold span-title green-text">Peso médio:</span>{{ weight }}</div>
         <div><span class="bold span-title green-text">Altura:</span>{{ height }}</div>
+        <div v-if="creatureSize"><span class="bold span-title green-text">Tamanho</span>{{ creatureSize }}</div>
         <div><span class="bold span-title green-text">Deslocamento:</span>{{ speed }}</div>
         <div><span class="bold span-title green-text">Idiomas:</span>{{ languages }}</div>
 
         <div v-if="(props.raceInfo.bonus.length > 0)">
             <h2>Habilidades Inatas</h2>
             <TransitionGroup name="fade">
+                <template v-if="darkVision">
+                    <RaceAbility :bonus="darkVision" :key="darkVision.nome"/>
+                </template>
                 <RaceAbility
                     v-for="item of props.raceInfo.bonus"
-                    :key="item.key"
+                    :key="item.nome"
                     :bonus="item"
                 />
             </TransitionGroup>

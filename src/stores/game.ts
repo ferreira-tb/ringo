@@ -155,3 +155,16 @@ export const useAbilityStore = defineStore('ability', () => {
 
     return { ability };
 });
+
+export const useSizeStore = defineStore('size', () => {
+    const creatureSize: ReadonlyMap<number, string> = new Map([
+        [0, 'Miúdo'],
+        [1, 'Pequeno'],
+        [2, 'Médio'],
+        [3, 'Grande'],
+        [4, 'Enorme'],
+        [5, 'Imenso']
+    ]);
+
+    return { creatureSize };
+});
