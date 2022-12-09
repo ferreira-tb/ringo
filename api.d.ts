@@ -13,6 +13,8 @@ type RaceBonus = {
     id: number
     /** Nome do bônus. */
     nome: string
+    /** Indica se o bônus é um talento. */
+    talento?: boolean
     /** Descrição dos efeitos do bônus. */
     efeito: string
     /** Parágrafos adicionais imediatamente após a descrição do bônus. */
@@ -40,6 +42,10 @@ type CharacterRace = {
     tamanho: number
     deslocamento: number
     idiomas: number[],
+    /**
+     * Trata-se da visão no escuro padrão. Caso o traço divergir do padrão, o valor dessa propriedade deve ser `null`.
+     * O traço então deve ser incluso na propriedade `bonus`.
+     */
     visao_escuro: number | null
     bonus: RaceBonus[]
 }

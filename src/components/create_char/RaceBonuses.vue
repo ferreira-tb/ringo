@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, type Ref } from 'vue';
+import { computed, ref, watch, type Ref } from 'vue';
 import { useAbilityStore, useLanguageStore, useSizeStore } from '@/stores/game.js';
 import RaceAbility from '@/components/create_char/RaceAbility.vue';
 import Tooltip from '@/components/Tooltip.vue';
+import { useCharacterStore } from '@/stores/character.js';
 
 const props = defineProps<{
     raceInfo: CharacterRace
@@ -24,8 +25,15 @@ class AbilityInfoAndValue {
     };
 };
 
-// Texto da caixa com a descrição das habilidades.
+/** Texto da caixa com a descrição das habilidades. */
 const abilityDescription: Ref<string> = ref('');
+
+// Garante que a caixa seja resetada quando o usuário trocar a raça.
+const charStore = useCharacterStore();
+const { character } = charStore;
+watch(() => character.race, () => {
+    abilityDescription.value = '';
+});
 
 // Aumento e diminuição nos valores das habilidades devido a traços raciais.
 const plus = computed(() => getAbilities('pos'));
@@ -93,7 +101,7 @@ const darkVision = computed(() => {
 
 <template>
     <section class="race-bonuses">
-        <h2>Detalhes da Raça</h2>
+        <h2>Detalhes</h2>
         <div>
             <div class="plus-wrapper" v-if="(plus.length > 0)">
                 <span
@@ -129,7 +137,7 @@ const darkVision = computed(() => {
         <div><span class="bold span-title green-text">Idiomas:</span>{{ languages }}</div>
 
         <div v-if="(props.raceInfo.bonus.length > 0)">
-            <h2>Habilidades Inatas</h2>
+            <h2>Traços Raciais</h2>
             <TransitionGroup name="fade">
                 <template v-if="darkVision">
                     <RaceAbility :bonus="darkVision" :key="darkVision.nome"/>

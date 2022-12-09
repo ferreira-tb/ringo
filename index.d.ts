@@ -72,7 +72,18 @@ type Languages =
     | 'Infernal'
     | 'Primordial'
     | 'Silvestre'
-    | 'Subcomum';
+    | 'Subcomum'
+    | 'Aquan'
+    | 'Auran'
+    | 'Ignan'
+    | 'Terran'
+    | 'Aarakocra'
+    | 'Druídico'
+    | 'Esfíngico'
+    | 'Grell'
+    | 'Horror de Gancho'
+    | 'Modron'
+    | 'Otyugh';
 
 ////// OUTROS
 type AbilityInfo = Readonly<{

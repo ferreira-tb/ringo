@@ -85,7 +85,18 @@ export const useLanguageStore = defineStore('language', () => {
         [12, 'Infernal'],
         [13, 'Primordial'],
         [14, 'Silvestre'],
-        [15, 'Subcomum']
+        [15, 'Subcomum'],
+        [16, 'Aquan'],
+        [17, 'Auran'],
+        [18, 'Ignan'],
+        [19, 'Terran'],
+        [20, 'Aarakocra'],
+        [21, 'Druídico'],
+        [22, 'Esfíngico'],
+        [23, 'Grell'],
+        [24, 'Horror de Gancho'],
+        [25, 'Modron'],
+        [26, 'Otyugh']
     ]);
 
     return { languages };
