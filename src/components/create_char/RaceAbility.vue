@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import StandardTable from '@/components/StandardTable.vue';
+import Table from '@/components/Table.vue';
+import DescriptionList from '@/components/DescriptionList.vue';
 
 const props = defineProps<{
     bonus: RaceBonus
@@ -15,8 +16,15 @@ const props = defineProps<{
         <template v-if="props.bonus.extra">
             <div v-for="extra of props.bonus.extra" class="race-ability">{{ extra }}</div>
         </template>
-        <div v-if="props.bonus.detalhes && props.bonus.detalhes.tipo === 'table'">
-            <StandardTable :content="(props.bonus.detalhes.conteudo as StandardTableContent)" />
+        <div v-if="props.bonus.detalhes">
+            <Table
+                v-if="props.bonus.detalhes.tipo === 'table'"
+                :content="(props.bonus.detalhes.conteudo as StandardTableContent)"
+            />
+            <DescriptionList
+                v-if="props.bonus.detalhes.tipo === 'description_list'"
+                :content="(props.bonus.detalhes.conteudo as StandardDescriptionListContent)"
+            />
         </div>
     </section>
 </template>

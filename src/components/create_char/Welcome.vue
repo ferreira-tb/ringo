@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { router } from '@/router/index.js';
-import StandardButton from '@/components/StandardButton.vue';
+import Button from '@/components/Button.vue';
 import { useCharacterStore } from '@/stores/character';
 
 const charStore = useCharacterStore();
@@ -15,7 +15,7 @@ const { character } = charStore;
             <input type="text" v-model.trim="character.name">
         </div>
         <div class="button-area">
-            <StandardButton
+            <Button
                 text="Iniciar"
                 :disabled="!character.name"
                 @click.prevent="router.push({ name: 'create-char-step-1' })"

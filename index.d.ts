@@ -86,3 +86,5 @@ type StandardTableContent = {
     th: string[]
     tr: string[][]
 }
+
+type StandardDescriptionListContent = [string, string][];

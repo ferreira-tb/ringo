@@ -3,7 +3,7 @@ import { reactive, watchEffect } from 'vue';
 import { router } from '@/router/index.js';
 import { useCharacterStore } from '@/stores/character.js';
 import { useGameStore } from '@/stores/game.js';
-import StandardButton from '@/components/StandardButton.vue';
+import Button from '@/components/Button.vue';
 import RaceBonuses from '@/components/create_char/RaceBonuses.vue';
 
 const charStore = useCharacterStore();
@@ -71,17 +71,17 @@ watchEffect(() => {
         </div>
 
         <div class="button-area">
-            <StandardButton
+            <Button
                 text="Continuar"
                 :disabled="(raceList.length < 1)"
                 @click.prevent="saveAndContinue"
             />
-            <StandardButton
+            <Button
                 text="Aleatório"
                 :disabled="(raceList.length < 1)"
                 @click.prevent="randomRace"
             />
-            <StandardButton
+            <Button
                 text="Voltar"
                 @click.prevent="router.push({ name: 'create-char-step-1' })"
             />

@@ -19,8 +19,10 @@ type RaceBonus = {
 }
 
 type RaceBonusDetails = {
-    tipo: 'table'
-    conteudo: StandardTableContent
+    tipo: 'table' | 'description_list'
+    conteudo:
+        | StandardTableContent
+        | StandardDescriptionListContent
 }
 
 type CharacterRace = {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { router } from '@/router/index.js';
 import { useGameStore } from '@/stores/game.js';
-import StandardButton from '@/components/StandardButton.vue';
+import Button from '@/components/Button.vue';
 import { useCharacterStore } from '@/stores/character.js';
 
 const gameStore = useGameStore();
@@ -30,16 +30,16 @@ const { character, resetBooks } = charStore;
             </template>
         </div>
         <div class="button-area">
-            <StandardButton
+            <Button
                 text="Continuar"
                 :disabled="(character.books.length < 1)"
                 @click.prevent="router.push({ name: 'create-char-step-2' })"
             />
-            <StandardButton
+            <Button
                 text="Padrão"
                 @click.prevent="resetBooks"
             />
-            <StandardButton
+            <Button
                 text="Voltar"
                 @click.prevent="router.push({ name: 'create-char' })"
             />
