@@ -25,22 +25,27 @@
         "visao_escuro": 18,
         "bonus": [
             {
+                "key": 0,
                 "nome": "Resiliência Anã",
                 "efeito": "Você possui vantagem em testes de resistência contra venenos e resistência contra dano de veneno."
             },
             {
+                "key": 1,
                 "nome": "Treinamento Anão em Combate",
                 "efeito": "Você tem proficiência com machados de batalha, machadinhas, martelos leves e martelos de guerra."
             },
             {
+                "key": 2,
                 "nome": "Proficiência com Ferramentas",
                 "efeito": "Você tem proficiência em uma ferramenta de artesão à sua escolha entre: ferramentas de ferreiro, suprimentos de cervejeiro ou ferramentas de pedreiro."
             },
             {
+                "key": 3,
                 "nome": "Especialização em Rochas",
                 "efeito": "Sempre que você realizar um teste de Inteligência (História) relacionado à origem de um trabalho em pedra, você é considerado proficiente na perícia História e adiciona o dobro do seu bônus de proficiência ao teste, ao invés do seu bônus de proficiência normal."
             },
             {
+                "key": 4,
                 "nome": "Tenacidade Anã",
                 "efeito": "Seu máximo de pontos de vida aumenta em 1, e cada vez que sobe um nível, recebe 1 ponto de vida adicional."
             }
