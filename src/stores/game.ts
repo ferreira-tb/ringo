@@ -179,3 +179,13 @@ export const useAbilityStore = defineStore('ability', () => {
 
     return { ability };
 });
+
+export const useSkillStore = defineStore('skill', () => {
+    const charSkill: ReadonlyMap<number, string> = new Map([
+        [0, 'Acrobacia'],
+        [1, 'Adestrar animais'],
+        [2, 'Arcanismo'],
+    ]);
+
+    return { charSkill };
+});

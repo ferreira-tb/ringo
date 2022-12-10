@@ -97,10 +97,10 @@ type Languages =
 
 ////// OUTROS
 type AbilityInfo = Readonly<{
-    [key in keyof AbilityScores]: {
+    [key in keyof AbilityScores]: Readonly<{
         name: string
         description: string
-    }
+    }>
 }>;
 
 type StandardTableContent = {
