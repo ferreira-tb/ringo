@@ -38,15 +38,8 @@ type APICharacterRace = {
      */
     visao_escuro: number | null
     bonus: APIRaceBonus[]
-    recomendacoes: {
-        /**
-         * Números representam uma classe e arrays de números representam multiclasse.
-         * Já `null` indica que não há classe recomendada.
-         */
-        classes: (number | number[])[] | null
-    }
 }
 
 type APICharacterClass = {
-    
+
 }

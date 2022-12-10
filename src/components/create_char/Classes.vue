@@ -30,6 +30,17 @@ if (classList.length > 0) {
     classList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
 };
 
+function getRandomClass() {
+    const randomIndex = Math.floor(Math.random() * classList.length);
+    character.class.id = classList[randomIndex][0];
+    character.class.book = classList[randomIndex][2];
+};
+
+function saveAndContinue() {
+    if (character.class.id === null) getRandomClass();
+    // router.push({ name: 'create-char-step-4' });
+};
+
 // Remove a classe atual caso ela não esteja na lista.
 // Isso geralmente acontece quando o usuário seleciona uma classe, volta à janela anterior e então altera os livros.
 // Se durante a verificação ele encontrar a classe na lista, aproveita e atualiza o ID do livro onde a classe se encontra.
@@ -54,7 +65,7 @@ watchEffect(() => {
     <section>
         <p class="text-line">Classes descrevem a vocação de um personagem e suas aptidões especiais. Hora de escolher a sua.</p>
         <p class="text-line small">Se ficar em dúvida, apenas clique em <span class="bold">continuar</span>.</p>
-        <p class="text-line small">A Ringo escolherá uma classe de acordo com sua raça.</p>
+        <p class="text-line small">A Ringo escolherá uma classe aleatória para você.</p>
         
         <div class="classes-area">      
             <select v-model.number="character.class.id">
@@ -66,10 +77,14 @@ watchEffect(() => {
 
         <div class="button-area">
             <Button
+                :disabled="(classList.length < 1)"
                 text="Continuar"
+                @click.prevent="saveAndContinue"
             />
             <Button
+                :disabled="(classList.length < 1)"
                 text="Escolha pra mim"
+                @click.prevent="getRandomClass"
             />
             <Button
                 text="Voltar"

@@ -46,14 +46,14 @@ if (raceList.length > 0) {
     raceList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
 };
 
-function randomRace() {
+function getRandomRace() {
     const randomIndex = Math.floor(Math.random() * raceList.length);
     character.race.id = raceList[randomIndex][0];
     character.race.book = raceList[randomIndex][2];
 };
 
 function saveAndContinue() {
-    if (character.race === null) randomRace();
+    if (character.race.id === null) getRandomRace();
     router.push({ name: 'create-char-step-3' });
 };
 
@@ -96,9 +96,9 @@ watchEffect(() => {
                 @click.prevent="saveAndContinue"
             />
             <Button
-                text="Aleatório"
+                text="Escolha pra mim"
                 :disabled="(raceList.length < 1)"
-                @click.prevent="randomRace"
+                @click.prevent="getRandomRace"
             />
             <Button
                 text="Voltar"
