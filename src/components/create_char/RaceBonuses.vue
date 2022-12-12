@@ -143,11 +143,9 @@ const darkVision = computed(() => {
                 <template v-if="darkVision">
                     <RaceAbility :bonus="darkVision" :key="darkVision.nome"/>
                 </template>
-                <RaceAbility
-                    v-for="item of props.raceInfo.bonus"
-                    :key="item.id"
-                    :bonus="item"
-                />
+                <template v-for="item of props.raceInfo.bonus" :key="item.id">
+                    <RaceAbility v-if="character.books.includes(item.livro)" :bonus="item" />
+                </template>
             </TransitionGroup>
         </div>
     </section>

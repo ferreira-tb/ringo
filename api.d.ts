@@ -3,6 +3,8 @@ type APIRaceBonus = {
     id: number
     /** Nome do bônus. */
     nome: string
+    /** ID do livro de origem do bônus. */
+    livro: number
     /** Indica se o bônus é um talento. */
     talento?: boolean
     /** Descrição dos efeitos do bônus. */
@@ -22,6 +24,7 @@ type APIRaceBonusDetails = {
 type APICharacterRace = {
     nome: string
     codigo: number
+    livro: number
     habilidades: AbilityScores
     idade: number
     peso: number | null
