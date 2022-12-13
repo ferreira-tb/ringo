@@ -25,6 +25,7 @@ interface APIDamage extends APIDice {
 type APIAbilityInfo = Readonly<{
     [key in keyof AbilityScores]: Readonly<{
         nome: string
+        livro: number
         descricao: string
     }>
 }>
