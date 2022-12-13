@@ -2,6 +2,7 @@
     {
         "nome": "Aaracokra",
         "codigo": 15,
+        "livro": 5,
         "habilidades": {
             "for": 0,
             "des": 2,
@@ -28,11 +29,13 @@
         "bonus": [
             {
                 "id": 0,
+                "livro": 5,
                 "nome": "Voo",
                 "efeito": "Você tem um deslocamento de voo de 15 metros. Para usar esse deslocamento, você não pode estar vestindo armadura média ou pesada."
             },
             {
                 "id": 1,
+                "livro": 5,
                 "nome": "Garras",
                 "efeito": "Você é proficiente com seus ataques desarmados, suas garras causam 1d4 de dano cortante em um acerto."
             }
@@ -41,6 +44,7 @@
     {
         "nome": "Genasi da Água",
         "codigo": 16,
+        "livro": 5,
         "habilidades": {
             "for": 0,
             "des": 0,
@@ -66,21 +70,25 @@
         "bonus": [
             {
                 "id": 0,
+                "livro": 5,
                 "nome": "Resistência a Ácido",
                 "efeito": "Você tem resistência a dano de ácido."
             },
             {
                 "id": 1,
+                "livro": 5,
                 "nome": "Anfíbio",
                 "efeito": "Você pode respirar ar e água."
             },
             {
                 "id": 2,
+                "livro": 5,
                 "nome": "Natação",
                 "efeito": "Seu deslocamento de natação é de 9 metros."
             },
             {
                 "id": 3,
+                "livro": 5,
                 "nome": "Chamar as Ondas",
                 "efeito": "Você conhece o truque moldar água. Quando alcançar o 3º nível, você pode conjurar a magia criar ou destruir água uma vez com esse traço como uma magia de 2º nível, sem necessidade de componentes materiais, e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
@@ -89,6 +97,7 @@
     {
         "nome": "Genasi do Ar",
         "codigo": 17,
+        "livro": 5,
         "habilidades": {
             "for": 0,
             "des": 1,
@@ -114,11 +123,13 @@
         "bonus": [
             {
                 "id": 0,
+                "livro": 5,
                 "nome": "Fôlego Interminável",
                 "efeito": "Você pode prender seu fôlego indefinidamente enquanto não estiver incapacitado."
             },
             {
                 "id": 1,
+                "livro": 5,
                 "nome": "Misturar-se ao Vento",
                 "efeito": "Você pode conjurar a magia levitação uma vez com esse traço, sem precisar de componentes materiais e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
@@ -127,6 +138,7 @@
     {
         "nome": "Genasi do Fogo",
         "codigo": 18,
+        "livro": 5,
         "habilidades": {
             "for": 0,
             "des": 0,
@@ -152,16 +164,19 @@
         "bonus": [
             {
                 "id": 0,
+                "livro": 5,
                 "nome": "Visão no Escuro",
                 "efeito": "Você pode ver na penumbra a até 18 metros de você como se fosse luz plena e na escuridão como se fosse penumbra. Seus laços com o Plano Elemental do Fogo tornam sua visão no escuro incomum: tudo que você vê no escuro está em tons de vermelho."
             },
             {
                 "id": 1,
+                "livro": 5,
                 "nome": "Resistência a Fogo",
                 "efeito": "Você tem resistência a dano de fogo."
             },
             {
                 "id": 2,
+                "livro": 5,
                 "nome": "Alcançar as Chamas",
                 "efeito": "Você conhece o truque criar chamas. Quando alcançar o 3º nível, você pode conjurar a magia mãos flamejantes uma vez com esse traço como uma magia de 1º nível, sem necessidade de componentes materiais, e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
@@ -170,6 +185,7 @@
     {
         "nome": "Genasi da Terra",
         "codigo": 19,
+        "livro": 5,
         "habilidades": {
             "for": 1,
             "des": 0,
@@ -195,11 +211,13 @@
         "bonus": [
             {
                 "id": 0,
+                "livro": 5,
                 "nome": "Caminhada Terrestre",
                 "efeito": "Você pode se mover em terreno difícil feito de terra ou pedra sem gastar movimento extra."
             },
             {
                 "id": 1,
+                "livro": 5,
                 "nome": "Mesclar-se às Rochas",
                 "efeito": "Você pode conjurar a magia passos sem pegadas uma vez com esse traço, sem necessidade de componentes materiais, e você recupera a habilidade de conjurar dessa forma após um descanso longo. Sua habilidade de conjuração para essa magia é Constituição."
             }
@@ -208,6 +226,7 @@
     {
         "nome": "Gnomo das Profundezas",
         "codigo": 20,
+        "livro": 5,
         "habilidades": {
             "for": 0,
             "des": 1,
@@ -234,16 +253,19 @@
         "bonus": [
             {
                 "id": 0,
+                "livro": 5,
                 "nome": "Esperteza Gnômica",
                 "efeito": "Você possui vantagem em todos os testes de resistência de Inteligência, Sabedoria e Carisma contra magia."
             },
             {
                 "id": 1,
+                "livro": 5,
                 "nome": "Camuflagem Rochosa",
                 "efeito": "Você tem vantagem em testes de Destreza (Furtividade) feitos para se esconder em terreno rochoso."
             },
             {
                 "id": 2,
+                "livro": 5,
                 "nome": "Magia Svirfneblin",
                 "talento": true,
                 "efeito": "Você herdou a capacidade de conjuração inata dos seus ancestrais. Essa habilidade permite que você conjure dificultar detecção em si mesmo, à vontade, sem precisar de componentes materiais. Você também pode conjurar cada uma das seguintes magias com essa habilidade: cegueira/surdez, nublar e disfarçar-se. Você recupera a capacidade de conjurar essas magias após um descanso longo.",
@@ -256,6 +278,7 @@
     {
         "nome": "Golias",
         "codigo": 21,
+        "livro": 5,
         "habilidades": {
             "for": 2,
             "des": 0,
@@ -281,21 +304,25 @@
         "bonus": [
             {
                 "id": 0,
+                "livro": 5,
                 "nome": "Atleta Natural",
                 "efeito": "Você tem proficiência na perícia Atletismo."
             },
             {
                 "id": 1,
+                "livro": 5,
                 "nome": "Resistência da Pedra",
                 "efeito": "Você pode se focar para ocasionalmente reduzir um ferimento. Quando sofrer dano, você pode usar sua reação para rolar um d12. Adicione seu modificador de Constituição ao valor rolado e reduza o dano pelo resultado. Após usar esse traço, você não poderá usá-lo novamente até terminar um descanso curto ou longo."
             },
             {
                 "id": 2,
+                "livro": 5,
                 "nome": "Compleição Poderosa",
                 "efeito": "Você é considerado como de uma categoria de tamanho maior para determinar sua capacidade de carga e o peso que você pode empurrar, arrastar ou erguer."
             },
             {
                 "id": 3,
+                "livro": 5,
                 "nome": "Nascido nas Montanhas",
                 "efeito": "Você está aclimatado a altas altitudes, incluindo elevações acima de 6.000 metros. Você também é naturalmente adaptado a climas frios."
             }

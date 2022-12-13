@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "nome": "Bárbaro",
+        "codigo": 0,
+        "dado_de_vida": 12,
+        "proficiencias": {
+            
+        }
+    }
+]
