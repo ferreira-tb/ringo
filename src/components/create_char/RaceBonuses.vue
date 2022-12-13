@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch, type Ref } from 'vue';
-import { useAbilityStore, useLanguageStore, useSizeStore } from '@/stores/game.js';
+import { useLanguageStore, useSizeStore } from '@/stores/game.js';
 import RaceAbility from '@/components/create_char/RaceAbility.vue';
 import Tooltip from '@/components/Tooltip.vue';
 import { useCharacterStore } from '@/stores/character.js';
@@ -10,8 +10,12 @@ const props = defineProps<{
 }>();
 
 // Nome e descrição de cada habilidade.
-const abilityStore = useAbilityStore();
-const { ability } = abilityStore;
+const ability = await fetchAbilities();
+
+async function fetchAbilities(): Promise<APIAbilityInfo> {
+    const response = await fetch('/ringo/api/ability.json');
+    return await response.json() as APIAbilityInfo;
+};
 
 class AbilityInfoAndValue {
     readonly name: string;
@@ -29,8 +33,7 @@ class AbilityInfoAndValue {
 const abilityDescription: Ref<string> = ref('');
 
 // Garante que a caixa seja resetada quando o usuário trocar a raça.
-const charStore = useCharacterStore();
-const { character } = charStore;
+const { character } = useCharacterStore();
 watch(() => character.race, () => {
     abilityDescription.value = '';
 });

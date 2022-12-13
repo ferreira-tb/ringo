@@ -1,18 +1,21 @@
 import { defineStore } from 'pinia';
+import { markRaw } from 'vue';
 
-export const useGameStore = defineStore('game', () => {
-    ////// LIVROS
-    const books: ReadonlyMap<number, Books5thEdition> = new Map([
+export const useBookStore = defineStore('book', () => {
+    const books: ReadonlyMap<number, Books5thEdition> = markRaw(new Map([
         [0, 'Ringo'],
         [1, 'Livro do Jogador'],
         [2, 'Guia do Mestre'],
         [3, 'Manual dos Monstros'],
         [4, 'Guia de Xanathar para Todas as Coisas'],
         [5, 'Mal Elemental - Compêndio do Jogador']
-    ]);
+    ]));
 
-    ////// RAÇAS
-    const playerHandbookRaces: ReadonlyMap<number, PlayerHandbookRaces> = new Map([
+    return { books };
+});
+
+export const useRaceStore = defineStore('race', () => {
+    const playerHandbookRaces: ReadonlyMap<number, PlayerHandbookRaces> = markRaw(new Map([
         [0, 'Anão da Colina'],
         [1, 'Anão da Montanha'],
         [2, 'Alto Elfo'],
@@ -28,9 +31,9 @@ export const useGameStore = defineStore('game', () => {
         [12, 'Meio-elfo'],
         [13, 'Meio-orc'],
         [14, 'Tiefling']
-    ]);
+    ]));
     
-    const elementalEvilRaces: ReadonlyMap<number, ElementalEvilRaces> = new Map([
+    const elementalEvilRaces: ReadonlyMap<number, ElementalEvilRaces> = markRaw(new Map([
         [15, 'Aaracokra'],
         [16, 'Genasi da Água'],
         [17, 'Genasi do Ar'],
@@ -38,15 +41,18 @@ export const useGameStore = defineStore('game', () => {
         [19, 'Genasi da Terra'],
         [20, 'Gnomo das Profundezas'],
         [21, 'Golias']
-    ]);
+    ]));
 
     // As chaves precisam ser idênticas às do mapa de livros.
-    const races: Map<number, ReadonlyMap<number, Races>> = new Map();
+    const races: Map<number, ReadonlyMap<number, Races>> = markRaw(new Map());
     races.set(1, playerHandbookRaces);
     races.set(5, elementalEvilRaces);
 
-    ////// CLASSES
-    const playerHandbookClasses: ReadonlyMap<number, PlayerHandbookClasses> = new Map([
+    return { races };
+});
+
+export const useClassStore = defineStore('char-class', () => {
+    const playerHandbookClasses: ReadonlyMap<number, PlayerHandbookClasses> = markRaw(new Map([
         [0, 'Bárbaro'],
         [1, 'Bardo'],
         [2, 'Bruxo'],
@@ -59,17 +65,17 @@ export const useGameStore = defineStore('game', () => {
         [9, 'Monge'],
         [10, 'Paladino'],
         [11, 'Patrulheiro']
-    ]);
+    ]));
 
     // As chaves precisam ser idênticas às do mapa de livros.
-    const classes: Map<number, ReadonlyMap<number, Classes>> = new Map();
+    const classes: Map<number, ReadonlyMap<number, Classes>> = markRaw(new Map());
     classes.set(1, playerHandbookClasses);
 
-    return { books, races, classes };
+    return { classes };
 });
 
 export const useLanguageStore = defineStore('language', () => {
-    const languages: ReadonlyMap<number, Languages> = new Map([
+    const languages: ReadonlyMap<number, Languages> = markRaw(new Map([
         [0, 'Comum'],
         [1, 'Anão'],
         [2, 'Élfico'],
@@ -97,26 +103,26 @@ export const useLanguageStore = defineStore('language', () => {
         [24, 'Horror de Gancho'],
         [25, 'Modron'],
         [26, 'Otyugh']
-    ]);
+    ]));
 
     return { languages };
 });
 
 export const useSizeStore = defineStore('size', () => {
-    const creatureSize: ReadonlyMap<number, string> = new Map([
+    const creatureSize: ReadonlyMap<number, string> = markRaw(new Map([
         [0, 'Miúdo'],
         [1, 'Pequeno'],
         [2, 'Médio'],
         [3, 'Grande'],
         [4, 'Enorme'],
         [5, 'Imenso']
-    ]);
+    ]));
 
     return { creatureSize };
 });
 
 export const useExperienceStore = defineStore('experience', () => {
-    const experience: ReadonlyMap<number, number> = new Map([
+    const experience: ReadonlyMap<number, number> = markRaw(new Map([
         [1, 0],
         [2, 300],
         [3, 900],
@@ -137,51 +143,13 @@ export const useExperienceStore = defineStore('experience', () => {
         [18, 265000],
         [19, 305000],
         [20, 355000]
-    ]);
+    ]));
 
     return { experience };
 });
 
-export const useAbilityStore = defineStore('ability', () => {
-    const ability: AbilityInfo = {
-        for: {
-            name: 'Força',
-            description: 'A Força mede a potência física, treinamento atlético, e a extensão da força bruta que você pode exercer.'
-        },
-        des: {
-            name: 'Destreza',
-            description: 'A Destreza mede a agilidade, os reflexos e o equilíbrio.'
-        },
-        con: {
-            name: 'Constituição',
-            description: 'A Constituição mede a saúde, a resistência e a força vital.'
-        },
-        int: {
-            name: 'Inteligência',
-            description: 'A Inteligência mede a acuidade mental, precisão da memória e a habilidade de raciocinar.'
-        },
-        sab: {
-            name: 'Sabedoria',
-            description: 'A Sabedoria reflete como você está em sintonia com o mundo ao seu redor e representa percepção e intuição.'
-        },
-        car: {
-            name: 'Carisma',
-            description: 'O Carisma mede a capacidade de interagir eficazmente com os outros. ' +
-            'Ele inclui fatores como confiança e eloquência, e pode representar uma personalidade encantadora ou dominadora.'
-        },
-        san: {
-            name: 'Sanidade',
-            description: 'Um personagem com um valor de Sanidade alto mantem-se equilibrado mesmo ao confrontar circunstâncias insanas, ' +
-            'enquanto que um personagem com Sanidade baixa é inseguro, facilmente se desesperando ao ser confrontado por horrores ' +
-            'sobrenaturais que estão além de sua compreensão.'
-        }
-    };
-
-    return { ability };
-});
-
 export const useSkillStore = defineStore('skill', () => {
-    const charSkill: ReadonlyMap<number, Skills> = new Map([
+    const charSkill: ReadonlyMap<number, Skills> = markRaw(new Map([
         [0, 'Acrobacia'],
         [1, 'Adestrar animais'],
         [2, 'Arcanismo'],
@@ -200,7 +168,17 @@ export const useSkillStore = defineStore('skill', () => {
         [15, 'Prestidigitação'],
         [16, 'Religião'],
         [17, 'Sobrevivência']
-    ]);
+    ]));
 
     return { charSkill };
+});
+
+export const useDamageStore = defineStore('damage', () => {
+    const damageType: ReadonlyMap<number, DamageType> = markRaw(new Map([
+        [0, 'concussão'],
+        [1, 'cortante'],
+        [2, 'perfurante']
+    ]));
+
+    return { damageType };
 });

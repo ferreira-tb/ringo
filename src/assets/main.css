@@ -72,8 +72,25 @@ input[type="checkbox"]:checked::before {
     font-weight: bold;
 }
 
+.italic {
+    font-style: italic;
+}
+
 .green-text {
     color: var(--color-green);
+}
+
+.small {
+    font-size: smaller;
+    font-style: italic;
+}
+
+.text-line {
+    text-align: center;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    margin-bottom: 0.3em;
+    user-select: none;
 }
 
 .checkbox-label {
@@ -87,19 +104,6 @@ input[type="checkbox"]:checked::before {
 .button-area {
     margin-top: 0.5em;
     text-align: center;
-}
-
-.text-line {
-    text-align: center;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
-    margin-bottom: 0.3em;
-    user-select: none;
-}
-
-.small {
-    font-size: smaller;
-    font-style: italic;
 }
 
 /** TRANSIÇÕES */

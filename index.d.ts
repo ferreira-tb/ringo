@@ -118,14 +118,13 @@ type Languages =
     | 'Modron'
     | 'Otyugh';
 
-////// OUTROS
-type AbilityInfo = Readonly<{
-    [key in keyof AbilityScores]: Readonly<{
-        name: string
-        description: string
-    }>
-}>;
+////// DANO
+type DamageType =
+    | 'concussão'
+    | 'cortante'
+    | 'perfurante';
 
+////// OUTROS
 type StandardTableContent = {
     th: string[]
     tr: string[][]

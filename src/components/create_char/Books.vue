@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { router } from '@/router/index.js';
-import { useGameStore } from '@/stores/game.js';
-import Button from '@/components/Button.vue';
+import { useBookStore } from '@/stores/game.js';
 import { useCharacterStore } from '@/stores/character.js';
+import Button from '@/components/Button.vue';
 
-const gameStore = useGameStore();
-const { books } = gameStore;
-
-const charStore = useCharacterStore();
-const { character, resetBooks } = charStore;
+const { books } = useBookStore();
+const { character, resetBooks } = useCharacterStore();
 </script>
 
 <template>

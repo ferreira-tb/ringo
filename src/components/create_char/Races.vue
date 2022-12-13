@@ -2,15 +2,12 @@
 import { reactive, watchEffect } from 'vue';
 import { router } from '@/router/index.js';
 import { useCharacterStore } from '@/stores/character.js';
-import { useGameStore } from '@/stores/game.js';
+import { useRaceStore } from '@/stores/game.js';
 import Button from '@/components/Button.vue';
 import RaceBonuses from '@/components/create_char/RaceBonuses.vue';
 
-const charStore = useCharacterStore();
-const { character } = charStore;
-
-const gameStore = useGameStore();
-const { races } = gameStore;
+const { character } = useCharacterStore();
+const { races } = useRaceStore();
 
 /** Lista de raças, com o código da raça, o nome e o código do livro, respectivamente. */
 const raceList: [number, Races, number][] = reactive([]);
@@ -107,10 +104,16 @@ watchEffect(() => {
         </div>
 
         <Transition name="fade" mode="out-in">
-            <RaceBonuses
-                v-if="((typeof character.race.id === 'number') && raceInfoMap.has(character.race.id))"
-                :raceInfo="(raceInfoMap.get(character.race.id) as APICharacterRace)"
-            />
+            <Suspense>
+                <RaceBonuses
+                    v-if="((typeof character.race.id === 'number') && raceInfoMap.has(character.race.id))"
+                    :raceInfo="(raceInfoMap.get(character.race.id) as APICharacterRace)"
+                />
+
+                <template #fallback>
+                    <span class="green-text italic">Carregando...</span>
+                </template>
+            </Suspense>
         </Transition>
     </section>
 </template>

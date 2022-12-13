@@ -3,15 +3,12 @@ import { computed, reactive, ref, watchEffect } from 'vue';
 import { router } from '@/router/index.js';
 import { RingoError } from '@/error.js';
 import { useCharacterStore } from '@/stores/character.js';
-import { useGameStore } from '@/stores/game.js';
+import { useClassStore } from '@/stores/game.js';
 import Button from '@/components/Button.vue';
 import ClassBonuses from '@/components/create_char/ClassBonuses.vue';
 
-const charStore = useCharacterStore();
-const { character } = charStore;
-
-const gameStore = useGameStore();
-const { classes } = gameStore;
+const { character } = useCharacterStore();
+const { classes } = useClassStore();
 
 /** Lista de classes, com o código da classe, o nome e o código do livro, respectivamente. */
 const classList: [number, Classes, number][] = reactive([]);

@@ -1,8 +1,7 @@
 <script setup lang='ts'>
 import { useCharacterStore } from '@/stores/character';
 
-const store = useCharacterStore();
-const { character } = store;
+const { character } = useCharacterStore();
 </script>
 
 <template>

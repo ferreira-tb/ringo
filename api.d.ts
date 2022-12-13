@@ -1,3 +1,35 @@
+////// MOEDAS
+type APICoinAmount = {
+    /** Quantidade de moedas. */
+    quantidade: number
+    /** Cobre, prata, electro, ouro e platina, respectivamente. */
+    tipo: 0 | 1 | 2 | 3 | 4
+}
+
+////// DANO
+type APIDice = {
+    /** Lados do dado. */
+    dado: number
+    /** Quantidade de dados. */
+    quantidade: number
+}
+
+interface APIDamage extends APIDice {
+    /** Tipo de dano. */
+    type: number
+    /** Modificador. */
+    mod: number
+}
+
+////// HABILIDADE
+type APIAbilityInfo = Readonly<{
+    [key in keyof AbilityScores]: Readonly<{
+        name: string
+        description: string
+    }>
+}>
+
+////// RAÇA
 type APIRaceBonus = {
     /** ID númerico do bônus. */
     id: number
@@ -43,6 +75,7 @@ type APICharacterRace = {
     bonus: APIRaceBonus[]
 }
 
+////// CLASSE
 type APICharacterClass = {
     nome: Classes
     codigo: number
@@ -66,6 +99,7 @@ type APICharacterClass = {
     }
 }
 
+////// PERÍCIAS
 type APISkills = {
     nome: Skills
     codigo: number
@@ -73,6 +107,7 @@ type APISkills = {
     descricao: string
 }
 
+////// ARMADURAS
 type APIArmor = {
     /** Nome do item. */
     nome: string
@@ -83,12 +118,7 @@ type APIArmor = {
     /** Armaduras leves, médias, pesadas e escudos, respectivamente. */
     tipo: 0 | 1 | 2 | 3
     /** Valor de compra do item. */
-    valor: {
-        /** Quantidade de moedas. */
-        quantidade: number
-        /** Cobre, prata, electro, ouro e platina, respectivamente. */
-        tipo: 0 | 1 | 2 | 3 | 4
-    }
+    valor: APICoinAmount
     /** Classe de armadura. */
     ca: number
     /** Determina se o modificador de destreza deve ser somado à CA. */
@@ -105,6 +135,48 @@ type APIArmor = {
     descricao: string
 }
 
+////// ARMAS
 type APIWeapon = {
+    /** Nome do item. */
+    nome: string
+    /** Código do item. */
+    codigo: number
+    /** Código do livro de origem do item. */
+    livro: number
+    /** Armas simples e marciais, respectivamente. */
+    tipo: 0 | 1
+    /** Valor de compra do item. */
+    valor: APICoinAmount
+    /** Dano da arma. */
+    dano: APIDamage
+    /** Códigos das propriedades da arma. */
+    propriedades: number[]
+    /** Peso do item (em quilos). */
+    peso: number 
+}
 
+type APIWeaponProps = {
+    /** Nome da propriedade */
+    nome: string
+    /** Código da propriedade. */
+    codigo: number
+    /** Código do livro de origem da propriedade. */
+    livro: number
+    /** Descrição da propriedade. */
+    descricao: string
+}
+
+/** Informações adicionais sobre a propriedade. */
+type APIWeaponPropsDetails = {
+    /** Distância normal da arma. */
+    distancia?: number
+    /** Distância máxima da arma. */
+    distancia_max?: number
+    /** Dado de dano para quando a arma é usada com as duas mãos. */
+    dano_duas_maos?: APIDice
+}
+
+type APIWeaponEndpoint = {
+    armas: APIWeapon[]
+    propriedades: APIWeaponProps[]
 }

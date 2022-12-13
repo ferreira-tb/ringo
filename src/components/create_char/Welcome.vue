@@ -3,8 +3,7 @@ import { router } from '@/router/index.js';
 import Button from '@/components/Button.vue';
 import { useCharacterStore } from '@/stores/character';
 
-const charStore = useCharacterStore();
-const { character } = charStore;
+const { character } = useCharacterStore();
 </script>
 
 <template>
