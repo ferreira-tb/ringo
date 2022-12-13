@@ -1,0 +1,37 @@
+{
+    "for": {
+        "name": "Força",
+        "livro": 1,
+        "description": "A Força mede a potência física, treinamento atlético, e a extensão da força bruta que você pode exercer."
+    },
+    "des": {
+        "name": "Destreza",
+        "livro": 1,
+        "description": "A Destreza mede a agilidade, os reflexos e o equilíbrio."
+    },
+    "con": {
+        "name": "Constituição",
+        "livro": 1,
+        "description": "A Constituição mede a saúde, a resistência e a força vital."
+    },
+    "int": {
+        "name": "Inteligência",
+        "livro": 1,
+        "description": "A Inteligência mede a acuidade mental, precisão da memória e a habilidade de raciocinar."
+    },
+    "sab": {
+        "name": "Sabedoria",
+        "livro": 1,
+        "description": "A Sabedoria reflete como você está em sintonia com o mundo ao seu redor e representa percepção e intuição."
+    },
+    "car": {
+        "name": "Carisma",
+        "livro": 1,
+        "description": "O Carisma mede a capacidade de interagir eficazmente com os outros. Ele inclui fatores como confiança e eloquência, e pode representar uma personalidade encantadora ou dominadora."
+    },
+    "san": {
+        "name": "Sanidade",
+        "livro": 2,
+        "description": "Um personagem com um valor de Sanidade alto mantem-se equilibrado mesmo ao confrontar circunstâncias insanas, enquanto que um personagem com Sanidade baixa é inseguro, facilmente se desesperando ao ser confrontado por horrores sobrenaturais que estão além de sua compreensão."
+    }
+}
