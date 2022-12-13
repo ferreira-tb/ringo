@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { computed, reactive, ref, watchEffect } from 'vue';
 import { router } from '@/router/index.js';
-import Button from '@/components/Button.vue';
+import { RingoError } from '@/error.js';
 import { useCharacterStore } from '@/stores/character.js';
 import { useGameStore } from '@/stores/game.js';
-import { reactive, watchEffect } from 'vue';
+import Button from '@/components/Button.vue';
 
 const charStore = useCharacterStore();
 const { character } = charStore;
@@ -11,7 +12,7 @@ const { character } = charStore;
 const gameStore = useGameStore();
 const { classes } = gameStore;
 
-/** Lista de classes, onde o primeiro elemento é o código da classe, o segundo é o nome e o terceiro é o código do livro. */
+/** Lista de classes, com o código da classe, o nome e o código do livro, respectivamente. */
 const classList: [number, Classes, number][] = reactive([]);
 character.books.forEach((book) => {
     const thisBookClassMap = classes.get(book);
@@ -22,42 +23,67 @@ character.books.forEach((book) => {
     };
 });
 
+/** Classe selecionada (mas não necessariamente confirmada). */
+const currentClass = ref<number | null>(null);
 /** Mapa com as informações sobre cada classe. */
 const classInfoMap = reactive(new Map<number, APICharacterClass>());
+/** Determina se o botão para adicionar classes estará ativo ou não. */
+const addClassButtonStatus = computed(() => (classList.length < 1) || (typeof currentClass.value !== "number"));
 
 // Solicita à API os dados sobre a raça e ordena a lista de raças de acordo com o nome.
 if (classList.length > 0) {
     classList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
 };
 
-function getRandomClass() {
-    const randomIndex = Math.floor(Math.random() * classList.length);
-    character.class.id = classList[randomIndex][0];
-    character.class.book = classList[randomIndex][2];
+function addClass(classId?: number, bookId?: number, level: number = 1) {
+    if (typeof classId !== 'number' || typeof bookId !== 'number') {
+        if (currentClass.value === null) return;
+        classId = currentClass.value;
+
+        const thisClass = classList.find((item) => item[0] === classId);
+        if (!thisClass) throw new RingoError('Não foi possível encontrar a classe na lista.');
+        bookId = thisClass[2];
+    };
+
+    character.class.set(classId, {
+        book: bookId,
+        level: level
+    });
+
+    console.log(character.class);
 };
 
+console.log(new RingoError('oi'));
+
 function saveAndContinue() {
-    if (character.class.id === null) getRandomClass();
+    if (character.class.size === 0) {
+        // Se houver alguma classe selecionada, usa-a.
+        // Do contrário, escolhe aleatoriamente entre as disponíveis.
+        const randomIndex = Math.floor(Math.random() * classList.length);
+        const classIndex = typeof currentClass.value === 'number' ? currentClass.value : randomIndex;
+
+        addClass(classList[classIndex][0], classList[classIndex][2]);
+    };
+
     // router.push({ name: 'create-char-step-4' });
 };
 
-// Remove a classe atual caso ela não esteja na lista.
+// Remove do mapa classes que não estejam na lista.
 // Isso geralmente acontece quando o usuário seleciona uma classe, volta à janela anterior e então altera os livros.
-// Se durante a verificação ele encontrar a classe na lista, aproveita e atualiza o ID do livro onde a classe se encontra.
 watchEffect(() => {
-    const verifyList = (thisClass: [number, Classes, number]) => {
-        if (character.class.id === thisClass[0]) {
-            character.class.book = thisClass[2];
-            return true;
-        };
-
+    const verifyList = (thisClass: [number, Classes, number], classKey: number) => {
+        if (classKey === thisClass[0]) return true;
         return false;
     };
 
-    if (!classList.some(verifyList)) {
-        character.class.id = null;
-        character.class.book = null;
+    const keysToDelete = new Set<number>();
+    for (const classKey of character.class.keys()) {
+        if (!classList.some((thisClass) => verifyList(thisClass, classKey))) {
+            keysToDelete.add(classKey);
+        };
     };
+
+    keysToDelete.forEach((key) => character.class.delete(key));
 });
 </script>
 
@@ -68,10 +94,12 @@ watchEffect(() => {
         <p class="text-line small">A Ringo escolherá uma classe aleatória para você.</p>
         
         <div class="classes-area">      
-            <select v-model.number="character.class.id">
-                <option v-for="thisClass of classList" :key="thisClass[0]" :value="thisClass[0]">
-                    {{ thisClass[1] }}
-                </option>
+            <select v-model.number="currentClass">
+                <template v-for="thisClass of classList" :key="thisClass[0]">
+                    <option :disabled="character.class.has(thisClass[0])" :value="thisClass[0]">
+                        {{ thisClass[1] }}
+                    </option>
+                </template>      
             </select>
         </div>
 
@@ -82,9 +110,9 @@ watchEffect(() => {
                 @click.prevent="saveAndContinue"
             />
             <Button
-                :disabled="(classList.length < 1)"
-                text="Escolha pra mim"
-                @click.prevent="getRandomClass"
+                :disabled="addClassButtonStatus"
+                text="Adicionar classe"
+                @click.prevent="addClass()"
             />
             <Button
                 text="Voltar"
@@ -96,7 +124,7 @@ watchEffect(() => {
 
 <style scoped>
 .classes-area {
-    margin-top: 0.5em;
+    margin: 0.5em;
     text-align: center;
 }
 </style>

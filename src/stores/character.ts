@@ -10,11 +10,7 @@ class Character {
         book: null
     };
     
-    readonly class: CharacterClass = {
-        id: null,
-        level: 1,
-        book: null,
-    };
+    readonly class: CharacterClasses = new Map();
 };
 
 export const useCharacterStore = defineStore('character', () => {

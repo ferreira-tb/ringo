@@ -1,11 +1,19 @@
 <script setup lang='ts'>
+import { reactive } from 'vue';
+
 const props = defineProps<{
     text: string
+    padding?: string
 }>();
+
+const buttonStyle = reactive({
+    padding: props.padding || '0.3em'
+});
+
 </script>
 
 <template>
-    <button class="standard-button">{{ props.text }}</button>
+    <button class="standard-button" :style="buttonStyle">{{ props.text }}</button>
 </template>
 
 <style scoped>
@@ -22,7 +30,6 @@ const props = defineProps<{
     border-radius: 2px;
 
     margin: 0.3em;
-    padding: 0.3em;
     min-width: fit-content;
     
     background-color: var(--color-green);

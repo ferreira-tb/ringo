@@ -12,7 +12,7 @@ const { character } = charStore;
 const gameStore = useGameStore();
 const { races } = gameStore;
 
-/** Lista de raças, onde o primeiro elemento é o código da raça, o segundo é o nome e o terceiro é o código do livro. */
+/** Lista de raças, com o código da raça, o nome e o código do livro, respectivamente. */
 const raceList: [number, Races, number][] = reactive([]);
 character.books.forEach((book) => {
     const thisBookRaceMap = races.get(book);

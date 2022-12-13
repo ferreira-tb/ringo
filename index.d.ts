@@ -61,9 +61,11 @@ type CharacterRace = {
     book: number | null
 }
 
-interface CharacterClass extends CharacterRace {
+/** A chave deve ser o ID da classe. */
+type CharacterClasses = Map<number, {
+    book: number
     level: number
-}
+}>;
 
 ////// IDIOMAS
 type Languages =
