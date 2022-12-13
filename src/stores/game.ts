@@ -240,29 +240,3 @@ export const useWeaponStore = defineStore('weapon', () => {
 
     return { weapons, weaponProps };
 });
-
-/**
- 
-{
-    "nome": "",
-    "codigo": null,
-    "livro": 1,
-    "tipo": 3,
-    "valor": {
-        "quantidade": null,
-        "tipo": null
-    },
-    "dano": {
-        "dado": null,
-        "quantidade": 1,
-        "tipo": null,
-        "mod": 0
-    },
-    "peso": null,
-    "propriedades": [null],
-    "detalhes": {
-        
-    }
-}
- 
- */
