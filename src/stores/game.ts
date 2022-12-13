@@ -182,3 +182,87 @@ export const useDamageStore = defineStore('damage', () => {
 
     return { damageType };
 });
+
+export const useWeaponStore = defineStore('weapon', () => {
+    const weapons: ReadonlyMap<number, Weapons> = markRaw(new Map([
+        [0, 'Adaga'],
+        [1, 'Azagaia'],
+        [2, 'Bordão'],
+        [3, 'Clava grande'],
+        [4, 'Foice curta'],
+        [5, 'Lança'],
+        [6, 'Maça'],
+        [7, 'Machadinha'],
+        [8, 'Martelo leve'],
+        [9, 'Porrete'],
+        [10, 'Arco curto'],
+        [11, 'Besta leve'],
+        [12, 'Dardo'],
+        [13, 'Funda'],
+        [14, 'Alabarda'],
+        [15, 'Cimitarra'],
+        [16, 'Chicote'],
+        [17, 'Espada curta'],
+        [18, 'Espada grande'],
+        [19, 'Espada longa'],
+        [20, 'Glaive'],
+        [21, 'Lança de montaria'],
+        [22, 'Lança longa'],
+        [23, 'Maça estrela'],
+        [24, 'Machado grande'],
+        [25, 'Machado de batalha'],
+        [26, 'Malho'],
+        [27, 'Mangual'],
+        [28, 'Martelo de guerra'],
+        [29, 'Picareta de guerra'],
+        [30, 'Rapieira'],
+        [31, 'Tridente'],
+        [32, 'Arco longo'],
+        [33, 'Besta de mão'],
+        [34, 'Besta pesada'],
+        [35, 'Rede'],
+        [36, 'Zarabatana'],
+    ]));
+
+    const weaponProps: ReadonlyMap<number, WeaponProps> = markRaw(new Map([
+        [0, 'Acuidade'],
+        [1, 'Alcance'],
+        [2, 'Arremesso'],
+        [3, 'Distância'],
+        [4, 'Duas mãos'],
+        [5, 'Especial'],
+        [6, 'Leve'],
+        [7, 'Munição'],
+        [8, 'Pesada'],
+        [9, 'Recarga'],
+        [10, 'Versátil']
+    ]));
+
+    return { weapons, weaponProps };
+});
+
+/**
+ 
+{
+    "nome": "",
+    "codigo": null,
+    "livro": 1,
+    "tipo": 3,
+    "valor": {
+        "quantidade": null,
+        "tipo": null
+    },
+    "dano": {
+        "dado": null,
+        "quantidade": 1,
+        "tipo": null,
+        "mod": 0
+    },
+    "peso": null,
+    "propriedades": [null],
+    "detalhes": {
+        
+    }
+}
+ 
+ */

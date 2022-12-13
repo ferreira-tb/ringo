@@ -45,7 +45,7 @@ const minus = computed(() => getAbilities('neg'));
 function getAbilities(type: 'pos' | 'neg') {
     const result: AbilityInfoAndValue[] = [];
     for (const [key, value] of Object.entries(props.raceInfo.habilidades) as [keyof AbilityScores, number][]) {
-        const thisAbility = new AbilityInfoAndValue(ability[key].name, value,ability[key].description);
+        const thisAbility = new AbilityInfoAndValue(ability[key].nome, value, ability[key].descricao);
 
         if (type === 'pos' && Math.sign(value) === 1) {
             result.push(thisAbility);

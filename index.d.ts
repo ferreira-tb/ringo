@@ -124,6 +124,75 @@ type DamageType =
     | 'cortante'
     | 'perfurante';
 
+////// ARMADURAS
+type Armors =
+    | 'Acolchoada'
+    | 'Couro'
+    | 'Couro batido'
+    | 'Gibão de peles'
+    | 'Camisão de malha'
+    | 'Brunea'
+    | 'Peitoral'
+    | 'Meia-armadura'
+    | 'Cota de anéis'
+    | 'Cota de malha'
+    | 'Cota de talas'
+    | 'Placas'
+    | 'Escudo';
+
+////// ARMAS
+type Weapons =
+    | 'Adaga'
+    | 'Azagaia'
+    | 'Bordão'
+    | 'Clava grande'
+    | 'Foice curta'
+    | 'Lança'
+    | 'Maça'
+    | 'Machadinha'
+    | 'Martelo leve'
+    | 'Porrete'
+    | 'Arco curto'
+    | 'Besta leve'
+    | 'Dardo'
+    | 'Funda'
+    | 'Alabarda'
+    | 'Cimitarra'
+    | 'Chicote'
+    | 'Espada curta'
+    | 'Espada grande'
+    | 'Espada longa'
+    | 'Glaive'
+    | 'Lança de montaria'
+    | 'Lança longa'
+    | 'Maça estrela'
+    | 'Machado grande'
+    | 'Machado de batalha'
+    | 'Malho'
+    | 'Mangual'
+    | 'Martelo de guerra'
+    | 'Picareta de guerra'
+    | 'Rapieira'
+    | 'Tridente'
+    | 'Arco longo'
+    | 'Besta de mão'
+    | 'Besta pesada'
+    | 'Rede'
+    | 'Zarabatana';
+
+type WeaponProps =
+    | 'Acuidade'
+    | 'Alcance'
+    | 'Arremesso'
+    | 'Distância'
+    | 'Duas mãos'
+    | 'Especial'
+    | 'Leve'
+    | 'Munição'
+    | 'Pesada'
+    | 'Recarga'
+    | 'Versátil';
+
 ////// OUTROS
 type StandardTableContent = {
     th: string[]

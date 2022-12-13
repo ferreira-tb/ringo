@@ -16,7 +16,7 @@ type APIDice = {
 
 interface APIDamage extends APIDice {
     /** Tipo de dano. */
-    type: number
+    tipo: number
     /** Modificador. */
     mod: number
 }
@@ -24,8 +24,8 @@ interface APIDamage extends APIDice {
 ////// HABILIDADE
 type APIAbilityInfo = Readonly<{
     [key in keyof AbilityScores]: Readonly<{
-        name: string
-        description: string
+        nome: string
+        descricao: string
     }>
 }>
 
@@ -110,7 +110,7 @@ type APISkills = {
 ////// ARMADURAS
 type APIArmor = {
     /** Nome do item. */
-    nome: string
+    nome: Armors
     /** Código do item. */
     codigo: number
     /** Código do livro de origem do item. */
@@ -138,26 +138,28 @@ type APIArmor = {
 ////// ARMAS
 type APIWeapon = {
     /** Nome do item. */
-    nome: string
+    nome: Weapons
     /** Código do item. */
     codigo: number
     /** Código do livro de origem do item. */
     livro: number
-    /** Armas simples e marciais, respectivamente. */
-    tipo: 0 | 1
+    /** Armas simples corpo-a-corpo e a distância, e marciais corpo-a-corpo e a distância, respectivamente. */
+    tipo: 0 | 1 | 2 | 3
     /** Valor de compra do item. */
     valor: APICoinAmount
     /** Dano da arma. */
-    dano: APIDamage
+    dano: APIDamage | null
+    /** Peso do item (em quilos). */
+    peso: number | null
     /** Códigos das propriedades da arma. */
     propriedades: number[]
-    /** Peso do item (em quilos). */
-    peso: number 
+    /** Detalhes das propriedades da arma. */
+    detalhes?: APIWeaponPropsDetails
 }
 
 type APIWeaponProps = {
     /** Nome da propriedade */
-    nome: string
+    nome: WeaponProps
     /** Código da propriedade. */
     codigo: number
     /** Código do livro de origem da propriedade. */
@@ -166,14 +168,15 @@ type APIWeaponProps = {
     descricao: string
 }
 
-/** Informações adicionais sobre a propriedade. */
 type APIWeaponPropsDetails = {
-    /** Distância normal da arma. */
+    /** Distância normal da arma (em metros). */
     distancia?: number
-    /** Distância máxima da arma. */
+    /** Distância máxima da arma (em metros). */
     distancia_max?: number
     /** Dado de dano para quando a arma é usada com as duas mãos. */
     dano_duas_maos?: APIDice
+    /** Descrição da propriedade "especial". */
+    especial?: string
 }
 
 type APIWeaponEndpoint = {
