@@ -5,6 +5,7 @@ import { RingoError } from '@/error.js';
 import { useCharacterStore } from '@/stores/character.js';
 import { useGameStore } from '@/stores/game.js';
 import Button from '@/components/Button.vue';
+import ClassBonuses from '@/components/create_char/ClassBonuses.vue';
 
 const charStore = useCharacterStore();
 const { character } = charStore;
@@ -49,11 +50,7 @@ function addClass(classId?: number, bookId?: number, level: number = 1) {
         book: bookId,
         level: level
     });
-
-    console.log(character.class);
 };
-
-console.log(new RingoError('oi'));
 
 function saveAndContinue() {
     if (character.class.size === 0) {
@@ -93,7 +90,7 @@ watchEffect(() => {
         <p class="text-line small">Se ficar em dúvida, apenas clique em <span class="bold">continuar</span>.</p>
         <p class="text-line small">A Ringo escolherá uma classe aleatória para você.</p>
         
-        <div class="classes-area">      
+        <div class="class-select-area">      
             <select v-model.number="currentClass">
                 <template v-for="thisClass of classList" :key="thisClass[0]">
                     <option :disabled="character.class.has(thisClass[0])" :value="thisClass[0]">
@@ -119,12 +116,49 @@ watchEffect(() => {
                 @click.prevent="router.push({ name: 'create-char-step-2' })"
             />
         </div>
+
+        <Transition name="fade" mode="out-in">
+            <div v-if="character.class.size > 0" class="class-info-area">
+                <h2>Detalhes</h2>
+                <div class="class-name-wrapper">
+                    <span
+                        v-for="thisClass in character.class"
+                        class="bold green span-wrapper"
+                        :key="thisClass[0]"
+                    >
+                        {{ thisClass[0] }}
+                    </span>
+                </div>
+            </div>
+        </Transition>    
     </section>
 </template>
 
 <style scoped>
-.classes-area {
+.class-select-area {
     margin: 0.5em;
     text-align: center;
+}
+
+.class-info-area h2 {
+    user-select: none;
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+}
+
+.class-name-wrapper {
+    user-select: none;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.span-wrapper {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 </style>
