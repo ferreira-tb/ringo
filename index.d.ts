@@ -61,11 +61,32 @@ type CharacterRace = {
     book: number | null
 }
 
-/** A chave deve ser o ID da classe. */
+/** A chave do mapa deve ser o ID da classe. */
 type CharacterClasses = Map<number, {
     book: number
     level: number
 }>;
+
+////// PERÍCIAS
+type Skills =
+    | 'Acrobacia'
+    | 'Adestrar animais'
+    | 'Arcanismo'
+    | 'Atletismo'
+    | 'Atuação'
+    | 'Enganação'
+    | 'Furtividade'
+    | 'História'
+    | 'Intimidação'
+    | 'Intuição'
+    | 'Investigação'
+    | 'Medicina'
+    | 'Natureza'
+    | 'Percepção'
+    | 'Persuasão'
+    | 'Prestidigitação'
+    | 'Religião'
+    | 'Sobrevivência';
 
 ////// IDIOMAS
 type Languages =

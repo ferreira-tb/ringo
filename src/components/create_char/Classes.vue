@@ -130,7 +130,7 @@ watchEffect(() => {
                     </span>
                 </div>
             </div>
-        </Transition>    
+        </Transition>
     </section>
 </template>
 
