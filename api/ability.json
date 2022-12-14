@@ -1,37 +1,44 @@
-{
-    "for": {
-        "name": "Força",
+[
+    {
+        "nome": "Força",
+        "sigla": "for",
         "livro": 1,
-        "description": "A Força mede a potência física, treinamento atlético, e a extensão da força bruta que você pode exercer."
+        "descricao": "A Força mede a potência física, treinamento atlético, e a extensão da força bruta que você pode exercer."
     },
-    "des": {
-        "name": "Destreza",
+    {
+        "nome": "Destreza",
+        "sigla": "des",
         "livro": 1,
-        "description": "A Destreza mede a agilidade, os reflexos e o equilíbrio."
+        "descricao": "A Destreza mede a agilidade, os reflexos e o equilíbrio."
     },
-    "con": {
-        "name": "Constituição",
+    {
+        "nome": "Constituição",
+        "sigla": "con",
         "livro": 1,
-        "description": "A Constituição mede a saúde, a resistência e a força vital."
+        "descricao": "A Constituição mede a saúde, a resistência e a força vital."
     },
-    "int": {
-        "name": "Inteligência",
+    {
+        "nome": "Inteligência",
+        "sigla": "int",
         "livro": 1,
-        "description": "A Inteligência mede a acuidade mental, precisão da memória e a habilidade de raciocinar."
+        "descricao": "A Inteligência mede a acuidade mental, precisão da memória e a habilidade de raciocinar."
     },
-    "sab": {
-        "name": "Sabedoria",
+    {
+        "nome": "Sabedoria",
+        "sigla": "sab",
         "livro": 1,
-        "description": "A Sabedoria reflete como você está em sintonia com o mundo ao seu redor e representa percepção e intuição."
+        "descricao": "A Sabedoria reflete como você está em sintonia com o mundo ao seu redor e representa percepção e intuição."
     },
-    "car": {
-        "name": "Carisma",
+    {
+        "nome": "Carisma",
+        "sigla": "car",
         "livro": 1,
-        "description": "O Carisma mede a capacidade de interagir eficazmente com os outros. Ele inclui fatores como confiança e eloquência, e pode representar uma personalidade encantadora ou dominadora."
+        "descricao": "O Carisma mede a capacidade de interagir eficazmente com os outros. Ele inclui fatores como confiança e eloquência, e pode representar uma personalidade encantadora ou dominadora."
     },
-    "san": {
-        "name": "Sanidade",
+    {
+        "nome": "Sanidade",
+        "sigla": "san",
         "livro": 2,
-        "description": "Um personagem com um valor de Sanidade alto mantem-se equilibrado mesmo ao confrontar circunstâncias insanas, enquanto que um personagem com Sanidade baixa é inseguro, facilmente se desesperando ao ser confrontado por horrores sobrenaturais que estão além de sua compreensão."
+        "descricao": "Um personagem com um valor de Sanidade alto mantem-se equilibrado mesmo ao confrontar circunstâncias insanas, enquanto que um personagem com Sanidade baixa é inseguro, facilmente se desesperando ao ser confrontado por horrores sobrenaturais que estão além de sua compreensão."
     }
-}
+]

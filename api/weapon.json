@@ -214,7 +214,7 @@
             "nome": "Arco curto",
             "codigo": 10,
             "livro": 1,
-            "tipo": 1,
+            "tipo": 0,
             "valor": {
                 "quantidade": 25,
                 "tipo": 3
@@ -236,7 +236,7 @@
             "nome": "Besta leve",
             "codigo": 11,
             "livro": 1,
-            "tipo": 1,
+            "tipo": 0,
             "valor": {
                 "quantidade": 25,
                 "tipo": 3
@@ -258,7 +258,7 @@
             "nome": "Dardo",
             "codigo": 12,
             "livro": 1,
-            "tipo": 1,
+            "tipo": 0,
             "valor": {
                 "quantidade": 5,
                 "tipo": 0
@@ -280,7 +280,7 @@
             "nome": "Funda",
             "codigo": 13,
             "livro": 1,
-            "tipo": 1,
+            "tipo": 0,
             "valor": {
                 "quantidade": 1,
                 "tipo": 1
@@ -302,7 +302,7 @@
             "nome": "Alabarda",
             "codigo": 14,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 20,
                 "tipo": 3
@@ -320,7 +320,7 @@
             "nome": "Cimitarra",
             "codigo": 15,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 25,
                 "tipo": 3
@@ -338,7 +338,7 @@
             "nome": "Chicote",
             "codigo": 16,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 2,
                 "tipo": 3
@@ -356,7 +356,7 @@
             "nome": "Espada curta",
             "codigo": 17,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 10,
                 "tipo": 3
@@ -374,7 +374,7 @@
             "nome": "Espada grande",
             "codigo": 18,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 50,
                 "tipo": 3
@@ -392,7 +392,7 @@
             "nome": "Espada longa",
             "codigo": 19,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 15,
                 "tipo": 3
@@ -416,7 +416,7 @@
             "nome": "Glaive",
             "codigo": 20,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 20,
                 "tipo": 3
@@ -434,7 +434,7 @@
             "nome": "Lança de montaria",
             "codigo": 21,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 10,
                 "tipo": 3
@@ -455,7 +455,7 @@
             "nome": "Lança longa",
             "codigo": 22,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 5,
                 "tipo": 3
@@ -473,7 +473,7 @@
             "nome": "Maça estrela",
             "codigo": 23,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 15,
                 "tipo": 3
@@ -491,7 +491,7 @@
             "nome": "Machado grande",
             "codigo": 24,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 30,
                 "tipo": 3
@@ -509,7 +509,7 @@
             "nome": "Machado de batalha",
             "codigo": 25,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 10,
                 "tipo": 3
@@ -533,7 +533,7 @@
             "nome": "Malho",
             "codigo": 26,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 10,
                 "tipo": 3
@@ -551,7 +551,7 @@
             "nome": "Mangual",
             "codigo": 27,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 10,
                 "tipo": 3
@@ -569,7 +569,7 @@
             "nome": "Martelo de guerra",
             "codigo": 28,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 15,
                 "tipo": 3
@@ -593,7 +593,7 @@
             "nome": "Picareta de guerra",
             "codigo": 29,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 5,
                 "tipo": 3
@@ -611,7 +611,7 @@
             "nome": "Rapieira",
             "codigo": 30,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 25,
                 "tipo": 3
@@ -629,7 +629,7 @@
             "nome": "Tridente",
             "codigo": 31,
             "livro": 1,
-            "tipo": 2,
+            "tipo": 1,
             "valor": {
                 "quantidade": 5,
                 "tipo": 3
@@ -655,7 +655,7 @@
             "nome": "Arco longo",
             "codigo": 32,
             "livro": 1,
-            "tipo": 3,
+            "tipo": 1,
             "valor": {
                 "quantidade": 50,
                 "tipo": 3
@@ -677,7 +677,7 @@
             "nome": "Besta de mão",
             "codigo": 33,
             "livro": 1,
-            "tipo": 3,
+            "tipo": 1,
             "valor": {
                 "quantidade": 75,
                 "tipo": 3
@@ -699,7 +699,7 @@
             "nome": "Besta pesada",
             "codigo": 34,
             "livro": 1,
-            "tipo": 3,
+            "tipo": 1,
             "valor": {
                 "quantidade": 50,
                 "tipo": 3
@@ -721,7 +721,7 @@
             "nome": "Rede",
             "codigo": 35,
             "livro": 1,
-            "tipo": 3,
+            "tipo": 1,
             "valor": {
                 "quantidade": 1,
                 "tipo": 3
@@ -739,7 +739,7 @@
             "nome": "Zarabatana",
             "codigo": 36,
             "livro": 1,
-            "tipo": 3,
+            "tipo": 1,
             "valor": {
                 "quantidade": 10,
                 "tipo": 3
