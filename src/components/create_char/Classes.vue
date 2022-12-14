@@ -38,6 +38,8 @@ if (classList.length > 0) {
             const classInfo = await response.json() as APICharacterClass[];
             if (Array.isArray(classInfo)) {
                 classInfo.forEach((item) => classInfoMap.set(item.codigo, item));
+            } else {
+                throw new RingoError('Não foi possível obter informações sobre as classes.');
             };
 
         } catch (err) {
@@ -48,19 +50,22 @@ if (classList.length > 0) {
     classList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
 };
 
-function addClass(classId?: number, bookId?: number, level: number = 1) {
-    if (typeof classId !== 'number' || typeof bookId !== 'number') {
+/** Adiciona a classe ao mapa que contém as classes escolhidas pelo jogador. */
+function addClass(classId?: number, className?: Classes, bookId?: number, level: number = 1) {
+    if (typeof classId !== 'number' || typeof className !== 'string' || typeof bookId !== 'number') {
         if (currentClass.value === null) return;
         classId = currentClass.value;
 
         const thisClass = classList.find((item) => item[0] === classId);
         if (!thisClass) throw new RingoError('Não foi possível encontrar a classe na lista.');
+        className = thisClass[1];
         bookId = thisClass[2];
     };
 
     character.class.set(classId, {
         book: bookId,
-        level: level
+        level: level,
+        name: className
     });
 };
 
@@ -71,7 +76,7 @@ function saveAndContinue() {
         const randomIndex = Math.floor(Math.random() * classList.length);
         const classIndex = typeof currentClass.value === 'number' ? currentClass.value : randomIndex;
 
-        addClass(classList[classIndex][0], classList[classIndex][2]);
+        addClass(...classList[classIndex]);
     };
 
     // router.push({ name: 'create-char-step-4' });
@@ -135,7 +140,7 @@ watchEffect(() => {
                 <div class="class-name-wrapper">
                     <template v-for="thisClass in character.class" :key="thisClass[0]">
                         <span v-if="classInfoMap.has(thisClass[0])" class="bold green span-wrapper">
-                            {{ classInfoMap.get(thisClass[0])?.nome }}
+                            {{ thisClass[1].name }}
                         </span>
                     </template>
                 </div>

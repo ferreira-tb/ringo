@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { onErrorCaptured } from 'vue';
 
+onErrorCaptured((err, instance, info) => {
+    console.error(err, instance, info)
+});
 </script>
 
 <template>
@@ -9,9 +13,15 @@
         </div>
         <div>
             <router-view v-slot="{ Component, route }">
-                <transition name="fade" mode="out-in">
-                    <component :is="Component" :key="route.path" />
-                </transition>
+                <Transition name="fade" mode="out-in">
+                    <Suspense>
+                        <component :is="Component" :key="route.path" />
+
+                        <template #fallback>
+                            <span class="green-text italic">Carregando...</span>
+                        </template>
+                    </Suspense>
+                </Transition>
             </router-view>
         </div>
     </main>

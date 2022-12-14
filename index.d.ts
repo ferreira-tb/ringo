@@ -65,6 +65,7 @@ type CharacterRace = {
 type CharacterClasses = Map<number, {
     book: number
     level: number
+    name: string
 }>;
 
 ////// PERÍCIAS
