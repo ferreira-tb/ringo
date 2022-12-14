@@ -104,10 +104,16 @@ watchEffect(() => {
         </div>
 
         <Transition name="fade" mode="out-in">
-            <RaceBonuses
-                v-if="((typeof character.race.id === 'number') && raceInfoMap.has(character.race.id))"
-                :raceInfo="(raceInfoMap.get(character.race.id) as APICharacterRace)"
-            />
+            <Suspense>
+                <RaceBonuses
+                    v-if="((typeof character.race.id === 'number') && raceInfoMap.has(character.race.id))"
+                    :raceInfo="(raceInfoMap.get(character.race.id) as APICharacterRace)"
+                />
+
+                <template #fallback>
+                    <span class="green-text italic">Carregando...</span>
+                </template>
+            </Suspense>
         </Transition>
     </section>
 </template>
