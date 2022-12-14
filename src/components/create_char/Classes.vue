@@ -30,6 +30,21 @@ const addClassButtonStatus = computed(() => (classList.length < 1) || (typeof cu
 
 // Solicita à API os dados sobre a raça e ordena a lista de raças de acordo com o nome.
 if (classList.length > 0) {
+    Promise.all(character.books.map(async (book) => {
+        try {
+            const response = await fetch(`/ringo/api/classes/book${book.toString(10)}.json`);
+            if (response.status === 404) return;
+
+            const classInfo = await response.json() as APICharacterClass[];
+            if (Array.isArray(classInfo)) {
+                classInfo.forEach((item) => classInfoMap.set(item.codigo, item));
+            };
+
+        } catch (err) {
+            if (err instanceof Error) console.error(err);
+        };
+    }));
+
     classList.sort((a, b) => a[1].localeCompare(b[1], 'pt-br'));
 };
 
@@ -118,13 +133,11 @@ watchEffect(() => {
             <div v-if="character.class.size > 0" class="class-info-area">
                 <h2>Detalhes</h2>
                 <div class="class-name-wrapper">
-                    <span
-                        v-for="thisClass in character.class"
-                        class="bold green span-wrapper"
-                        :key="thisClass[0]"
-                    >
-                        {{ thisClass[0] }}
-                    </span>
+                    <template v-for="thisClass in character.class" :key="thisClass[0]">
+                        <span v-if="classInfoMap.has(thisClass[0])" class="bold green span-wrapper">
+                            {{ classInfoMap.get(thisClass[0])?.nome }}
+                        </span>
+                    </template>
                 </div>
             </div>
         </Transition>

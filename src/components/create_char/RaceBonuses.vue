@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, type Ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useLanguageStore, useSizeStore } from '@/stores/game.js';
 import { useCharacterStore } from '@/stores/character.js';
 import { RingoError } from '@/error.js';
@@ -27,7 +27,7 @@ async function fetchAbilities(): Promise<ReadonlyMap<Abilities, APIAbilityInfo>>
 };
 
 /** Texto da caixa com a descrição das habilidades. */
-const abilityDescription: Ref<string> = ref('');
+const abilityDescription = ref<string>('');
 
 // Garante que a caixa seja resetada quando o usuário trocar a raça.
 const { character } = useCharacterStore();
