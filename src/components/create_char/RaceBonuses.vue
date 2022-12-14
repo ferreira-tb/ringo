@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed, ref, watch, type Ref } from 'vue';
 import { useLanguageStore, useSizeStore } from '@/stores/game.js';
+import { useCharacterStore } from '@/stores/character.js';
+import { RingoError } from '@/error.js';
 import RaceAbility from '@/components/create_char/RaceAbility.vue';
 import Tooltip from '@/components/Tooltip.vue';
-import { useCharacterStore } from '@/stores/character.js';
 
 const props = defineProps<{
     raceInfo: APICharacterRace
@@ -12,21 +13,17 @@ const props = defineProps<{
 // Nome e descrição de cada habilidade.
 const ability = await fetchAbilities();
 
-async function fetchAbilities(): Promise<APIAbilityInfo> {
+async function fetchAbilities(): Promise<ReadonlyMap<Abilities, APIAbilityInfo>> {
     const response = await fetch('/ringo/api/ability.json');
-    return await response.json() as APIAbilityInfo;
-};
-
-class AbilityInfoAndValue {
-    readonly name: string;
-    readonly value: number;
-    readonly description: string;
-
-    constructor(name: string, value: number, description: string) {
-        this.name = name;
-        this.value = value;
-        this.description = description;
+    const jsonArray = await response.json() as APIAbilityInfo[];
+    
+    if (!Array.isArray(jsonArray)) {
+        throw new RingoError('Não foi possível obter informações sobre as habilidades.');
     };
+
+    const abilityMap = new Map<Abilities, APIAbilityInfo>();
+    jsonArray.forEach((item) => abilityMap.set(item.sigla, item));
+    return abilityMap;
 };
 
 /** Texto da caixa com a descrição das habilidades. */
@@ -42,10 +39,25 @@ watch(() => character.race, () => {
 const plus = computed(() => getAbilities('pos'));
 const minus = computed(() => getAbilities('neg'));
 
+class AbilityInfoAndValue {
+    readonly name: string;
+    readonly value: number;
+    readonly description: string;
+
+    constructor(name: string, value: number, description: string) {
+        this.name = name;
+        this.value = value;
+        this.description = description;
+    };
+};
+
 function getAbilities(type: 'pos' | 'neg') {
     const result: AbilityInfoAndValue[] = [];
-    for (const [key, value] of Object.entries(props.raceInfo.habilidades) as [keyof AbilityScores, number][]) {
-        const thisAbility = new AbilityInfoAndValue(ability[key].nome, value, ability[key].descricao);
+    for (const [key, value] of Object.entries(props.raceInfo.habilidades) as [Abilities, number][]) {
+        const fromMap = ability.get(key);
+        if (!fromMap) throw new RingoError(`A habilidade \"${key}\" não existe no mapa.`);
+
+        const thisAbility = new AbilityInfoAndValue(fromMap.nome, value, fromMap.descricao);
 
         if (type === 'pos' && Math.sign(value) === 1) {
             result.push(thisAbility);

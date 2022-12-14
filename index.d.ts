@@ -201,12 +201,15 @@ type StandardTableContent = {
 
 type StandardDescriptionListContent = [string, string][];
 
+type Abilities =
+    | 'for'
+    | 'des'
+    | 'con'
+    | 'int'
+    | 'sab'
+    | 'car'
+    | 'san';
+
 type AbilityScores = {
-    for: number
-    des: number
-    con: number
-    int: number
-    sab: number
-    car: number
-    san: number
+    [key in Abilities]: number
 }

@@ -23,11 +23,10 @@ interface APIDamage extends APIDice {
 
 ////// HABILIDADE
 type APIAbilityInfo = Readonly<{
-    [key in keyof AbilityScores]: Readonly<{
-        nome: string
-        livro: number
-        descricao: string
-    }>
+    nome: string
+    sigla: Abilities
+    livro: number
+    descricao: string
 }>
 
 ////// RAÇA
@@ -80,22 +79,37 @@ type APICharacterRace = {
 type APICharacterClass = {
     nome: Classes
     codigo: number
+    livro: number
     dado_de_vida: 6 | 8 | 10 | 12
     proficiencias: {
-        /** Tipos de armadura com as quais a classe possui proficiência. */
-        armaduras: number[]
-        /** Tipos de armas com as quais a classe possui proficiência. */
-        armas: number[]
+        /**
+         * Tipos de armadura com as quais a classe possui proficiência.
+         * Armaduras leves, médias, pesadas e escudos, respectivamente.
+         */
+        armaduras: (0 | 1 | 2 | 3)[]
+        /**
+         * Tipos de armas com as quais a classe possui proficiência.
+         * Armas simples e marciais, respectivamente.
+         */
+        armas: {
+            /** Por tipo de arma. */
+            tipo?: (0 | 1)[]
+            /** Armas específicas. */
+            avulso?: number[]
+        }
         /** Tipos de ferramentas com as quais a classe possui proficiência. */
         ferramentas: number[]
         /** Testes de resistência nos quais a classe possui proficiência. */
-        resistencia: (keyof AbilityScores)[]
+        resistencia: Abilities[]
         /** Perícias fornecidas pela classe. */
         pericias: {
             /** Quantidade de perícias de classe que o jogador pode escolher. */
             quantidade: number
-            /** Lista com as perícias disponíveis para escolha. */
-            lista: number[]
+            /**
+             * Lista com as perícias disponíveis para escolha.
+             * Se o valor for `null`, a classe tem acesso a todas as perícias do jogo.
+             */
+            lista: number[] | null
         }
     }
 }
@@ -144,8 +158,8 @@ type APIWeapon = {
     codigo: number
     /** Código do livro de origem do item. */
     livro: number
-    /** Armas simples corpo-a-corpo e a distância, e marciais corpo-a-corpo e a distância, respectivamente. */
-    tipo: 0 | 1 | 2 | 3
+    /** Armas simples e marciais, respectivamente. */
+    tipo: 0 | 1
     /** Valor de compra do item. */
     valor: APICoinAmount
     /** Dano da arma. */
