@@ -164,6 +164,10 @@ h2 {
     align-content: center;
 }
 
+.first-title {
+    margin-top: 0.3em;
+}
+
 .span-wrapper, .span-title {
     margin-left: 0.5em;
     margin-right: 0.5em;
@@ -172,10 +176,6 @@ h2 {
 .span-wrapper {
     cursor: pointer;
     white-space: nowrap;
-}
-
-.first-title {
-    margin-top: 0.3em;
 }
 
 .plus {

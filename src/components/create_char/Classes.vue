@@ -4,11 +4,15 @@ import { router } from '@/router/index.js';
 import { RingoError } from '@/error.js';
 import { useCharacterStore } from '@/stores/character.js';
 import { useClassStore } from '@/stores/game.js';
+import { fetchAbilities } from '@/helpers.js';
 import Button from '@/components/Button.vue';
 import ClassBonuses from '@/components/create_char/ClassBonuses.vue';
 
 const { character } = useCharacterStore();
 const { classes } = useClassStore();
+
+/** Nome e descrição de cada habilidade. */
+const abilityInfo = await fetchAbilities();
 
 /** Lista de classes, com o código da classe, o nome e o código do livro, respectivamente. */
 const classList: [number, Classes, number][] = reactive([]);
@@ -28,7 +32,9 @@ const classToShow = ref<number | null>(null);
 /** Mapa com as informações sobre cada classe. */
 const classInfoMap = reactive(new Map<number, APICharacterClass>());
 /** Determina se o botão para adicionar classes estará ativo ou não. */
-const addClassButtonStatus = computed(() => (classList.length < 1) || (typeof selectedClass.value !== "number"));
+const addClassButtonStatus = computed<boolean>(() => {
+    return (classList.length < 1) || (typeof selectedClass.value !== "number");
+});
 
 // Solicita à API os dados sobre a raça e ordena a lista de raças de acordo com o nome.
 if (classList.length > 0) {
@@ -158,11 +164,14 @@ watchEffect(() => {
                 </div>
 
                 <Transition name="fade" mode="out-in">
-                    <ClassBonuses
-                        v-if="(typeof classToShow === 'number' && classInfoMap.has(classToShow))"
-                        :key="classToShow"
-                        :classInfo="(classInfoMap.get(classToShow) as APICharacterClass)"
-                    />
+                    <KeepAlive>
+                        <ClassBonuses
+                            v-if="(typeof classToShow === 'number' && classInfoMap.has(classToShow))"
+                            :key="classToShow"
+                            :ability-info="abilityInfo"
+                            :class-info="(classInfoMap.get(classToShow) as APICharacterClass)"
+                        />
+                    </KeepAlive>
                 </Transition>
             </div>
         </Transition>
@@ -184,12 +193,13 @@ watchEffect(() => {
 }
 
 .class-name-wrapper {
-    user-select: none;
-    text-align: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
+
+    user-select: none;
+    text-align: center;
 }
 
 .span-wrapper {
