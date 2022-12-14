@@ -135,7 +135,19 @@ watchEffect(() => {
         </div>
 
         <Transition name="fade" mode="out-in">
-            <ClassBonuses v-if="character.class.size > 0" :class-info-map="classInfoMap" />
+            <div v-if="character.class.size > 0" class="class-info-area">
+                <h2>Detalhes</h2>
+                <div class="class-name-wrapper">
+                    <TransitionGroup>
+                        <template v-for="thisClass in character.class" :key="thisClass[0]">
+                            <span v-if="classInfoMap.has(thisClass[0])" class="bold green span-wrapper">
+                                {{ thisClass[1].name }}
+                            </span>
+                        </template>
+                    </TransitionGroup>
+
+                </div>
+            </div>
         </Transition>
     </section>
 </template>
@@ -144,5 +156,27 @@ watchEffect(() => {
 .class-select-area {
     margin: 0.5em;
     text-align: center;
+}
+
+.class-info-area h2 {
+    user-select: none;
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+}
+
+.class-name-wrapper {
+    user-select: none;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.span-wrapper {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 </style>
