@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import { type Ref, ref, reactive } from 'vue';
+import { ref, reactive } from 'vue';
 
 class Character {
-    books: number[] = [1, 2, 3];
     name: string | null = null;
+    books: number[] = [1, 2, 3];
 
     readonly race: CharacterRace = {
         id: null,
@@ -14,7 +14,9 @@ class Character {
 };
 
 export const useCharacterStore = defineStore('character', () => {
-    const active: Ref<boolean> = ref(false);
+    /** Indica qual personagem está ativo no momento. */
+    const active = ref<number | null>(null);
+
     const character = reactive(new Character());
 
     function resetBooks() {

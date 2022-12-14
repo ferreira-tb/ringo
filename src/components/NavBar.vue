@@ -8,7 +8,7 @@ const { character } = useCharacterStore();
     <nav>
         <div>
             <router-link :to="{ name: 'home' }" class="home-page-link">
-                🍎 Ringo
+                Ringo
             </router-link>
         </div>
         <div class="nav-bar-menu">
