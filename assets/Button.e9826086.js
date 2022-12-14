@@ -1,1 +1,0 @@
-import{d as o,h as a,c as s,t as c,n as _,o as p,_ as l}from"./index.c770b2c0.js";const r=o({__name:"Button",props:{text:null,padding:null},setup(e){const t=e,n=a({padding:t.padding||"0.3em"});return(d,u)=>(p(),s("button",{class:"standard-button",style:_(n)},c(t.text),5))}});const m=l(r,[["__scopeId","data-v-cf0e5a9c"]]);export{m as B};
