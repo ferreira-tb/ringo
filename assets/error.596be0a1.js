@@ -1,1 +1,0 @@
-var n=Object.defineProperty;var t=(s,r,o)=>r in s?n(s,r,{enumerable:!0,configurable:!0,writable:!0,value:o}):s[r]=o;var e=(s,r,o)=>(t(s,typeof r!="symbol"?r+"":r,o),o);class c extends Error{constructor(o){super(o);e(this,"name","RingoError")}}export{c as R};
