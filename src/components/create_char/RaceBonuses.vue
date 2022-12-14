@@ -1,39 +1,19 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { useLanguageStore, useSizeStore } from '@/stores/game.js';
 import { useCharacterStore } from '@/stores/character.js';
 import { RingoError } from '@/error.js';
 import RaceAbility from '@/components/create_char/RaceAbility.vue';
 import Tooltip from '@/components/Tooltip.vue';
 
+const { character } = useCharacterStore();
 const props = defineProps<{
+    abilityInfo: ReadonlyMap<Abilities, APIAbilityInfo>
     raceInfo: APICharacterRace
 }>();
 
-// Nome e descrição de cada habilidade.
-const ability = await fetchAbilities();
-
-async function fetchAbilities(): Promise<ReadonlyMap<Abilities, APIAbilityInfo>> {
-    const response = await fetch('/ringo/api/ability.json');
-    const jsonArray = await response.json() as APIAbilityInfo[];
-    
-    if (!Array.isArray(jsonArray)) {
-        throw new RingoError('Não foi possível obter informações sobre as habilidades.');
-    };
-
-    const abilityMap = new Map<Abilities, APIAbilityInfo>();
-    jsonArray.forEach((item) => abilityMap.set(item.sigla, item));
-    return abilityMap;
-};
-
 /** Texto da caixa com a descrição das habilidades. */
-const abilityDescription = ref<string>('');
-
-// Garante que a caixa seja resetada quando o usuário trocar a raça.
-const { character } = useCharacterStore();
-watch(() => character.race, () => {
-    abilityDescription.value = '';
-});
+const abilityDescription = ref<string | null>(null);
 
 // Aumento e diminuição nos valores das habilidades devido a traços raciais.
 const plus = computed(() => getAbilities('pos'));
@@ -54,7 +34,7 @@ class AbilityInfoAndValue {
 function getAbilities(type: 'pos' | 'neg') {
     const result: AbilityInfoAndValue[] = [];
     for (const [key, value] of Object.entries(props.raceInfo.habilidades) as [Abilities, number][]) {
-        const fromMap = ability.get(key);
+        const fromMap = props.abilityInfo.get(key);
         if (!fromMap) throw new RingoError(`A habilidade \"${key}\" não existe no mapa.`);
 
         const thisAbility = new AbilityInfoAndValue(fromMap.nome, value, fromMap.descricao);
@@ -142,7 +122,7 @@ const darkVision = computed(() => {
         </div>
         
         <Transition name="fade" mode="out-in">
-            <Tooltip :text="abilityDescription" :key="abilityDescription"/>
+            <Tooltip v-if="abilityDescription" :text="abilityDescription" :key="abilityDescription"/>
         </Transition>
         
         <div class="first-title"><span class="bold span-title green-text">Expectativa de vida:</span>{{ age }}</div>
@@ -152,16 +132,14 @@ const darkVision = computed(() => {
         <div><span class="bold span-title green-text">Deslocamento:</span>{{ speed }}</div>
         <div><span class="bold span-title green-text">Idiomas:</span>{{ languages }}</div>
 
-        <div v-if="(props.raceInfo.bonus.length > 0)">
+        <div v-if="(raceInfo.bonus.length > 0)">
             <h2>Traços Raciais</h2>
-            <TransitionGroup name="fade">
-                <template v-if="darkVision">
-                    <RaceAbility :bonus="darkVision" :key="darkVision.nome"/>
-                </template>
-                <template v-for="item of props.raceInfo.bonus" :key="item.id">
-                    <RaceAbility v-if="character.books.includes(item.livro)" :bonus="item" />
-                </template>
-            </TransitionGroup>
+            <template v-if="darkVision">
+                <RaceAbility :bonus="darkVision" :key="darkVision.nome"/>
+            </template>
+            <template v-for="item of raceInfo.bonus" :key="item.id">
+                <RaceAbility v-if="character.books.includes(item.livro)" :bonus="item" />
+            </template>
         </div>
     </section>
 </template>

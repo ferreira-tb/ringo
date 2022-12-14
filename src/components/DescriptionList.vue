@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
     content: StandardDescriptionListContent
 }>();
 </script>
 
 <template>
     <dl class="standard-desc-list">
-        <template v-for="item of props.content" :key="item[0]">
+        <template v-for="item of content" :key="item[0]">
             <dt class="green-text desc-list-title">{{ item[0] }}</dt>
             <dd>{{ item[1] }}</dd>
         </template>

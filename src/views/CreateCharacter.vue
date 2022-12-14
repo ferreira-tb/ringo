@@ -18,7 +18,7 @@ onErrorCaptured((err, instance, info) => {
                         <component :is="Component" :key="route.path" />
 
                         <template #fallback>
-                            <span class="green-text italic">Carregando...</span>
+                            <span class="suspense-text">Carregando...</span>
                         </template>
                     </Suspense>
                 </Transition>

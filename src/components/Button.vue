@@ -13,7 +13,9 @@ const buttonStyle = reactive({
 </script>
 
 <template>
-    <button class="standard-button" :style="buttonStyle">{{ props.text }}</button>
+    <button class="standard-button" :style="buttonStyle">
+        {{ text }}
+    </button>
 </template>
 
 <style scoped>

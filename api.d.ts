@@ -1,3 +1,15 @@
+////// DADOS
+type APIDice = {
+    /** Lados do dado. */
+    dado: number
+    /** Quantidade de dados. */
+    quantidade: number
+}
+
+type APIHitDice = Omit<APIDice, 'dado'> & {
+    dado: 6 | 8 | 10 | 12
+}
+
 ////// MOEDAS
 type APICoinAmount = {
     /** Quantidade de moedas. */
@@ -7,13 +19,6 @@ type APICoinAmount = {
 }
 
 ////// DANO
-type APIDice = {
-    /** Lados do dado. */
-    dado: number
-    /** Quantidade de dados. */
-    quantidade: number
-}
-
 interface APIDamage extends APIDice {
     /** Tipo de dano. */
     tipo: number
@@ -80,7 +85,7 @@ type APICharacterClass = {
     nome: Classes
     codigo: number
     livro: number
-    dado_de_vida: 6 | 8 | 10 | 12
+    hp: APIHitDice
     proficiencias: {
         /**
          * Tipos de armadura com as quais a classe possui proficiência.

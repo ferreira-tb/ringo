@@ -1,14 +1,12 @@
 <script setup lang="ts">
-const props = defineProps<{
-    text: string | null
+defineProps<{
+    text: string
 }>();
 </script>
 
 <template>
     <div class="tooltip-wrapper">
-        <div class="tooltip-box" :class="{ 'hide-tooltip': !props.text }">
-            {{ props.text }}
-        </div>
+        <div class="tooltip-box">{{ text }}</div>
     </div>
 </template>
 
@@ -29,9 +27,5 @@ const props = defineProps<{
 
     border-radius: 0.5em;
     text-align: center;
-}
-
-.hide-tooltip {
-    display: none;
 }
 </style>

@@ -22,11 +22,13 @@ character.books.forEach((book) => {
 });
 
 /** Classe selecionada (mas não necessariamente confirmada). */
-const currentClass = ref<number | null>(null);
+const selectedClass = ref<number | null>(null);
+/** Classe sobre a qual serão exibidas informações. */
+const classToShow = ref<number | null>(null);
 /** Mapa com as informações sobre cada classe. */
 const classInfoMap = reactive(new Map<number, APICharacterClass>());
 /** Determina se o botão para adicionar classes estará ativo ou não. */
-const addClassButtonStatus = computed(() => (classList.length < 1) || (typeof currentClass.value !== "number"));
+const addClassButtonStatus = computed(() => (classList.length < 1) || (typeof selectedClass.value !== "number"));
 
 // Solicita à API os dados sobre a raça e ordena a lista de raças de acordo com o nome.
 if (classList.length > 0) {
@@ -53,8 +55,8 @@ if (classList.length > 0) {
 /** Adiciona a classe ao mapa que contém as classes escolhidas pelo jogador. */
 function addClass(classId?: number, className?: Classes, bookId?: number, level: number = 1) {
     if (typeof classId !== 'number' || typeof className !== 'string' || typeof bookId !== 'number') {
-        if (currentClass.value === null) return;
-        classId = currentClass.value;
+        if (selectedClass.value === null) return;
+        classId = selectedClass.value;
 
         const thisClass = classList.find((item) => item[0] === classId);
         if (!thisClass) throw new RingoError('Não foi possível encontrar a classe na lista.');
@@ -62,11 +64,15 @@ function addClass(classId?: number, className?: Classes, bookId?: number, level:
         bookId = thisClass[2];
     };
 
+    // Salva a classe no mapa de classes do personagem.
     character.class.set(classId, {
         book: bookId,
         level: level,
         name: className
     });
+
+    // Altera a referência para que as informações sobre a classe possam ser exibidas.
+    classToShow.value = classId;
 };
 
 function saveAndContinue() {
@@ -74,7 +80,7 @@ function saveAndContinue() {
         // Se houver alguma classe selecionada, usa-a.
         // Do contrário, escolhe aleatoriamente entre as disponíveis.
         const randomIndex = Math.floor(Math.random() * classList.length);
-        const classIndex = typeof currentClass.value === 'number' ? currentClass.value : randomIndex;
+        const classIndex = typeof selectedClass.value === 'number' ? selectedClass.value : randomIndex;
 
         addClass(...classList[classIndex]);
     };
@@ -108,7 +114,7 @@ watchEffect(() => {
         <p class="text-line small">A Ringo escolherá uma classe aleatória para você.</p>
         
         <div class="class-select-area">      
-            <select v-model.number="currentClass">
+            <select v-model.number="selectedClass">
                 <template v-for="thisClass of classList" :key="thisClass[0]">
                     <option :disabled="character.class.has(thisClass[0])" :value="thisClass[0]">
                         {{ thisClass[1] }}
@@ -140,13 +146,24 @@ watchEffect(() => {
                 <div class="class-name-wrapper">
                     <TransitionGroup>
                         <template v-for="thisClass in character.class" :key="thisClass[0]">
-                            <span v-if="classInfoMap.has(thisClass[0])" class="bold green span-wrapper">
+                            <span
+                                v-if="classInfoMap.has(thisClass[0])"
+                                class="bold green span-wrapper"
+                                @click="classToShow = thisClass[0]"
+                            >
                                 {{ thisClass[1].name }}
                             </span>
                         </template>
                     </TransitionGroup>
-
                 </div>
+
+                <Transition name="fade" mode="out-in">
+                    <ClassBonuses
+                        v-if="(typeof classToShow === 'number' && classInfoMap.has(classToShow))"
+                        :key="classToShow"
+                        :classInfo="(classInfoMap.get(classToShow) as APICharacterClass)"
+                    />
+                </Transition>
             </div>
         </Transition>
     </section>
@@ -178,5 +195,6 @@ watchEffect(() => {
 .span-wrapper {
     margin-left: 0.5em;
     margin-right: 0.5em;
+    cursor: pointer;
 }
 </style>

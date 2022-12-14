@@ -93,6 +93,15 @@ input[type="checkbox"]:checked::before {
     user-select: none;
 }
 
+.suspense-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-green);
+    font-weight: bold;
+}
+
 .checkbox-label {
     display: grid;
     grid-template-columns: 1em auto;

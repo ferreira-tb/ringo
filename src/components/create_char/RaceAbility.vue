@@ -2,7 +2,7 @@
 import Table from '@/components/Table.vue';
 import DescriptionList from '@/components/DescriptionList.vue';
 
-const props = defineProps<{
+defineProps<{
     bonus: APIRaceBonus
 }>();
 </script>
@@ -10,20 +10,20 @@ const props = defineProps<{
 <template>
     <section>
         <div class="race-ability">
-            <span class="bold green-text">{{ `${props.bonus.nome}. ` }}</span>
-            {{ props.bonus.efeito }}
+            <span class="bold green-text">{{ `${bonus.nome}. ` }}</span>
+            {{ bonus.efeito }}
         </div>
-        <template v-if="props.bonus.extra">
-            <div v-for="extra of props.bonus.extra" class="race-ability">{{ extra }}</div>
+        <template v-if="bonus.extra">
+            <div v-for="extra of bonus.extra" class="race-ability">{{ extra }}</div>
         </template>
-        <div v-if="props.bonus.detalhes" class="race-ability-details">
+        <div v-if="bonus.detalhes" class="race-ability-details">
             <Table
-                v-if="props.bonus.detalhes.tipo === 'table'"
-                :content="(props.bonus.detalhes.conteudo as StandardTableContent)"
+                v-if="bonus.detalhes.tipo === 'table'"
+                :content="(bonus.detalhes.conteudo as StandardTableContent)"
             />
             <DescriptionList
-                v-if="props.bonus.detalhes.tipo === 'description_list'"
-                :content="(props.bonus.detalhes.conteudo as StandardDescriptionListContent)"
+                v-if="bonus.detalhes.tipo === 'description_list'"
+                :content="(bonus.detalhes.conteudo as StandardDescriptionListContent)"
             />
         </div>
     </section>

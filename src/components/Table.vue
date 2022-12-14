@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
     content: StandardTableContent
 }>();
 </script>
@@ -7,9 +7,9 @@ const props = defineProps<{
 <template>
     <table class="standard-table">
         <tr>
-            <th class="bold green-text" v-for="header of props.content.th">{{ header }}</th>
+            <th class="bold green-text" v-for="header of content.th">{{ header }}</th>
         </tr>
-        <template v-for="row of props.content.tr">
+        <template v-for="row of content.tr">
             <tr>
                 <td v-for="cell of row">{{ cell }}</td>
             </tr>
