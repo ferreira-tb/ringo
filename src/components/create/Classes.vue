@@ -6,7 +6,7 @@ import { useCharacterStore } from '@/stores/character.js';
 import { useClassStore } from '@/stores/game.js';
 import { fetchAbilities } from '@/helpers.js';
 import Button from '@/components/Button.vue';
-import ClassBonuses from '@/components/create_char/ClassBonuses.vue';
+import ClassBonuses from '@/components/create/ClassBonuses.vue';
 
 const { character } = useCharacterStore();
 const { classes } = useClassStore();

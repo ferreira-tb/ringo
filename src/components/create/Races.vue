@@ -5,7 +5,7 @@ import { useCharacterStore } from '@/stores/character.js';
 import { useRaceStore } from '@/stores/game.js';
 import { fetchAbilities } from '@/helpers.js';
 import Button from '@/components/Button.vue';
-import RaceBonuses from '@/components/create_char/RaceBonuses.vue';
+import RaceBonuses from '@/components/create/RaceBonuses.vue';
 
 const { character } = useCharacterStore();
 const { races } = useRaceStore();

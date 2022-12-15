@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import { useLanguageStore, useSizeStore } from '@/stores/game.js';
 import { useCharacterStore } from '@/stores/character.js';
 import { RingoError } from '@/error.js';
-import RaceAbility from '@/components/create_char/RaceAbility.vue';
+import RaceAbility from '@/components/create/RaceAbility.vue';
 import Tooltip from '@/components/Tooltip.vue';
 
 const { character } = useCharacterStore();
