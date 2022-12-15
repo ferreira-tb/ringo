@@ -9,7 +9,7 @@ defineProps<{
 <template>
     <section class="history-area">
         <h2>Histórico</h2>
-        <TransitionGroup name="fade">
+        <TransitionGroup name="list">
             <div v-for="dice of diceHistory" :key="dice.date">
                 <span>{{ `${dice.text} = ${dice.finalResult}` }}</span>
             </div>

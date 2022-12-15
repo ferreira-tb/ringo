@@ -38,6 +38,8 @@ const roll = computed(() => {
 function rollDice() {
     if (chosenDice.value === null) throw new RingoError('Nenhum dado foi escolhido.');
     const thisRoll = new DiceRoll(chosenDice.value, diceAmount.value, modifier.value, rollType.value);
+
+    while (diceHistory.length > 10) diceHistory.shift();
     diceHistory.push(thisRoll);
 };
 </script>

@@ -150,7 +150,7 @@ watchEffect(() => {
             <div v-if="character.class.size > 0" class="class-info-area">
                 <h2>Detalhes</h2>
                 <div class="class-name-wrapper">
-                    <TransitionGroup>
+                    <TransitionGroup name="list">
                         <template v-for="thisClass in character.class" :key="thisClass[0]">
                             <span
                                 v-if="classInfoMap.has(thisClass[0])"
