@@ -24,7 +24,9 @@ const roll = computed(() => {
 <template>
     <main>
         <div class="result-area">
-            <span v-if="roll">{{ roll }}</span>
+            <div class="result-text">
+                <span v-if="roll">{{ roll }}</span>
+            </div>
             <Button class="roll-button" text="Rolar" />
         </div>
 
@@ -63,7 +65,7 @@ const roll = computed(() => {
     border: 2px var(--color-border) solid;
 }
 
-.result-area span {
+.result-text {
     font-size: 2.5em;
     text-align: center;
     width: 100%;
