@@ -2,7 +2,7 @@ import { RingoError } from "@/error.js";
 
 export function randomInteger(dice: number) {
     const result = Math.floor(Math.random() * dice + 1);
-    if (result === dice) navigator.vibrate(200);
+    if (result === dice) navigator.vibrate(400);
     return result;
 };
 
