@@ -1,8 +1,8 @@
 import { RingoError } from "@/error.js";
 
-export function randomInteger(dice: number) {
+export function randomInteger(dice: number, vibrate: boolean = true) {
     const result = Math.floor(Math.random() * dice + 1);
-    if (result === dice) navigator.vibrate(400);
+    if (result === dice && vibrate === true) navigator.vibrate(400);
     return result;
 };
 
