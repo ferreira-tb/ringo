@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { RingoError } from '@/error';
+import { RingoError } from '@/error.js';
 import { useSkillStore, useWeaponStore } from '@/stores/game.js';
 import { joinWordList } from '@/helpers.js';
 

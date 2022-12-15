@@ -11,8 +11,8 @@ const buttonStyle = reactive({
 <template>
     <main>
         <div class="home-button-area">
-            <Button text="Personagens" @click.prevent="router.push({ name: 'characters' })" :style="buttonStyle" />
-            <Button text="Dados" @click.prevent="router.push({ name: 'dice' })" :style="buttonStyle" />
+            <Button text="Personagens" @click="router.push({ name: 'characters' })" :style="buttonStyle" />
+            <Button text="Dados" @click="router.push({ name: 'dice' })" :style="buttonStyle" />
         </div>
     </main>
 </template>

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { createCharRoutes } from './create.js';
+import { createCharRoutes } from '@/router/create.js';
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +18,11 @@ export const router = createRouter({
             path: '/dice',
             name: 'dice',
             component: () => import('@/views/DiceRoller.vue')
+        },
+        {
+            path: '/dice/history',
+            name: 'dice-history',
+            component: () => import('@/views/DiceHistory.vue')
         },
         {
             path: '/create/char',

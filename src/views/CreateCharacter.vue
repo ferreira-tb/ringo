@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { onErrorCaptured } from 'vue';
 
-onErrorCaptured((err, instance, info) => {
-    console.error(err, instance, info)
-});
 </script>
 
 <template>

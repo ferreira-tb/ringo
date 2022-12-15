@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useCharacterStore } from '@/stores/character';
+import { useCharacterStore } from '@/stores/character.js';
 
 const { character } = useCharacterStore();
 </script>

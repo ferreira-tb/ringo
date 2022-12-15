@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { router } from '@/router/index.js';
+import { useCharacterStore } from '@/stores/character.js';
 import Button from '@/components/Button.vue';
-import { useCharacterStore } from '@/stores/character';
 
 const { character } = useCharacterStore();
 </script>
