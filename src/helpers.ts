@@ -1,5 +1,11 @@
 import { RingoError } from "@/error.js";
 
+export function generateDiceRollText(dice: number, amount: number, modToSum: number) {
+    let rollText = `${amount}D${dice}`;
+    if (modToSum > 0) rollText += ` + ${modToSum}`;
+    return rollText;
+};
+
 export function capitalize(word: string) {
     if (word.length === 0) throw new RingoError('A string está vazia.');
     return word.replace(word[0], word[0].toUpperCase());

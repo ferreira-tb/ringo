@@ -195,6 +195,8 @@ type WeaponProps =
     | 'Versátil';
 
 ////// OUTROS
+type DiceRollType = 'normal' | 'vantagem' | 'desvantagem';
+
 type StandardTableContent = {
     th: string[]
     tr: string[][]
