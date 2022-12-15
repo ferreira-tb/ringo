@@ -1,0 +1,1 @@
+import{d as e,c as o,t as n,o as s,_}from"./index.4077edda.js";const c={class:"standard-button"},a=e({__name:"Button",props:{text:null},setup(t){return(p,r)=>(s(),o("button",c,n(t.text),1))}});const d=_(a,[["__scopeId","data-v-32cb0c18"]]);export{d as B};
