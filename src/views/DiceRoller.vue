@@ -4,7 +4,10 @@ import { router } from '@/router/index.js';
 import Button from '@/components/Button.vue';
 
 const buttonStyle = reactive({
-    width: '80%'
+    width: '80%',
+    height: '3em',
+    fontSize: '1em',
+    fontWeight: 550
 });
 
 const diceTypes = readonly([2, 4, 6, 8, 10, 12, 20, 100]);
@@ -25,13 +28,16 @@ const roll = computed(() => {
     <main>
         <div class="result-area">
             <div class="result-text">
-                <span v-if="roll">{{ roll }}</span>
+                <Transition name="fade" mode="out-in">
+                    <span v-if="roll" :key="roll">{{ roll }}</span>
+                </Transition>
             </div>
             <Button class="roll-button" text="Rolar" />
         </div>
 
         <div class="mod-area">
-            
+            <div>Quantidade</div>
+            <div>Modificador</div>
         </div>
 
         <div class="dice-area">
@@ -78,8 +84,11 @@ const roll = computed(() => {
     width: 3em;
 }
 
+.mod-area {
+    margin: 0.5em;
+}
+
 .dice-area {
-    margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;

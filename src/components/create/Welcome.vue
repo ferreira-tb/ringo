@@ -11,7 +11,13 @@ const { character } = useCharacterStore();
         <p class="text-line">Este guia te ajudará a criar o seu novo personagem, que poderá sempre ser usado na Ringo.</p>
         <p class="text-line">Antes de começar, digite o nome que deseja!</p>
         <div class="input-area">
-            <input type="text" v-model.trim="character.name">
+            <input
+                v-model.trim="character.name"
+                type="text"
+                minlength="1"
+                maxlength="30"
+                spellcheck="false"
+            >
         </div>
         <div class="button-area">
             <Button

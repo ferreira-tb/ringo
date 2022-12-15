@@ -16,6 +16,7 @@ defineProps<{
 
     text-align: center;
     font-weight: 550;
+    user-select: none;
 
     border-color: var(--color-green-darker);
     border-width: 2px;
