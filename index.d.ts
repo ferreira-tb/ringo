@@ -201,6 +201,7 @@ type StandardTableContent = {
 }
 
 type StandardDescriptionListContent = [string, string][];
+type StandardListContent = string[];
 
 type Abilities =
     | 'for'

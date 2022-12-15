@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { RingoError } from '@/error';
-import { useBookStore, useWeaponStore } from '@/stores/game.js';
+import { useSkillStore, useWeaponStore } from '@/stores/game.js';
 import { joinWordList } from '@/helpers.js';
 
 const props = defineProps<{
@@ -10,9 +10,7 @@ const props = defineProps<{
 }>();
 
 const { weapons } = useWeaponStore();
-const { books } = useBookStore();
-
-const bookName = computed(() => books.get(props.classInfo.livro));
+const { charSkill } = useSkillStore();
 
 const hitDice = computed(() => {
     const hitDiceText = `${props.classInfo.hp.quantidade}d${props.classInfo.hp.dado}`;
@@ -66,6 +64,17 @@ const abilityChecks = computed<string>(() => {
 
     return joinWordList(parsedArray);
 });
+
+const skillProf = computed(() => {
+    const amount = `escolha ${props.classInfo.proficiencias.pericias.quantidade.toLocaleString('pt-br')}`;
+    const parsedArray = props.classInfo.proficiencias.pericias.lista?.map((thisSkill) => {
+        const skillName = charSkill.get(thisSkill);
+        if (!skillName) throw new RingoError('Não foi possível determinar o nome da perícia.');
+        return skillName;
+    });
+
+    return `${amount} ${parsedArray ? `dentre ${joinWordList(parsedArray)}` : 'quaisquer'}`;
+});
 </script>
 
 <template>
@@ -74,7 +83,7 @@ const abilityChecks = computed<string>(() => {
         <div class="div-title"><span class="bold green-text">Armaduras:</span>{{ armorProf }}</div>
         <div class="div-title"><span class="bold green-text">Armas:</span>{{ weaponProf }}</div>
         <div class="div-title"><span class="bold green-text">Testes de resistência:</span>{{ abilityChecks }}</div>
-        <div class="div-title"><span class="bold green-text">Fonte:</span>{{ bookName }}</div>
+        <div class="div-title"><span class="bold green-text">Perícias:</span>{{ skillProf }}</div>
     </section>
 </template>
 

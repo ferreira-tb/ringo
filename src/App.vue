@@ -6,9 +6,9 @@ import NavBar from '@/components/NavBar.vue';
     <NavBar class="nav-bar" />
     <div class="main-container">
         <router-view class="main-view" v-slot="{ Component, route }">
-            <transition name="fade" mode="out-in">
+            <Transition name="fade" mode="out-in">
                 <component :is="Component" :key="route.path" />
-            </transition>
+            </Transition>
         </router-view>
     </div>
 </template>

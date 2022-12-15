@@ -86,6 +86,7 @@ type APICharacterClass = {
     codigo: number
     livro: number
     hp: APIHitDice
+    tabela: StandardTableContent
     proficiencias: {
         /**
          * Tipos de armadura com as quais a classe possui proficiência.
@@ -117,6 +118,15 @@ type APICharacterClass = {
             lista: number[] | null
         }
     }
+}
+
+type APIClassBonuses = {
+    tipo: 'text' | 'text_array' | 'table' | 'description_list' | 'list'
+    ordem: number
+    conteudo:
+        | StandardTableContent
+        | StandardDescriptionListContent
+        | StandardListContent
 }
 
 ////// PERÍCIAS
