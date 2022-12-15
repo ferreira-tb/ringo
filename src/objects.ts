@@ -60,13 +60,13 @@ export class DiceRoll {
                     case 'normal':
                         return diceRoll.value;
                     case 'vantagem':
-                        return diceRoll.value > (diceRoll.other as number) ? diceRoll.value : diceRoll.other;
+                        return diceRoll.value >= (diceRoll.other as number) ? diceRoll.value : diceRoll.other;
                     case 'desvantagem':
-                        return diceRoll.value < (diceRoll.other as number) ? diceRoll.value : diceRoll.other;
+                        return diceRoll.value <= (diceRoll.other as number) ? diceRoll.value : diceRoll.other;
                 };
             };
 
             return accumulator + (valueToUse() as number);
-        }, 0);
+        }, this.modToSum);
     };
 };

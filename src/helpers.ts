@@ -3,6 +3,7 @@ import { RingoError } from "@/error.js";
 export function generateDiceRollText(dice: number, amount: number, modToSum: number) {
     let rollText = `${amount}D${dice}`;
     if (modToSum > 0) rollText += ` + ${modToSum}`;
+    if (modToSum < 0) rollText += ` - ${Math.abs(modToSum)}`;
     return rollText;
 };
 

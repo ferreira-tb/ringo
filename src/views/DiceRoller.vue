@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, reactive, readonly, ref } from 'vue';
+import { computed, reactive } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useDiceStore } from '@/stores/dice.js';
 import { generateDiceRollText } from '@/helpers.js';
 import { DiceRoll } from '@/objects.js';
@@ -8,7 +9,9 @@ import DiceHistory from '@/components/dice/DiceHistory.vue';
 import SavedRolls from '@/components/dice/SavedRolls.vue';
 import Button from '@/components/Button.vue';
 
-const { diceHistory } = useDiceStore();
+const diceStore = useDiceStore();
+const { diceHistory, diceTypes } = diceStore;
+const { chosenDice, diceAmount, modifier, rollType } = storeToRefs(diceStore);
 
 const buttonStyle = reactive({
     width: '80%',
@@ -17,22 +20,18 @@ const buttonStyle = reactive({
     fontWeight: 550
 });
 
-/** Quantidade de lados dos dados. */
-const diceTypes = readonly([2, 4, 6, 8, 10, 12, 20, 100]);
-/** Dado escolhido pelo jogador. */
-const chosenDice = ref<number | null>(null);
-/** Quantidade de dados que serão rolados. */
-const diceAmount = ref<number>(1);
-/** Modificador que será somado ao resultado. */
-const modifier = ref<number>(0);
-/** Determina se a jogada será normal ou se aplicará vantagem ou desvantagem. */
-const rollType = ref<DiceRollType>('normal');
-
 /** Combinação a ser rolada. */
 const roll = computed(() => {
     if (chosenDice.value === null) return null;
     return generateDiceRollText(chosenDice.value, diceAmount.value, modifier.value);
 });
+
+/** Estilo do modificador. */
+const modStyle = computed(() => ({
+    bold: true,
+    'green-text': modifier.value >= 0,
+    'red-text': modifier.value < 0
+}));
 
 /** Alea iacta est. */
 function rollDice() {
@@ -41,6 +40,10 @@ function rollDice() {
 
     while (diceHistory.length > 10) diceHistory.pop();
     diceHistory.unshift(thisRoll);
+};
+
+function decreaseDiceAmount() {
+    if (diceAmount.value > 1) diceAmount.value--;
 };
 </script>
 
@@ -61,8 +64,21 @@ function rollDice() {
         </div>
 
         <div class="mod-area">
-            <div>Quantidade</div>
-            <div>Modificador</div>
+            <div class="mod-row">
+                <Button text="X" @click="diceAmount = 1" />
+                <span class="bold">Quantidade</span>
+                <Button text="-" @click="decreaseDiceAmount" />
+                <span class="bold green-text">{{ diceAmount }}</span>
+                <Button text="+" @click="diceAmount++" />
+            </div>
+            <div class="mod-row">
+                <Button text="X" @click="modifier = 0" />
+                <span class="bold">Modificador</span>
+                <Button text="-" @click="modifier--" />
+                <span :class="modStyle">{{ modifier }}</span>
+                <Button text="+" @click="modifier++" />
+            </div>
+
             <div class="radio-area">
                 <label>
                     <input type="radio" value="normal" v-model="rollType" :disabled="chosenDice !== 20">
@@ -95,7 +111,7 @@ function rollDice() {
         </div>
 
         <Transition name="fade" mode="out-in">
-            <DiceHistory v-if="diceHistory.length > 0" :diceHistory="diceHistory" />
+            <DiceHistory v-if="diceHistory.length > 0" />
         </Transition>
     </main>
 </template>
@@ -128,6 +144,24 @@ function rollDice() {
 
 .mod-area {
     margin: 0.5em;
+}
+
+.mod-row span:first-of-type {
+    margin-right: 0.5em;
+}
+
+.mod-row {
+    --mod-row-size: 2.2em;
+    height: var(--mod-row-size);
+
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.mod-row button {
+    width: var(--mod-row-size);
 }
 
 .radio-area {

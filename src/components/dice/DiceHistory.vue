@@ -1,9 +1,18 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useDiceStore } from '@/stores/dice.js';
 import type { DiceRoll } from '@/objects.js';
 
-defineProps<{
-    diceHistory: DiceRoll[]
-}>();
+const diceStore = useDiceStore();
+const { diceHistory } = diceStore;
+const { chosenDice, diceAmount, modifier, rollType } = storeToRefs(diceStore);
+
+function applyConfig(diceRoll: DiceRoll) {
+    chosenDice.value = diceRoll.dice;
+    diceAmount.value = diceRoll.amount;
+    modifier.value = diceRoll.modToSum;
+    rollType.value = diceRoll.type;
+};
 
 function parseDate(rawDate: number) {
     const date = new Date(rawDate);
@@ -15,7 +24,11 @@ function parseDate(rawDate: number) {
     <section class="history-area">
         <h2>Histórico</h2>
         <TransitionGroup name="list">
-            <div v-for="dice of diceHistory" :key="dice.date">
+            <div
+                v-for="dice of diceHistory"
+                :key="dice.date"
+                @click="applyConfig(dice)"
+            >
                 <span>{{ `${dice.text} = ${dice.finalResult}` }}</span>
                 <span class="small">{{ parseDate(dice.date) }}</span>
             </div>

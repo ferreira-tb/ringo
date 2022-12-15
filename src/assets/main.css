@@ -83,6 +83,10 @@ input[type="checkbox"]:checked::before {
     color: var(--color-green);
 }
 
+.red-text {
+    color: var(--color-red);
+}
+
 .small {
     font-size: smaller;
     font-style: italic;
