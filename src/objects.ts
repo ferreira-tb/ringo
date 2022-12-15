@@ -1,5 +1,5 @@
 import { RingoError } from "@/error.js";
-import { generateDiceRollText } from "@/helpers.js";
+import { generateDiceRollText, randomInteger } from "@/helpers.js";
 
 /** Representa uma combinação que foi rolada. */
 export class EachDiceRoll {
@@ -10,14 +10,10 @@ export class EachDiceRoll {
     /** Outro valor para a rolagem. Apenas usado caso o tipo da rolagem não seja normal. */
     readonly other: number | null
 
-    randomNumber(dice: number) {
-        return Math.floor(Math.random() * dice + 1);
-    };
-
     constructor(dice: number, type: DiceRollType) {
         this.type = type;
-        this.value = this.randomNumber(dice);
-        this.other = type === 'normal' ? null : this.randomNumber(dice);
+        this.value = randomInteger(dice);
+        this.other = type === 'normal' ? null : randomInteger(dice);
     };
 };
 
@@ -44,19 +40,19 @@ export class DiceRoll {
         this.amount = amount;
         this.modToSum = modToSum;
         this.text = generateDiceRollText(dice, amount, modToSum);
-        this.type = type;
+        this.type = dice === 20 ? type : 'normal';
 
         let counter = 0;
         while (counter < amount) {
             counter++;
-            const thisRoll = new EachDiceRoll(dice, type);
+            const thisRoll = new EachDiceRoll(dice, this.type);
             this.rolls.push(thisRoll);
         };
 
         if (this.rolls.length === 0) throw new RingoError('Nenhum dado foi rolado.');
        this.finalResult = this.rolls.reduce((accumulator, diceRoll) => {
             const valueToUse = () => {
-                switch(type) {
+                switch(this.type) {
                     case 'normal':
                         return diceRoll.value;
                     case 'vantagem':

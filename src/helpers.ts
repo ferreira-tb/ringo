@@ -1,5 +1,11 @@
 import { RingoError } from "@/error.js";
 
+export function randomInteger(dice: number) {
+    const result = Math.floor(Math.random() * dice + 1);
+    if (result === dice) navigator.vibrate(200);
+    return result;
+};
+
 export function generateDiceRollText(dice: number, amount: number, modToSum: number) {
     let rollText = `${amount}D${dice}`;
     if (modToSum > 0) rollText += ` + ${modToSum}`;
