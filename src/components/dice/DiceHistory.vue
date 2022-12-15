@@ -4,6 +4,11 @@ import type { DiceRoll } from '@/objects.js';
 defineProps<{
     diceHistory: DiceRoll[]
 }>();
+
+function parseDate(rawDate: number) {
+    const date = new Date(rawDate);
+    return `${date.toLocaleDateString('pt-br')} às ${date.toLocaleTimeString('pt-br')}`;
+};
 </script>
 
 <template>
@@ -12,6 +17,7 @@ defineProps<{
         <TransitionGroup name="list">
             <div v-for="dice of diceHistory" :key="dice.date">
                 <span>{{ `${dice.text} = ${dice.finalResult}` }}</span>
+                <span class="italic">{{ parseDate(dice.date) }}</span>
             </div>
         </TransitionGroup>
     </section>
@@ -24,6 +30,9 @@ defineProps<{
 }
 
 .history-area div {
+    display: flex;
+    justify-content: space-between;
+
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
