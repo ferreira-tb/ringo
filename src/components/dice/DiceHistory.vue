@@ -7,7 +7,7 @@ defineProps<{
 
 function parseDate(rawDate: number) {
     const date = new Date(rawDate);
-    return `${date.toLocaleDateString('pt-br')} às ${date.toLocaleTimeString('pt-br')}`;
+    return `${date.toLocaleTimeString('pt-br')}`;
 };
 </script>
 
@@ -17,7 +17,7 @@ function parseDate(rawDate: number) {
         <TransitionGroup name="list">
             <div v-for="dice of diceHistory" :key="dice.date">
                 <span>{{ `${dice.text} = ${dice.finalResult}` }}</span>
-                <span class="italic">{{ parseDate(dice.date) }}</span>
+                <span class="small">{{ parseDate(dice.date) }}</span>
             </div>
         </TransitionGroup>
     </section>
@@ -31,6 +31,7 @@ function parseDate(rawDate: number) {
 
 .history-area div {
     display: flex;
+    align-content: center;
     justify-content: space-between;
 
     margin-left: 0.5em;
