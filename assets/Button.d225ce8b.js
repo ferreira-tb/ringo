@@ -1,0 +1,1 @@
+import{d as e,o,c as n,t as s,_}from"./index.63e941d5.js";const a={class:"standard-button"},c=e({__name:"Button",props:{text:null},setup(t){return(p,r)=>(o(),n("button",a,s(t.text),1))}});const u=_(c,[["__scopeId","data-v-a0d15b53"]]);export{u as B};
