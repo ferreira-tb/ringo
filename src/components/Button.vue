@@ -30,6 +30,7 @@ defineProps<{
     color: var(--color-background);
     transition: 200ms all ease-in-out;
 }
+
 .standard-button:hover, .standard-button:active {
     background-color: var(--color-green-lighter);
 }

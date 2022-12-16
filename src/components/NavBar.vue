@@ -18,6 +18,10 @@ const { character } = useCharacterStore();
 </template>
 
 <style scoped>
+nav {
+    user-select: none;
+}
+
 .nav-bar-menu {
     display: flex;
     margin-right: 20px;

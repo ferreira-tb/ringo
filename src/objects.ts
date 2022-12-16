@@ -34,6 +34,11 @@ export class EachDiceRoll {
     };
 };
 
+export const diceModelKeys: (keyof DiceModel)[] = [
+    'date', 'dice', 'amount', 'modToSum', 'minValue', 'maxValue', 'text', 'type'
+];
+
+/** Modificar as propriedades de `DiceModel` EXIGE que o validador em `DiceCollection.vue` também seja modificado. */
 export class DiceModel {
     /** Hora atual. */
     readonly date = Date.now();
@@ -49,28 +54,29 @@ export class DiceModel {
     readonly maxValue: number;
     /** Descrição textual da jogada (sem o resultado). */
     readonly text: string;
+    /** Tipo de jogada: normal, com vantagem ou com desvantagem. */
+    readonly type: DiceRollType;
 
-    constructor(dice: number, amount: number, modToSum: number) {
+    constructor(dice: number, amount: number, modToSum: number, type: DiceRollType) {
         this.dice = dice;
         this.amount = amount;
         this.modToSum = modToSum;
         this.minValue = amount + modToSum;
         this.maxValue = (dice * amount) + modToSum;
         this.text = generateDiceRollText(dice, amount, modToSum);
+        this.type = dice === 20 ? type : 'normal';
     };
 };
 
 export class DiceRoll extends DiceModel {
     /** Valor total da jogada. */
     readonly finalResult: number;
-    /** Tipo de jogada: normal, com vantagem ou com desvantagem. */
-    readonly type: DiceRollType;
+    
     /** Detalhes sobre a rolagem. */
     readonly rolls: EachDiceRoll[] = [];
 
     constructor(dice: number, amount: number, modToSum: number, type: DiceRollType) {
-        super(dice, amount, modToSum);
-        this.type = dice === 20 ? type : 'normal';
+        super(dice, amount, modToSum, type);
 
         let counter = 0;
         while (counter < amount) {

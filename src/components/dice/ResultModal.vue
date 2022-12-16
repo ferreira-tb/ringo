@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { DiceRoll, EachDiceRoll } from '@/objects.js';
+import { computed, ref } from 'vue';
+import { useDiceStore } from '@/stores/dice.js';
+import { RingoError } from '@/error.js';
+import { DiceModel, type DiceRoll, type EachDiceRoll } from '@/objects.js';
 import BlurBackground from '@/components/BlurBackground.vue';
 import Button from '@/components/Button.vue';
 
@@ -8,10 +10,17 @@ const props = defineProps<{
     rollResult: DiceRoll
 }>();
 
-defineEmits<{
+const emit = defineEmits<{
     (e: 'hideResult'): void
     (e: 'rollAgain'): void
 }>();
+
+const { diceCollection } = useDiceStore();
+
+/** Determina se a caixa de texto usada para nomear a rolagem será exibida.*/
+const showNameInput = ref<boolean>(false);
+/** Nome da rolagem. */
+const rollName = ref<string | null>(null);
 
 const resultClass = computed(() => ({
     bold: true,
@@ -24,6 +33,27 @@ function setRollClass(roll: EachDiceRoll) {
         'green-text': roll.value === props.rollResult.dice,
         'red-text': roll.value === 1
     };
+};
+
+function rollAgain() {
+    showNameInput.value = false;
+    rollName.value = null;
+    emit('rollAgain');
+};
+
+function addToCollection() {
+    if (typeof rollName.value !== 'string') {
+        throw new RingoError('O nome escolhido para a rolagem é inválido.');
+    } else if (rollName.value.length === 0) {
+        return;
+    };
+
+    const { dice, amount, modToSum, type } = props.rollResult;
+    const rollToAdd = new DiceModel(dice, amount, modToSum, type);
+    diceCollection.set(rollName.value, rollToAdd);
+
+    showNameInput.value = false;
+    rollName.value = null;
 };
 </script>
 
@@ -49,10 +79,22 @@ function setRollClass(roll: EachDiceRoll) {
                 </template>
             </div>
         </div>
+
+        <Transition name="fade" mode="out-in">
+            <div class="save-area" v-if="showNameInput">
+                <input
+                    v-model.trim="rollName"
+                    type="text"
+                    maxlength="50"
+                    placeholder="Digite o nome desejado"
+                >
+                <Button text="OK" @click="addToCollection" />
+            </div>
+        </Transition>
         
         <div class="button-area">
-            <Button text="Repetir" @click="$emit('rollAgain')" />
-            <Button text="Salvar" />
+            <Button text="Repetir" @click="rollAgain" />
+            <Button text="Salvar" @click="showNameInput = true" :disabled="showNameInput" />
             <Button text="Voltar" @click="$emit('hideResult')" />
         </div>
     </div>
@@ -95,11 +137,23 @@ function setRollClass(roll: EachDiceRoll) {
     margin-left: 0.2em;
 }
 
+.save-area {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
+    justify-items: center;
+    margin-top: 0.5em;
+}
+
+.save-area input {
+    height: 2em;
+}
+
 .button-area {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 
 .button-area button {
