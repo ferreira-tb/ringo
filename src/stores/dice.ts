@@ -7,6 +7,7 @@ export const useDiceStore = defineStore('dice', () => {
     const diceHistory: DiceRoll[] = [];
     /** Rolagens salvas. */
     const diceCollection = new Map<string, DiceModel>();
+    
     /** Quantidade de lados dos dados. */
     const diceTypes = readonly([2, 4, 6, 8, 10, 12, 20, 100]);
     /** Dado escolhido pelo jogador. */

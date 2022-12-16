@@ -12,8 +12,25 @@ export class EachDiceRoll {
 
     constructor(dice: number, type: DiceRollType) {
         this.type = type;
-        this.value = randomInteger(dice);
-        this.other = type === 'normal' ? null : randomInteger(dice);
+        const tempValue = randomInteger(dice);
+        const tempOther = randomInteger(dice);
+
+        // Isso garante que value sempre terá o valor relevante para o tipo de jogada.
+        if (type === 'normal') {
+            this.value = tempValue;
+            this.other = null;
+
+        } else if (type === 'vantagem') {
+            this.value = tempValue >= tempOther ? tempValue : tempOther;
+            this.other = tempValue >= tempOther ? tempOther : tempValue;
+
+        } else if (type === 'desvantagem') {
+            this.value = tempValue <= tempOther ? tempValue : tempOther;
+            this.other = tempValue <= tempOther ? tempOther : tempValue;
+
+        } else {
+            throw new RingoError('O tipo é inválido.')
+        };
     };
 };
 
@@ -57,19 +74,8 @@ export class DiceRoll extends DiceModel {
         };
 
         if (this.rolls.length === 0) throw new RingoError('Nenhum dado foi rolado.');
-       this.finalResult = this.rolls.reduce((accumulator, diceRoll) => {
-            const valueToUse = () => {
-                switch(this.type) {
-                    case 'normal':
-                        return diceRoll.value;
-                    case 'vantagem':
-                        return diceRoll.value >= (diceRoll.other as number) ? diceRoll.value : diceRoll.other;
-                    case 'desvantagem':
-                        return diceRoll.value <= (diceRoll.other as number) ? diceRoll.value : diceRoll.other;
-                };
-            };
-
-            return accumulator + (valueToUse() as number);
+        this.finalResult = this.rolls.reduce((accumulator, diceRoll) => {
+            return accumulator + diceRoll.value;
         }, this.modToSum);
     };
 };
