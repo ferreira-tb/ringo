@@ -1,1 +1,0 @@
-import{B as d,C as l,m as e}from"./index.63e941d5.js";const m=d("dice",()=>{const o=[],c=new Map,n=l([2,4,6,8,10,12,20,100]),s=e(null),t=e(1),i=e(0),r=e("normal");return{diceHistory:o,diceCollection:c,diceTypes:n,chosenDice:s,diceAmount:t,modifier:i,rollType:r}});export{m as u};
