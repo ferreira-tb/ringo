@@ -14,6 +14,10 @@
     --color-green-lighter: #00d68f;
 
     --color-red: #e61001;
+
+    --blur-bg-background: rgba(0, 0, 0, 0.600);
+    --blur-bg-index: 999998;
+    --blur-bg-over-index: 999999;
 }
 
 *,

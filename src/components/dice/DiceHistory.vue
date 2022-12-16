@@ -49,5 +49,7 @@ function parseDate(rawDate: number) {
 
     margin-left: 0.5em;
     margin-right: 0.5em;
+
+    cursor: pointer;
 }
 </style>

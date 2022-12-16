@@ -6,11 +6,12 @@ import { RingoError } from '@/error.js';
 import RaceAbility from '@/components/create/RaceAbility.vue';
 import Tooltip from '@/components/Tooltip.vue';
 
-const { character } = useCharacterStore();
 const props = defineProps<{
     abilityInfo: ReadonlyMap<Abilities, APIAbilityInfo>
     raceInfo: APICharacterRace
 }>();
+
+const { character } = useCharacterStore();
 
 /** Texto da caixa com a descrição das habilidades. */
 const abilityDescription = ref<string | null>(null);

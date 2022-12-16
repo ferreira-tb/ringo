@@ -37,12 +37,16 @@ export class EachDiceRoll {
 export class DiceModel {
     /** Hora atual. */
     readonly date = Date.now();
-    /** Tipo de dado. */
+    /** Quantidade de lados que o dado possui. */
     readonly dice: number;
     /** Quantidade de dados. */
     readonly amount: number;
     /** Modificador que será somado ao resultado. */
     readonly modToSum: number;
+    /** Valor mínimo possível para a jogada. */
+    readonly minValue: number;
+    /** Valor máximo possível para a jogada. */
+    readonly maxValue: number;
     /** Descrição textual da jogada (sem o resultado). */
     readonly text: string;
 
@@ -50,6 +54,8 @@ export class DiceModel {
         this.dice = dice;
         this.amount = amount;
         this.modToSum = modToSum;
+        this.minValue = amount + modToSum;
+        this.maxValue = (dice * amount) + modToSum;
         this.text = generateDiceRollText(dice, amount, modToSum);
     };
 };

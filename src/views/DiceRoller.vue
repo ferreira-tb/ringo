@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { router } from '@/router/index.js';
 import { useDiceStore } from '@/stores/dice.js';
@@ -7,6 +7,7 @@ import { generateDiceRollText } from '@/helpers.js';
 import { DiceRoll } from '@/objects.js';
 import { RingoError } from '@/error.js';
 import DiceHistory from '@/components/dice/DiceHistory.vue';
+import ResultModal from '@/components/dice/ResultModal.vue';
 import Button from '@/components/Button.vue';
 
 const diceStore = useDiceStore();
@@ -33,10 +34,14 @@ const modStyle = computed(() => ({
     'red-text': modifier.value < 0
 }));
 
+/** Resultado da rolagem. Um valor diferente de `null` forçará a abertura do modal. */
+const rollResult = ref<DiceRoll | null>(null);
+
 /** Alea iacta est. */
 function rollDice() {
     if (chosenDice.value === null) throw new RingoError('Nenhum dado foi escolhido.');
     const thisRoll = new DiceRoll(chosenDice.value, diceAmount.value, modifier.value, rollType.value);
+    rollResult.value = thisRoll;
 
     while (diceHistory.length > 5) diceHistory.pop();
     diceHistory.unshift(thisRoll);
@@ -63,18 +68,30 @@ function decreaseDiceAmount() {
             />
         </div>
 
+        <ResultModal 
+            v-if="rollResult"
+            :rollResult="rollResult"
+            @hide-result="rollResult = null"
+            @roll-again="rollDice"
+        />
+        
         <div class="mod-area">
             <div class="mod-row">
                 <Button text="X" @click="diceAmount = 1" />
+
                 <span class="bold">Quantidade</span>
                 <Button text="-" @click="decreaseDiceAmount" />
+
                 <span class="bold green-text">{{ diceAmount }}</span>
                 <Button text="+" @click="diceAmount++" />
             </div>
+            
             <div class="mod-row">
                 <Button text="X" @click="modifier = 0" />
+
                 <span class="bold">Modificador</span>
                 <Button text="-" @click="modifier--" />
+
                 <span :class="modStyle">{{ modifier }}</span>
                 <Button text="+" @click="modifier++" />
             </div>
