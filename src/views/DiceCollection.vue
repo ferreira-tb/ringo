@@ -16,7 +16,7 @@ const buttonStyle = reactive({
     <main>
         <div class="menu-area">
             <Button
-                text="Salvar"
+                text="Criar"
                 :style="buttonStyle"
             />
 
