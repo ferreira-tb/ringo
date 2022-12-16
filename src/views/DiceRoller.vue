@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue';
 import { storeToRefs } from 'pinia';
+import { router } from '@/router/index.js';
 import { useDiceStore } from '@/stores/dice.js';
 import { generateDiceRollText } from '@/helpers.js';
 import { DiceRoll } from '@/objects.js';
 import { RingoError } from '@/error.js';
 import DiceHistory from '@/components/dice/DiceHistory.vue';
-import SavedRolls from '@/components/dice/SavedRolls.vue';
 import Button from '@/components/Button.vue';
 
 const diceStore = useDiceStore();
@@ -105,8 +105,9 @@ function decreaseDiceAmount() {
             />
 
             <Button
-                text="Salvos"
+                text="Coleção"
                 :style="buttonStyle"
+                @click="router.push({ name: 'dice-collection' })"
             />
         </div>
 

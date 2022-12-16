@@ -20,6 +20,11 @@ export const router = createRouter({
             component: () => import('@/views/DiceRoller.vue')
         },
         {
+            path: '/dice/collection',
+            name: 'dice-collection',
+            component: () => import('@/views/DiceCollection.vue')
+        },
+        {
             path: '/create/char',
             component: () => import('@/views/CreateCharacter.vue'),
             children: createCharRoutes

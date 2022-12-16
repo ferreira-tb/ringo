@@ -17,7 +17,7 @@ export class EachDiceRoll {
     };
 };
 
-export class DiceRoll {
+export class DiceModel {
     /** Hora atual. */
     readonly date = Date.now();
     /** Tipo de dado. */
@@ -26,20 +26,27 @@ export class DiceRoll {
     readonly amount: number;
     /** Modificador que será somado ao resultado. */
     readonly modToSum: number;
-    /** Valor total da jogada. */
-    readonly finalResult: number;
     /** Descrição textual da jogada (sem o resultado). */
     readonly text: string;
+
+    constructor(dice: number, amount: number, modToSum: number) {
+        this.dice = dice;
+        this.amount = amount;
+        this.modToSum = modToSum;
+        this.text = generateDiceRollText(dice, amount, modToSum);
+    };
+};
+
+export class DiceRoll extends DiceModel {
+    /** Valor total da jogada. */
+    readonly finalResult: number;
     /** Tipo de jogada: normal, com vantagem ou com desvantagem. */
     readonly type: DiceRollType;
     /** Detalhes sobre a rolagem. */
     readonly rolls: EachDiceRoll[] = [];
 
     constructor(dice: number, amount: number, modToSum: number, type: DiceRollType) {
-        this.dice = dice;
-        this.amount = amount;
-        this.modToSum = modToSum;
-        this.text = generateDiceRollText(dice, amount, modToSum);
+        super(dice, amount, modToSum);
         this.type = dice === 20 ? type : 'normal';
 
         let counter = 0;
