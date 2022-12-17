@@ -111,11 +111,11 @@ function parseImportedFile(e: ProgressEvent<FileReader>) {
                 @click="router.push({ name: 'dice' })"
             />
         </div>
+        <h2>Coleção</h2>
         <div class="no-collection" v-if="diceCollection.size === 0">
             <p>Não há rolagens salvas.</p>
         </div>
         <div class="collection" v-else>
-            <h2>Coleção</h2>
             <TransitionGroup name="list">
                 <div
                     v-for="item of sortedCollection"
@@ -153,7 +153,7 @@ main {
     margin-bottom: 1em;
 }
 
-.collection h2 {
+h2 {
     margin-top: 0.3em;
     margin-bottom: 0.5em;
     text-align: center;
