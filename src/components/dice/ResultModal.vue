@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useDiceStore } from '@/stores/dice.js';
 import { RingoError } from '@/error.js';
 import { DiceModel, type DiceRoll, type EachDiceRoll } from '@/objects.js';
@@ -17,16 +17,26 @@ const emit = defineEmits<{
 
 const { diceCollection } = useDiceStore();
 
-/** Determina se a caixa de texto usada para nomear a rolagem será exibida.*/
+/** Caixa de texto usada para nomear a rolagem. */
+const textInput = ref<HTMLInputElement | null>(null);
+/** Determina se a caixa de texto estará visível. */
 const showNameInput = ref<boolean>(false);
 /** Nome da rolagem. */
 const rollName = ref<string | null>(null);
 
+/** Classes usadas para estilizar os valores do resultado. */
 const resultClass = computed(() => ({
     bold: true,
     'green-text': props.rollResult.finalResult === props.rollResult.maxValue,
     'red-text': props.rollResult.finalResult === props.rollResult.minValue
 }));
+
+// Foca a caixa de texto quando ela é exibida.
+watch(textInput, () => {
+    if (textInput.value instanceof HTMLInputElement) {
+        textInput.value.focus();
+    };
+});
 
 function setRollClass(roll: EachDiceRoll) {
     return {
@@ -58,44 +68,45 @@ function addToCollection() {
 </script>
 
 <template>
-    <BlurBackground @close-modal="$emit('hideResult')" />
-
-    <div class="result-modal">
-        <div class="result-area">
-            <div>{{ rollResult.text }}</div>
-
-            <div class="final-result" :class="resultClass">
-                {{ rollResult.finalResult }}
-            </div>
-
-            <div class="rolls">
-                <template v-for="roll of rollResult.rolls">
-                    <span class="each-roll" :class="setRollClass(roll)">
-                        {{ roll.value }}
-                    </span>
-                    <span class="other-roll" v-if="rollResult.type !== 'normal'">
-                        {{ `(${roll.other})` }}
-                    </span>
-                </template>
-            </div>
-        </div>
-
-        <Transition name="fade" mode="out-in">
-            <div class="save-area" v-if="showNameInput">
-                <input
-                    v-model.trim="rollName"
-                    type="text"
-                    maxlength="50"
-                    placeholder="Digite o nome desejado"
-                >
-                <Button text="OK" @click="addToCollection" />
-            </div>
-        </Transition>
+    <div>
+        <BlurBackground @close-modal="$emit('hideResult')" />
         
-        <div class="button-area">
-            <Button text="Repetir" @click="rollAgain" />
-            <Button text="Salvar" @click="showNameInput = true" :disabled="showNameInput" />
-            <Button text="Voltar" @click="$emit('hideResult')" />
+        <div class="result-modal">
+            <div>
+                <div>{{ rollResult.text }}</div>
+                <div class="final-result" :class="resultClass">
+                    {{ rollResult.finalResult }}
+                </div>
+                <div class="rolls">
+                    <template v-for="roll of rollResult.rolls">
+                        <span class="each-roll" :class="setRollClass(roll)">
+                            {{ roll.value }}
+                        </span>
+                        <span class="other-roll" v-if="rollResult.type !== 'normal'">
+                            {{ `(${roll.other})` }}
+                        </span>
+                    </template>
+                </div>
+            </div>
+            
+            <Transition name="fade" mode="out-in">
+                <div class="save-area" v-if="showNameInput">
+                    <input
+                        v-model.trim="rollName"
+                        type="text"
+                        maxlength="50"
+                        placeholder="Digite um nome"
+                        ref="textInput"
+                    >
+                    <Button text="OK" @click="addToCollection" />
+                </div>
+            </Transition>
+        
+            <div class="button-area">
+                <Button text="Repetir" @click="rollAgain" />
+                <Button text="Salvar" @click="showNameInput = true" :disabled="showNameInput" />
+                <Button text="Voltar" @click="$emit('hideResult')" />
+            </div>
         </div>
     </div>
 </template>
@@ -108,7 +119,7 @@ function addToCollection() {
     transform: translate(-50%, -50%);
     z-index: var(--blur-bg-over-index);
 
-    width: 60%;
+    width: 80%;
     min-height: 30%;
 
     padding: 0.5em;
@@ -143,10 +154,16 @@ function addToCollection() {
     align-items: center;
     justify-items: center;
     margin-top: 0.5em;
+    overflow: hidden;
 }
 
 .save-area input {
     height: 2em;
+    width: 90%;
+}
+
+.save-area button {
+    width: 80%;
 }
 
 .button-area {
@@ -154,6 +171,7 @@ function addToCollection() {
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     margin-top: 0.5em;
+    overflow: hidden;
 }
 
 .button-area button {

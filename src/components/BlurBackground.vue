@@ -5,7 +5,7 @@ defineEmits<{
 </script>
 
 <template>
-    <div class="blur-bg" @click="$emit('closeModal')"></div>
+    <div class="blur-bg" @click.self="$emit('closeModal')"></div>
 </template>
 
 <style scoped>

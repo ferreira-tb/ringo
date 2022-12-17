@@ -12,7 +12,7 @@ defineEmits<{
     <div class="file-input-wrapper">
         <input
             type="file"
-            accept="application/json"
+            accept="application/json, text/json"
             :id="id"
             @change="$emit('fileUpload', ($event.target as HTMLInputElement).files)"
         >

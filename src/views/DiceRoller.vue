@@ -67,13 +67,15 @@ function decreaseDiceAmount() {
                 @click="rollDice"
             />
         </div>
-
-        <ResultModal 
-            v-if="rollResult"
-            :rollResult="rollResult"
-            @hide-result="rollResult = null"
-            @roll-again="rollDice"
-        />
+        
+        <Transition name="fade" mode="out-in">
+            <ResultModal 
+                v-if="rollResult"
+                :rollResult="rollResult"
+                @hide-result="rollResult = null"
+                @roll-again="rollDice"
+            />
+        </Transition>
         
         <div class="mod-area">
             <div class="mod-row">
