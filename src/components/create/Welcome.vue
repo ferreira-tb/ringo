@@ -17,6 +17,7 @@ const { character } = useCharacterStore();
                 minlength="1"
                 maxlength="30"
                 spellcheck="false"
+                placeholder="Digite um nome"
             >
         </div>
         <div class="button-area">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { useDiceStore } from '@/stores/dice.js';
 import { RingoError } from '@/error.js';
 import { DiceModel, type DiceRoll, type EachDiceRoll } from '@/objects.js';
@@ -17,9 +17,7 @@ const emit = defineEmits<{
 
 const { diceCollection } = useDiceStore();
 
-/** Caixa de texto usada para nomear a rolagem. */
-const textInput = ref<HTMLInputElement | null>(null);
-/** Determina se a caixa de texto estará visível. */
+/** Determina se a caixa de texto usada para nomear a rolagem estará visível. */
 const showNameInput = ref<boolean>(false);
 /** Nome da rolagem. */
 const rollName = ref<string | null>(null);
@@ -31,13 +29,7 @@ const resultClass = computed(() => ({
     'red-text': props.rollResult.finalResult === props.rollResult.minValue
 }));
 
-// Foca a caixa de texto quando ela é exibida.
-watch(textInput, () => {
-    if (textInput.value instanceof HTMLInputElement) {
-        textInput.value.focus();
-    };
-});
-
+/** Estilo para o valor individual de cada dado envolvido na rolagem. */
 function setRollClass(roll: EachDiceRoll) {
     return {
         'green-text': roll.value === props.rollResult.dice,
@@ -45,12 +37,14 @@ function setRollClass(roll: EachDiceRoll) {
     };
 };
 
+/** Repete a rolagem. */
 function rollAgain() {
     showNameInput.value = false;
     rollName.value = null;
     emit('rollAgain');
 };
 
+/** Salva o modelo da rolagem na coleção. */
 function addToCollection() {
     if (typeof rollName.value !== 'string') {
         throw new RingoError('O nome escolhido para a rolagem é inválido.');
@@ -92,11 +86,13 @@ function addToCollection() {
             <Transition name="fade" mode="out-in">
                 <div class="save-area" v-if="showNameInput">
                     <input
+                        v-focus
                         v-model.trim="rollName"
                         type="text"
                         maxlength="50"
                         placeholder="Digite um nome"
                         ref="textInput"
+                        @keyup.enter="addToCollection"
                     >
                     <Button text="OK" @click="addToCollection" />
                 </div>
