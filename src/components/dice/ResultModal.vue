@@ -89,7 +89,7 @@ function addToCollection() {
                         v-focus
                         v-model.trim="rollName"
                         type="text"
-                        maxlength="50"
+                        maxlength="30"
                         placeholder="Digite um nome"
                         ref="textInput"
                         @keyup.enter="addToCollection"

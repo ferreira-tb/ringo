@@ -122,9 +122,8 @@ function parseImportedFile(e: ProgressEvent<FileReader>) {
                     class="collection-item"
                     @click="applyRollConfig(item[1])"
                 >
-                    <span class="bold item-name">{{ item[0] }}</span>
-                    <span>{{ item[1].text }}</span>
-                    <span>{{ new Date(item[1].date).toLocaleDateString() }}</span>
+                    <div class="bold">{{ item[0] }}</div>
+                    <div>{{ item[1].text }}</div>
                 </div>
             </TransitionGroup>
         </div>
@@ -141,7 +140,7 @@ main {
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .no-collection {
@@ -155,15 +154,28 @@ main {
 }
 
 .collection h2 {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
     text-align: center;
 }
 
 .collection-item {
     display: grid;
-    grid-template-columns: 1.5fr 2.5fr 1fr;
-    justify-items: center;
-    align-items: center;
+    grid-template-columns: 3fr 2fr;
     cursor: pointer;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.collection-item:last-of-type {
+    border: none;
+}
+
+.collection-item div {
+    width: 100%;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-align: center;
+    align-self: center;
 }
 </style>
