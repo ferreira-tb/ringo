@@ -1,13 +1,8 @@
 import { RingoError } from "@/error.js";
 
-/**
- * Retorna um número inteiro entre 1 e o valor indicado por `dice`.
- * Se `vibrate === true`, vibra o aparelho quando o valor obtido for igual à `dice`.
- */
-export function randomInteger(dice: number, vibrate: boolean = true) {
-    const result = Math.floor(Math.random() * dice + 1);
-    if (result === dice && vibrate === true) navigator.vibrate(400);
-    return result;
+/** Retorna um número inteiro entre 1 e o valor indicado por `dice`. */
+export function randomInteger(dice: number) {
+    return Math.floor(Math.random() * dice + 1);
 };
 
 /** Gera o texto que descreve uma rolagem de dados. */
