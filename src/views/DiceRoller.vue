@@ -187,7 +187,7 @@ function decreaseDiceAmount() {
 .radio-area {
     display: flex;
     justify-content: center;
-    padding-top: 0.2em;
+    margin-top: 0.5em;
 }
 
 .radio-area label {
