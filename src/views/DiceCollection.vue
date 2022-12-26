@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import { router } from '@/router/index.js';
+import { router } from '@/router/router.js';
 import { useDiceStore } from '@/stores/dice.js';
 import { emitJSONFile, openFilePicker } from '@/helpers.js'
 import { diceModelKeys, type DiceModel } from '@/objects.js';
@@ -29,24 +29,29 @@ watch(importedFile, async () => {
     if (!(importedFile.value instanceof FileList)) return;
     if (importedFile.value.length === 0) return;
 
-    const reader = new FileReader();
-    for (const file of Array.from(importedFile.value)) {
-        await new Promise<void>((resolve, reject) => {
-            const controller = new AbortController();
+    try {
+        const reader = new FileReader();
+        await Promise.all(Array.from(importedFile.value).map((file) => {
+            return new Promise<void>((resolve, reject) => {
+                const controller = new AbortController();
 
-            reader.addEventListener('load', (e) => {
-                parseImportedFile(e);
-                controller.abort();
-                resolve();
-            }, { signal: controller.signal });
+                reader.addEventListener('load', (e) => {
+                    parseImportedFile(e);
+                    controller.abort();
+                    resolve();
+                }, { signal: controller.signal });
 
-            reader.addEventListener('error', () => {
-                controller.abort();
-                reject();
-            }, { signal: controller.signal });
+                reader.addEventListener('error', () => {
+                    controller.abort();
+                    reject();
+                }, { signal: controller.signal });
 
-            reader.readAsText(file);
-        });
+                reader.readAsText(file);
+            });
+        }));
+
+    } catch (err) {
+        if (err instanceof Error) console.error(err);
     };
 });
 
@@ -58,7 +63,7 @@ function applyRollConfig(diceModel: DiceModel) {
     rollType.value = diceModel.type;
 
     // Volta para a página do rolador de dados.
-    router.push({ name: 'dice' });
+    router.push({ name: 'home' });
 };
 
 /** Verifica se o arquivo importado é válido. Em caso positivo, adiciona os itens à coleção. */

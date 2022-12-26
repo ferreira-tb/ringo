@@ -13,21 +13,6 @@ export function generateDiceRollText(dice: number, amount: number, modToSum: num
     return rollText;
 };
 
-/** Torna a primeira letra maiúscula. */
-export function capitalize(word: string) {
-    if (word.length === 0) throw new RingoError('A string está vazia.');
-    return word.replace(word[0], word[0].toUpperCase());
-};
-
-/** Dá `join` numa array de strings separando os itens com vírgula, mas usa `e` antes do último item. */
-export function joinWordList(wordArray: string[], shouldCapitalize: boolean = false): string {
-    if (wordArray.length === 0) throw new RingoError('A lista está vazia.');
-
-    const result = wordArray.join(', ').replace(/,\s([^,]+)$/, ' e $1');
-    if (shouldCapitalize === true) return capitalize(result);
-    return result;
-};
-
 /** Retorna informações sobre as habilidades do jogo. */
 export async function fetchAbilities(): Promise<ReadonlyMap<Abilities, APIAbilityInfo>> {
     const response = await fetch('/ringo/api/ability.json');

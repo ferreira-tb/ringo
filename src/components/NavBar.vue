@@ -1,31 +1,20 @@
 <script setup lang='ts'>
-import { useCharacterStore } from '@/stores/character.js';
 
-const { character } = useCharacterStore();
 </script>
 
 <template>
-    <nav>
+    <nav class="nav-bar">
         <div>
             <router-link :to="{ name: 'home' }" class="home-page-link">
                 Ringo
             </router-link>
         </div>
-        <div class="nav-bar-menu">
-            <span v-if="character.name">{{ character.name }}</span>
-        </div>
     </nav>
 </template>
 
 <style scoped>
-nav {
+.nav-bar {
     user-select: none;
-}
-
-.nav-bar-menu {
-    display: flex;
-    margin-right: 20px;
-    font-size: 1.2em;
 }
 
 .home-page-link {

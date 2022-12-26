@@ -1,6 +1,11 @@
 {
     "name": "ringo",
-    "version": "0.1.0",
+    "version": "1.0.0",
+    "description": "Aplicativo para D&D 5ª Edição",
+    "author": "Andrew Ferreira <andrew.shien2@gmail.com> (https://github.com/ferreira-tb)",
+    "repository": "ferreira-tb/ringo",
+    "homepage": "https://tb.dev.br/ringo/",
+    "bugs": "https://github.com/ferreira-tb/ringo/issues",
     "private": true,
     "scripts": {
         "dev": "vite",

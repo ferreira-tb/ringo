@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { router } from '@/router/index.js';
+import { router } from '@/router/router.js';
 import { useDiceStore } from '@/stores/dice.js';
 import { generateDiceRollText } from '@/helpers.js';
 import { DiceRoll } from '@/objects.js';
 import { RingoError } from '@/error.js';
-import DiceHistory from '@/components/dice/DiceHistory.vue';
-import ResultModal from '@/components/dice/ResultModal.vue';
+import DiceHistory from '@/components/DiceHistory.vue';
+import DiceResultModal from '@/components/DiceResultModal.vue';
 import Button from '@/components/Button.vue';
 
 const diceStore = useDiceStore();
@@ -69,7 +69,7 @@ function decreaseDiceAmount() {
         </div>
         
         <Transition name="fade" mode="out-in">
-            <ResultModal 
+            <DiceResultModal 
                 v-if="rollResult"
                 :rollResult="rollResult"
                 @hide-result="rollResult = null"
