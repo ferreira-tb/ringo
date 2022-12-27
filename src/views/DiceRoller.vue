@@ -126,7 +126,7 @@ function decreaseDiceAmount() {
             <Button
                 text="Coleção"
                 :style="buttonStyle"
-                @click="router.push({ name: 'dice-collection' })"
+                @click="router.push({ name: 'collection' })"
             />
         </div>
 

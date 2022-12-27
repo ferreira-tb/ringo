@@ -47,7 +47,7 @@ export function emitJSONFile(item: unknown) {
 
 /**
  * Abre o seletor de arquivos.
- * @param id ID do seletor.
+ * @param id ID do input.
  */
 export function openFilePicker(id: string) {
     const fileInput = document.querySelector(`#${id}`) as HTMLInputElement | null;

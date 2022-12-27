@@ -10,7 +10,7 @@ export const router = createRouter({
         },
         {
             path: '/collection',
-            name: 'dice-collection',
+            name: 'collection',
             component: () => import('@/views/DiceCollection.vue')
         }
     ]

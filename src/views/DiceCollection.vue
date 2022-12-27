@@ -113,7 +113,7 @@ function parseImportedFile(e: ProgressEvent<FileReader>) {
             <Button
                 text="Voltar"
                 :style="buttonStyle"
-                @click="router.push({ name: 'dice' })"
+                @click="router.push({ name: 'home' })"
             />
         </div>
         <h2>Coleção</h2>
