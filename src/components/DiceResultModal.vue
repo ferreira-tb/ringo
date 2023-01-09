@@ -22,7 +22,7 @@ const showNameInput = ref<boolean>(false);
 /** Nome da rolagem. */
 const rollName = ref<string | null>(null);
 
-/** Classes usadas para estilizar os valores do resultado. */
+/** Estilo do valor final do resultado. */
 const resultClass = computed(() => ({
     bold: true,
     'green-text': props.rollResult.finalResult === props.rollResult.maxValue,
@@ -68,9 +68,15 @@ function addToCollection() {
         <div class="result-modal">
             <div>
                 <div>{{ rollResult.text }}</div>
+
                 <div class="final-result" :class="resultClass">
                     {{ rollResult.finalResult }}
                 </div>
+
+                <div v-if="rollResult.type !== 'normal'">
+                    Rolado com <span class="roll-type">{{ rollResult.type }}</span>
+                </div>
+
                 <div class="rolls">
                     <template v-for="roll of rollResult.rolls">
                         <span class="each-roll" :class="setRollClass(roll)">
