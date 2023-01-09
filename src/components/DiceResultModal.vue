@@ -29,6 +29,13 @@ const resultClass = computed(() => ({
     'red-text': props.rollResult.finalResult === props.rollResult.minValue
 }));
 
+/** Estilo do tipo do resultado. */
+const rollTypeClass = computed(() => ({
+    bold: true,
+    'green-text': props.rollResult.type === 'vantagem',
+    'red-text': props.rollResult.type === 'desvantagem'
+}));
+
 /** Estilo para o valor individual de cada dado envolvido na rolagem. */
 function setRollClass(roll: EachDiceRoll) {
     return {
@@ -74,7 +81,7 @@ function addToCollection() {
                 </div>
 
                 <div v-if="rollResult.type !== 'normal'">
-                    Rolado com <span class="roll-type">{{ rollResult.type }}</span>
+                    Rolado com <span :class="rollTypeClass">{{ rollResult.type }}</span>
                 </div>
 
                 <div class="rolls">
